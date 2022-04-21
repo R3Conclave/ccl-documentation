@@ -1,0 +1,1039 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Conclave Cloud API
+  description: The API for interacting with Conclave Cloud.
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Platform
+    description: General purpose endpoints regarding the Platform. You can use them to get the current tenant.
+  - name: Projects
+    description: Management of projects. Every project can contain functions.
+  - name: Functions
+    description: Management of functions(see Invocations/Client for calling functions/getting results). Every function is part of a project.
+  - name: Invocations
+    description: "At the moment most of the endpoints here are duplicated by the Client ones(excluding the list all
+   invocations). The difference being that you don't need to specify a tenantID when using the endpoints from the
+   Invocations, but you will have to authenticate."
+  - name: Client
+    description: "Unauthenticated endpoints to be used for getting keys, invoking functions and getting the results
+   of those invocations."
+components:
+  parameters:
+    tenantID:
+      name: tenantID
+      description: The ID of the tenant containing function module to invoke. This information can be obtained from the Conclave Cloud portal.
+      example: 4EB65FC2224AEC7E4D38297DB7BC29DB3B66C2D3E2EF94CF25D4134E1502C402
+      in: path
+      required: true
+      schema:
+        type: string
+    projectID:
+      name: projectID
+      description: The ID of the project containing the activation. This information can be obtained from the Conclave Cloud portal.
+      example: 24AEC7E4D34EB65FC228297DB7BC6C2D3E2EF94CF25D4134E1502C40229DB3B6
+      in: path
+      required: true
+      schema:
+        type: string
+    invocationID:
+      name: invocationID
+      description: ID of the invocation to fetch
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Function:
+      required:
+        - name
+        - version
+        - exec
+        - limits
+        - updated
+        - hash
+      properties:
+        name:
+          type: string
+          description: Name of the item
+          minLength: 1
+        version:
+          type: string
+          description: Semantic version of the item
+          minLength: 1
+        exec:
+          $ref: "#/components/schemas/FunctionExec"
+        limits:
+          $ref: "#/components/schemas/FunctionLimits"
+        updated:
+          type: integer
+          format: int64
+          description: Time when the action was updated
+        hash:
+          type: string
+          description: The SHA256 hash of the code
+          minLength: 64
+
+    FunctionExec:
+      description: definition of the function including the JavaScript
+      properties:
+        code:
+          type: string
+          description: The code to execute
+        main:
+          type: string
+          description: The entry point of the code
+
+    FunctionLimits:
+      description: Limits on a specific function
+      properties:
+        timeout:
+          type: integer
+          format: int32
+          description: timeout in milliseconds
+          default: 60000
+        memory:
+          type: integer
+          format: int32
+          description: memory in megabytes
+          default: 256
+        epc:
+          type: integer
+          format: int32
+          description: epc in megabytes
+          default: 256
+
+    FunctionMetadata:
+      required:
+        - name
+        - version
+        - limits
+        - updated
+        - hash
+      properties:
+        name:
+          type: string
+          description: Name of the item
+          minLength: 1
+          example: hello-world
+        version:
+          type: string
+          description: Semantic version of the item
+          minLength: 1
+          example: 1.0.0
+        limits:
+          $ref: "#/components/schemas/FunctionLimits"
+        updated:
+          type: integer
+          format: int64
+          description: Time when the action was updated
+        hash:
+          type: string
+          description: The SHA256 of the function code
+          minLength: 64
+          example: 7EC88782A989E8C9F989CB898E97866554343445A7EC88782A989E8C9F989CB8
+
+    Invocation:
+      properties:
+        name:
+          type: string
+          description: Name of the item
+        version:
+          type: string
+          description: Semantic version of the item
+        invocationId:
+          type: string
+          description: Id of the invocation
+        start:
+          type: integer
+          format: int64
+          description: Time when the invocation began
+        end:
+          type: integer
+          format: int64
+          description: Time when the invocation completed
+        duration:
+          type: integer
+          description: How long the invocation took, in millisecnods
+        response:
+          $ref: "#/components/schemas/InvocationResult"
+        logs:
+          type: array
+          description: Logs generated by the invocation
+          items:
+            type: string
+        cause:
+          type: string
+          description: the invocation id that caused this invocation
+        statusCode:
+          type: integer
+          format: int32
+          description: The status code
+        waitTime:
+          type: number
+          description: The time spent waiting in Conclave Cloud before the function was invoked.
+        timeout:
+          type: boolean
+          description: Indicates whether the invocation exceeded the maximum permitted time for a function.
+        initTime:
+          type: number
+          description: The time spent initialising the function. If present it indicates that the function required a cold start.
+
+    InvocationResult:
+      properties:
+        status:
+          type: string
+          description: Exit status of the invocation
+        result:
+          description: The return value from the invocation
+        success:
+          type: boolean
+          description: Whether the invocation was successful or not
+        size:
+          type: integer
+          description: Size of response
+
+    InvocationLogs:
+      properties:
+        logs:
+          type: array
+          description: Logs generated by the invocation
+          items:
+            type: string
+
+    FunctionInvoke:
+      required:
+        - data
+      properties:
+        data:
+          type: string
+          description: A Base64 encoded string containing encrypted parameters for the invocation.
+          example: RXhhbXBsZSBGdW5jdGlvbiBEYXRh
+      description: Provides the parameters to pass to a function when it is invoked.
+
+    Tenant:
+      type: object
+      required:
+        - tenantID
+      properties:
+        tenantID:
+          type: string
+          description: The ID if the tenant the authenticate user belongs to.
+          example: 7DB7BC6C2D3E2EF924AEC7E4D34EB65FC228294CF25D4139DB3B64E1502C4022
+
+    ProjectAdd:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: The name of the project.
+          example: My Project
+
+    Project:
+      type: object
+      required:
+        - projectID
+        - name
+      properties:
+        projectID:
+          type: string
+          description: A project ID.
+          example: 24AEC7E4D34EB65FC228297DB7BC6C2D3E2EF94CF25D4134E1502C40229DB3B6
+        name:
+          type: string
+          description: The name of the project.
+          example: My Project
+
+    PublicKey:
+      type: object
+      required:
+        - keySpecification
+        - publicKey
+        - platformReport
+        - publicKeySignature
+      properties:
+        keySpecification:
+          $ref: "#/components/schemas/KeySpecification"
+        publicKey:
+          type: string
+          description: A Base64 encoded public key.
+          example: bGtzZGpmbHNrZGpmbHNkamxrc2RrbGZzamRsZmtqc2Rsa2Zqc2xka2Zqc2xkZmxzZGpsZms=
+        platformReport:
+          type: string
+          description: The remote attestation for the key issuer.
+          example: RsZmtqc2Rsa2bmbHNrZGpmbHNkamxrc2RrbGZzamZqc2xka2Zqc2xkZmxzZGpsZmsGtzZGp=
+        publicKeySignature:
+          type: string
+          description: The signature that proves the public key and key specification are valid.
+          example: D4134E1502C40229DB3B624AEC7E4D34EB65FC228297DB7BC6C2D3E2EF94CF25
+
+    KeySpecification:
+      type: object
+      required:
+        - name
+        - masterKeyType
+        - policyConstraint
+      properties:
+        name:
+          type: string
+          description: The name of the key.
+          example: E2EF94CF25D497DB7BC6C2D313434EB65FC2282E1502C40229DB3B624AEC7E4D=
+        masterKeyType:
+          type: string
+          description: The master key to use to derive the key from
+          example: r3production
+        policyConstraint:
+          type: string
+          description: The policy to use to constrain access of the private key material.
+          example: SEC:SECURE
+
+    ErrorDetails:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          description: An application specific error code.
+          type: integer
+          example: 120
+        message:
+          description: A description of the error that can be presented on a user interface.
+          type: string
+          example: Incorrect username or password.
+        detail:
+          description: An optional detailed explanation of the error for use by developers - not the end user.
+          type: string
+          example: Ensure that the username and password included in the request are correct.
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          $ref: "#/components/schemas/ErrorDetails"
+
+  securitySchemes:
+    conclaveAuth:
+      type: oauth2
+      description: This API uses the OAuth 2 Authorization Code flow to authenticate users.
+      flows:
+        authorizationCode:
+          authorizationUrl: http://20.62.73.94:8080/auth/realms/conclave-cloud/protocol/openid-connect/auth
+          tokenUrl: http://20.62.73.94:8080/auth/realms/conclave-cloud/protocol/openid-connect/certs
+          scopes:
+            tenant-admin: Grants tenant access
+
+    #bearerAuth:
+    #  type: http
+    #  scheme: bearer
+    #  bearerFormat: JWT
+  responses:
+    UnauthorizedError:
+      description: The access token for the request is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    ForbiddenError:
+      description: The access token does not have the required permission to access the resource.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+paths:
+  /platform/tenant:
+    get:
+      security:
+        - conclaveAuth: []
+      description: Return the tenant ID of the authenticated user.
+      tags:
+        - Platform
+      operationId: getTenantID
+      responses:
+        '200':
+          description: Successfully returned the tenant ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /projects:
+    get:
+      security:
+        - conclaveAuth: []
+      description: Return a list of all projects.
+      tags:
+        - Projects
+      operationId: getProjects
+      responses:
+        '200':
+          description: Successfully returned a list of all projects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      security:
+        - conclaveAuth: []
+      description: Add a new project.
+      tags:
+        - Projects
+      operationId: createProject
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectAdd'
+      responses:
+        '200':
+          description: The project was successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+  /projects/{projectID}:
+    get:
+      security:
+        - conclaveAuth: []
+      description: Return data about a specific project.
+      tags:
+        - Projects
+      operationId: getProject
+      parameters:
+        - $ref: "#/components/parameters/projectID"
+      responses:
+        '200':
+          description: Successfully returned information about the project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: The project ID was not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      security:
+        - conclaveAuth: []
+      description: Delete a project.
+      tags:
+        - Projects
+      operationId: deleteProject
+      parameters:
+        - $ref: "#/components/parameters/projectID"
+      responses:
+        '200':
+          description: The project was deleted successfully.
+        '400':
+          description: The project ID was not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /projects/{projectID}/functions:
+    get:
+      security:
+        - conclaveAuth: []
+      description: Get the list of functions in a project.
+      operationId: getFunctions
+      tags:
+        - Functions
+      parameters:
+        - $ref: "#/components/parameters/projectID"
+        - name: limit
+          description: Number of entities to include in the result (0-200). The default limit is 30. A value of 0 sets the limit to the maximum.
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: skip
+          description: Number of entities to skip in the result.
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully returned the function details.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FunctionMetadata'
+        '400':
+          description: The project ID was not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    post:
+      security:
+        - conclaveAuth: []
+      description: Create or update a function.
+      operationId: updateFunction
+      tags:
+        - Functions
+      parameters:
+        - $ref: "#/components/parameters/projectID"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Function'
+      responses:
+        '200':
+          description: Successfully updated the function.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Function'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /projects/{projectID}/functions/{name}:
+    get:
+      security:
+        - conclaveAuth: []
+      description: Get details for a particular function.
+      operationId: getFunction
+      tags:
+        - Functions
+      parameters:
+        - $ref: "#/components/parameters/projectID"
+        - name: name
+          description: Name of the function.
+          example: hello-world
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: code
+          description: Include action code in the result
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successfully returned the function details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Function'
+        '400':
+          description: The project ID or function name was not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      security:
+        - conclaveAuth: []
+      description: Delete a function from a project.
+      tags:
+        - Functions
+      operationId: deleteFunction
+      parameters:
+        - $ref: "#/components/parameters/projectID"
+        - name: name
+          description: Name of the function to delete.
+          example: hello-world
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The function was deleted successfully.
+        '400':
+          description: The project ID or function name was not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+  /projects/{projectID}/invocations:
+    get:
+      security:
+        - conclaveAuth: []
+      description: Get a list of invocation for a specific project.
+      tags:
+        - Invocations
+      operationId: getInvocations
+      parameters:
+        - $ref: "#/components/parameters/projectID"
+        - name: name
+          description: Name of the item
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          description: Number of entities to include in the result (0-200). The default limit is 30. A value of 0 sets the limit to the maximum.
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: skip
+          description: Number of entities to skip in the result.
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: since
+          description: Only include entities later than this timestamp (measured in milliseconds since Thu, 01 Jan 1970)
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: upto
+          description: Only include entities earlier than this timestamp (measured in milliseconds since Thu, 01 Jan 1970)
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: docs
+          description: Whether to include full entity description.
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successfully returned the invocation list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Invocation"
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /projects/{projectID}/invocations/{invocationID}:
+    get:
+      security:
+        - conclaveAuth: []
+      description: Get details for a specific invocation ID
+      tags:
+        - Invocations
+      operationId: getInvocation
+      parameters:
+        - $ref: "#/components/parameters/projectID"
+        - $ref: "#/components/parameters/invocationID"
+      responses:
+        '200':
+          description: Successfully returned the invocation.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invocation"
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /projects/{projectID}/invocations/logs/{invocationID}:
+    get:
+      security:
+        - conclaveAuth: []
+      description: Get the logs for a specific invocation ID
+      tags:
+        - Invocations
+      operationId: getInvocationLogs
+      parameters:
+        - $ref: "#/components/parameters/projectID"
+        - $ref: "#/components/parameters/invocationID"
+      responses:
+        '200':
+          description: Successfully returned the invocation logs.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvocationLogs"
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /projects/{projectID}/invocations/result/{invocationID}:
+    get:
+      security:
+        - conclaveAuth: []
+      description: Get the result for a specific invocation ID
+      tags:
+        - Invocations
+      operationId: getInvocationResult
+      parameters:
+        - $ref: "#/components/parameters/projectID"
+        - $ref: "#/components/parameters/invocationID"
+      responses:
+        '200':
+          description: Successfully returned the invocation result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvocationResult"
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+  /client/{tenantID}/{projectID}/keys/public:
+    get:
+      description: Return the default public key for a project.
+      tags:
+        - Client
+      operationId: getProjectPublicKey
+      parameters:
+        - $ref: "#/components/parameters/tenantID"
+        - $ref: "#/components/parameters/projectID"
+      responses:
+        '200':
+          description: Successfully returned the public key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicKey'
+        '400':
+          description: The tenant ID or project ID was not valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /client/{tenantID}/{projectID}/functions/{name}:
+    post:
+      description: Invoke a function module for a specific project.
+      tags:
+        - Client
+      operationId: invoke
+      parameters:
+        - $ref: "#/components/parameters/tenantID"
+        - $ref: "#/components/parameters/projectID"
+        - name: name
+          description: Name of the function to invoke.
+          example: hello-world
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: blocking
+          description: Blocking or non-blocking invocation. Default is non-blocking.
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: result
+          description: Return only the result of a blocking invocation. Default is false.
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: timeout
+          description: Wait no more than specified duration in milliseconds for a blocking response. Default value and max allowed timeout are 60000.
+          in: query
+          required: false
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FunctionInvoke"
+      responses:
+        '200':
+          description: The function was invoked successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invocation"
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /client/{tenantID}/{projectID}/invocations/{invocationID}:
+    get:
+      description: Get details for a specific invocation ID
+      tags:
+        - Client
+      operationId: getClientInvocation
+      parameters:
+        - $ref: "#/components/parameters/tenantID"
+        - $ref: "#/components/parameters/projectID"
+        - $ref: "#/components/parameters/invocationID"
+      responses:
+        '200':
+          description: Successfully returned the invocation.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Invocation"
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /client/{tenantID}/{projectID}/invocations/logs/{invocationID}:
+    get:
+      description: Get the logs for a specific invocation ID
+      tags:
+        - Client
+      operationId: getClientInvocationLogs
+      parameters:
+        - $ref: "#/components/parameters/tenantID"
+        - $ref: "#/components/parameters/projectID"
+        - $ref: "#/components/parameters/invocationID"
+      responses:
+        '200':
+          description: Successfully returned the invocation logs.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvocationLogs"
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /client/{tenantID}/{projectID}/invocations/result/{invocationID}:
+    get:
+      description: Get the result for a specific invocation ID
+      tags:
+        - Client
+      operationId: getClientInvocationResult
+      parameters:
+        - $ref: "#/components/parameters/tenantID"
+        - $ref: "#/components/parameters/projectID"
+        - $ref: "#/components/parameters/invocationID"
+      responses:
+        '200':
+          description: Successfully returned the invocation result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvocationResult"
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          description: Any error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
