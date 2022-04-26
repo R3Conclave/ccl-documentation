@@ -24,3 +24,16 @@ This repository contains source files for various different R3 Conclave Cloud pl
 | -------- | ------ | ----- |
 | Conclave Cloud user documentation | `user-guide` | A collection of document source files that are used to build the Conclave Cloud user documentation pages. |
 | REST API specification | `openapi` | An OpenAPI specification that defines the REST interface for Conclave Cloud. |
+
+## Publishing
+The rendered pages from `user-guide` are hosted on GitHub pages at [https://r3conclave.github.io/ccl-documentation/](https://r3conclave.github.io/ccl-documentation/).
+
+The latest version can be generated and pushed to the `gh-pages` branch using the following commands.
+
+```
+cd user-guide
+mkdocs gh-deploy
+```
+
+The pages at the hosted URL will update within a few minutes.
+

@@ -171,7 +171,7 @@ Note down the IP address for the backend service that you have just deployed and
 update the functions module to connect to the service with that address in
 `functions/src/index.ts`.
 
-Then see the instructions in [functions/README.md](functions/README.md) for
+Then see the instructions in [functions/README.md](https://github.com/R3Conclave/ccl-sample-conclavepass/blob/main/functions/README.md) for
 information on how to setup a Conclave Cloud project and build and deploy the
 functions ready for use.
 
@@ -181,7 +181,7 @@ repository so you will need to download and unzip it locally and update the
 frontend project to use your local copy.
 
 Instructions on how to do this and build and run the frontend can be found in
-[frontend/README.md](frontend/README.md).
+[frontend/README.md](https://github.com/R3Conclave/ccl-sample-conclavepass/blob/main/frontend/README.md).
 
 Once the frontend is running you can access it at http://localhost:4200.
 
@@ -191,7 +191,7 @@ you will need to download and unzip it locally and update the CLI project
 to use your local copy.
 
 Instructions on how to do this and build and run the CLI can be found in
-[frontend/README.md](frontend/README.md).
+[frontend/README.md](https://github.com/R3Conclave/ccl-sample-conclavepass/blob/main/frontend/README.md).
 
 ## Usage notes
 This is only a demo of a password manager. As such, it provides only very basic

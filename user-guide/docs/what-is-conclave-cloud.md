@@ -9,7 +9,7 @@ The Conclave Cloud platform will bring together an expanding set of services
 that will seamlessly integrate with each other providing a rich set of tools for
 implementing solutions without ever having to leave the Conclave Cloud platform.
 
-![](../../../Meetings/Conclave%20Offsite%20Q2%202022/ImmersiveEcosystem-CCL.drawio.png)
+![](assets/ImmersiveEcosystem-CCL.drawio.png)
 
 But we're not there yet! We don't have all of the services in the diagram above
 in the platform. In fact, we will be relying on our customers (including you) to
