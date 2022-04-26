@@ -1,0 +1,708 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.6">
+    
+    
+      
+        <title>Creating your first function - Conclave Cloud User Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#creating-your-first-function-in-conclave-cloud" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Conclave Cloud User Guide" class="md-header-nav__button md-logo" aria-label="Conclave Cloud User Guide">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Conclave Cloud User Guide
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Creating your first function
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Conclave Cloud User Guide" class="md-nav__button md-logo" aria-label="Conclave Cloud User Guide">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Conclave Cloud User Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-is-conclave-cloud/" class="md-nav__link">
+        What is Conclave Cloud?
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclave-cloud-concepts/" class="md-nav__link">
+        Conclave Cloud Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Creating your first function
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Creating your first function
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-a-new-project" class="md-nav__link">
+    1. Create a new project
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Create a new project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-portal" class="md-nav__link">
+    Using the portal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-cli" class="md-nav__link">
+    Using the CLI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-set-the-project-as-the-default-project-in-ccl" class="md-nav__link">
+    2. Set the project as the default project in ccl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-a-javascript-function-using-any-editor" class="md-nav__link">
+    Write a JavaScript function using any editor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-the-function" class="md-nav__link">
+    Upload the function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invoke-the-function" class="md-nav__link">
+    Invoke the function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#and-thats-it" class="md-nav__link">
+    And that's it!!!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#things-to-try" class="md-nav__link">
+    Things to try
+  </a>
+  
+    <nav class="md-nav" aria-label="Things to try">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#previous-invocations" class="md-nav__link">
+    Previous invocations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-list" class="md-nav__link">
+    Function list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explore-the-portal" class="md-nav__link">
+    Explore the portal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javascript-in-conclave-functions/" class="md-nav__link">
+        JavaScript in Conclave Functions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclavepass-sample/" class="md-nav__link">
+        ConclavePass Sample using Conclave Functions
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-a-new-project" class="md-nav__link">
+    1. Create a new project
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Create a new project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-portal" class="md-nav__link">
+    Using the portal
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-cli" class="md-nav__link">
+    Using the CLI
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-set-the-project-as-the-default-project-in-ccl" class="md-nav__link">
+    2. Set the project as the default project in ccl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-a-javascript-function-using-any-editor" class="md-nav__link">
+    Write a JavaScript function using any editor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-the-function" class="md-nav__link">
+    Upload the function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invoke-the-function" class="md-nav__link">
+    Invoke the function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#and-thats-it" class="md-nav__link">
+    And that's it!!!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#things-to-try" class="md-nav__link">
+    Things to try
+  </a>
+  
+    <nav class="md-nav" aria-label="Things to try">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#previous-invocations" class="md-nav__link">
+    Previous invocations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-list" class="md-nav__link">
+    Function list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explore-the-portal" class="md-nav__link">
+    Explore the portal
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="creating-your-first-function-in-conclave-cloud">Creating your first Function in Conclave Cloud</h1>
+<p>This is a very basic tutorial on how to create a simple JavaScript function and
+upload it to the Conclave Functions service in the Conclave Cloud platform.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>In order to follow this tutorial you should already have done the following:</p>
+<ul>
+<li>Sign-up for the Conclave Cloud beta and log in to the portal.</li>
+<li>Download and install the <code>ccl</code> tool for your operating system and verify it
+  works.</li>
+</ul>
+<h2 id="1-create-a-new-project">1. Create a new project</h2>
+<p>A new project can be created either in the portal or using the <code>ccl</code> tool.</p>
+<h3 id="using-the-portal">Using the portal</h3>
+<p>Click the "New Project" button and enter a name for the project.</p>
+<p><img alt="" src="../assets/NewProject.png" /></p>
+<h3 id="using-the-cli">Using the CLI</h3>
+<pre><code class="bash">ccl projects create --name &quot;My Project&quot;
+</code></pre>
+
+<p>You may be prompted to login using your Conclave Cloud username and password.</p>
+<h2 id="2-set-the-project-as-the-default-project-in-ccl">2. Set the project as the default project in <code>ccl</code></h2>
+<p>This is just for convenience to make subsequent command lines shorter.</p>
+<p>Firstly you need to get the project ID. You can see this in the portal project
+page, or you can find it using <code>ccl</code>.</p>
+<pre><code>ccl projects list
+</code></pre>
+
+<p>Set the project ID as the default, replacing [ID] with the actual ID.</p>
+<pre><code>ccl save --project [ID]
+</code></pre>
+
+<h2 id="write-a-javascript-function-using-any-editor">Write a JavaScript function using any editor</h2>
+<p>Here's an example for you. Save it as 'simple.js'.</p>
+<pre><code class="javascript">cclexports = {
+    sayHello: (name) =&gt; {
+        return &quot;Hello &quot; + name;
+    }
+}
+</code></pre>
+
+<p>This creates a global object named <code>cclexports</code> that contains all of the
+functions that should be exported from the JavaScript module. In this case,
+there is one function named <code>sayHello</code> that returns a string that says "Hello "
+appended with the <code>name</code> argument.</p>
+<p><em>Note:</em> The <code>cclexports</code> object is important. Conclave Functions will look for
+this when the code is uploaded to determine what functions can be called within
+the code module. Make sure you always populate this object with the function you
+want to call.</p>
+<h2 id="upload-the-function">Upload the function</h2>
+<p>You can use the <code>ccl</code> tool to upload the function:</p>
+<pre><code class="bash">ccl functions upload --name &quot;sayHello&quot; --code simple.js --entry &quot;sayHello&quot;
+</code></pre>
+
+<p>At this point your function is live and hosted! It can be called from anywhere
+in the world!</p>
+<p>Just a word on the arguments before we invoke it. <code>name</code> is the name of the
+function that appears in the portal. <code>code</code> defines the code module to upload.
+<code>entry</code> defines the name of the exported function we want to call. The <code>name</code>
+and the <code>entry</code> do not need to be the same.</p>
+<h2 id="invoke-the-function">Invoke the function</h2>
+<p>Again, you can use the <code>ccl</code> tool to do this:</p>
+<pre><code class="bash">ccl functions invoke --name &quot;sayHello&quot; --args &quot;[\&quot;World\&quot;]&quot;
+</code></pre>
+
+<p>This should work and you should see something similar to the following:</p>
+<pre><code>*** The expected code hash has not been specified and has been set to the value calculated when the function was uploaded. Please ensure this hash is correct. ***
+
+Result:
+{&quot;name&quot;:&quot;sayHello&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;invocationId&quot;:&quot;73904ecb224a4971904ecb224a69713d&quot;,&quot;start&quot;:1649432866241,&quot;end&quot;:1649432866671,&quot;duration&quot;:430,&quot;response&quot;:{&quot;status&quot;:&quot;success&quot;,&quot;result&quot;:{&quot;result&quot;:&quot;ABUBAAAAAAAAAAAABmludm9rZQAAAACyBkdL95AXywZ8ayxSOKGyIAb07XFAFRqIKsHG66ytZHrQC5SUS+SIc/3bc3jN/sPl5TKZQefKvgSEn+MBttCI2n49X0FB0zQ5gQjal5Z7w2JbcL0VYWtuXdN34wbpKpHyAQ90oqAQ1nw7O3iQQAyHjfO2ho3WatdAKvXGCj6fbnfGHL+vTfApXhSsrEDsEdp8iuRuT/jp/0V7NgP/DhWiA8sJS9AE9VCv0HWap/Us0jvmFKQUrrKB/jHAqTmDvRi5EPCSyaN/I3X8+xbIWXYtiXN4UNHmb2OxfMUzYkRdozx1VGNorsw9oZkos5/NvUbdUWfRV1d9+42ywK6qIWtDTADP0ITIkOaX9CpmZWgck9PkeFK/YEHhrTostoLmKzNxniaEUD/nVHexjzNXX31XFWTZ7cqPlT8fZ3gn8IqD7VuwAoxXQ0tNPfF7TqUqTXthqCO+7F+e63hXuD4rmUsV+sMeoiezt7ZQeCTvg4psSyomABK3kpkbWD/lKz9mgNB87DQsGGs=&quot;},&quot;success&quot;:true,&quot;size&quot;:565},&quot;logs&quot;:[],&quot;cause&quot;:null,&quot;statusCode&quot;:null,&quot;waitTime&quot;:235.0,&quot;timeout&quot;:false,&quot;initTime&quot;:334.0}
+
+Decrypted:
+{ &quot;return&quot;: &quot;Hello World&quot; }
+</code></pre>
+
+<p>That is the raw data that is returned by the function. The important bit is in
+the <code>Decrypted:</code> section at the bottom as it contains the decrypted return of
+the function. The <code>ccl</code> tool creates a private key for communicating with
+Conclave Cloud and is the only entity that can decrypted the encrypted result
+you can see in the data returned from the invocation.</p>
+<h2 id="and-thats-it">And that's it!!!</h2>
+<p>You've successfully written, deployed and invoked your first function!</p>
+<h2 id="things-to-try">Things to try</h2>
+<h3 id="previous-invocations">Previous invocations</h3>
+<p>You can see a list of previous invocations using this command:</p>
+<pre><code class="bash">ccl invocations list
+</code></pre>
+
+<p>This shows information such as how long the function took to run as well as
+whether it was a cold or warm start (Google it!). It doesn't always update
+immediately so you may have to run it more than once.</p>
+<h3 id="function-list">Function list</h3>
+<p>You can see the list of functions that you have uploaded with:</p>
+<pre><code class="bash">ccl functions list
+</code></pre>
+
+<h3 id="explore-the-portal">Explore the portal</h3>
+<p>The portal provides you with graphs and metrics about your functions and
+invocations. Have a browse around and see what you discover!</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../conclave-cloud-concepts/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Conclave Cloud Concepts
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../javascript-in-conclave-functions/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                JavaScript in Conclave Functions
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.53cc9318.min.js"></script>
+      <script src="../assets/javascripts/bundle.e9c9f54f.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

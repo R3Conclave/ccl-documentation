@@ -1,0 +1,571 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.6">
+    
+    
+      
+        <title>Conclave Cloud Concepts - Conclave Cloud User Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conclave-cloud-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Conclave Cloud User Guide" class="md-header-nav__button md-logo" aria-label="Conclave Cloud User Guide">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Conclave Cloud User Guide
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Conclave Cloud Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Conclave Cloud User Guide" class="md-nav__button md-logo" aria-label="Conclave Cloud User Guide">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Conclave Cloud User Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-is-conclave-cloud/" class="md-nav__link">
+        What is Conclave Cloud?
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Conclave Cloud Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Conclave Cloud Concepts
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conclave-cloud-portal" class="md-nav__link">
+    Conclave Cloud Portal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclave-cloud-command-line-tool" class="md-nav__link">
+    Conclave Cloud Command Line Tool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    Projects
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tenant-id-and-project-id" class="md-nav__link">
+    Tenant ID and Project ID
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-hashes" class="md-nav__link">
+    Function hashes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creating-your-first-function/" class="md-nav__link">
+        Creating your first function
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javascript-in-conclave-functions/" class="md-nav__link">
+        JavaScript in Conclave Functions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclavepass-sample/" class="md-nav__link">
+        ConclavePass Sample using Conclave Functions
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conclave-cloud-portal" class="md-nav__link">
+    Conclave Cloud Portal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclave-cloud-command-line-tool" class="md-nav__link">
+    Conclave Cloud Command Line Tool
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    Projects
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tenant-id-and-project-id" class="md-nav__link">
+    Tenant ID and Project ID
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-hashes" class="md-nav__link">
+    Function hashes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="conclave-cloud-concepts">Conclave Cloud Concepts</h1>
+<p>In order to get started with Conclave Cloud, you need to understand some of the
+key concepts you will be presented with in the portal and the CLI. Let's start
+by defining those two:</p>
+<h2 id="conclave-cloud-portal">Conclave Cloud Portal</h2>
+<p>The portal provides you the tools to manage your Conclave Cloud account and
+projects in a nice web-based interface.</p>
+<p><img alt="" src="../assets/Portal.png" /></p>
+<p>When you first log in you are presented with a list of existing projects and
+given the opportunity to create a new project. The definition of a project is
+below.</p>
+<p>Within a project you can check to see which functions you have deployed, how
+many times they've been called plus lots of other information and metrics about
+the platform.</p>
+<p>If this is your first time in here, create yourself a project and go and
+explore!</p>
+<h2 id="conclave-cloud-command-line-tool">Conclave Cloud Command Line Tool</h2>
+<p>The "Conclave Cloud Command Line Tool" is known as <code>ccl</code> for short, as this is
+the command you enter to invoke it in the terminal or command prompt.</p>
+<p>The <code>ccl</code> tool provides all the management options available in the portal, but
+on top of this it allows you to upload and invoke functions without writing any
+client code. This is great for testing out your functions or trying out the
+Conclave Cloud platform.</p>
+<p>Enter <code>ccl</code> in your terminal or command prompt to see what commands are
+available. There is help available for each command too. For example, this will
+give you help for the <code>functions</code> command.</p>
+<pre><code>ccl functions --help
+</code></pre>
+
+<h2 id="projects">Projects</h2>
+<p>A Conclave Cloud project is a specific configuration of the Conclave Cloud
+services. At the moment, because Conclave Cloud only provides the Functions
+service, a project contains a particular set of uploaded functions and shows
+usage and log data for just those functions.</p>
+<p>You can think of a project as an individual application or service. For example,
+you may have a project for 'Password Manager', or for a larger application you
+may have projects named 'Project X Payment Processor' and 'Project X User Data'.</p>
+<p>When experimenting with the platform, just create yourself a project named
+'Test' or whatever you like. You can always delete it when you're finished.</p>
+<h2 id="functions">Functions</h2>
+<p>Each project will allow the configuration of a set of functions for invoking
+using the Conclave Functions service. But what is a function?</p>
+<p>A function is a JavaScript code module that exports an entry point. The
+combination of this code plus the entry point name is uploaded and defines a
+single 'function' within the Conclave Functions service.</p>
+<p>You can upload as many functions as you want to, each obviously designed to perform a
+different task.</p>
+<p>You might find it more convenient to create an npm package and configure it
+using a tool such as webpack to assemble multiple files or even languages into a
+single JavaScript file for uploading to functions. In fact, you can even define
+multiple exported functions from the JavaScript module, then upload the same
+file multiple times but changing the entry point each time to create multiple
+functions. This is the approach used by the Conclave Cloud Password sample, so
+go and take a look at the <a href="https://github.com/R3Conclave/ccl-sample-conclavepass/tree/main/functions">source
+code</a>
+for an example.</p>
+<h2 id="tenant-id-and-project-id">Tenant ID and Project ID</h2>
+<p>When you first open a project in the portal, you will be presented with two long
+values named <code>Tenant ID</code> and <code>Project ID</code>. </p>
+<p>The <code>Tenant ID</code> is the unique code that identifies your account. </p>
+<p>The <code>Project ID</code> is the unique identifier for the current project.</p>
+<p>Don't worry, these values are not a secret. You will need to provide these to
+the client SDK when you are writing you applications that use Conclave Cloud to
+tell it which set of functions to use.</p>
+<h2 id="function-hashes">Function hashes</h2>
+<p>You may see reference to function hashes in <code>ccl</code> or elsewhere in the
+documentation. These are a really important concept within Conclave Functions
+but much of the complexity is hidden from you.</p>
+<p>Whenever you upload a function to Conclave Functions, <code>ccl</code> will calculate the
+SHA256 has of the JavaScript code with the name of the entry point concatenated
+to the end. If the code or entry point is changed then the hash will change.</p>
+<p>Whenever an end user wants to invoke a function, they specify the hash of the
+code and entry point of the function that they expect to be processing their
+data. Once the Conclave Functions enclave receives the request, it will check
+the expected hash against the actual hash as calculated inside the enclave and
+will reject the invocation request if they do not match. This ensures the user
+is in full-control of what code can access their data.</p>
+<p>When using <code>ccl</code>, the tool will automatically use the previously calculated
+hash. This is not the most secure way to execute a function because if the hash
+changes, the <code>ccl</code> calculation will automatically update and call the function
+anyway. To counter this, you can manually provide a hash via the command line.</p>
+<p>When using the JavaScript or Java/Kotlin SDKs, you always need to provide the
+expected hash when invoking a function.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../what-is-conclave-cloud/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                What is Conclave Cloud?
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../creating-your-first-function/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Creating your first function
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.53cc9318.min.js"></script>
+      <script src="../assets/javascripts/bundle.e9c9f54f.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
