@@ -1,0 +1,19 @@
+site_name: Conclave Cloud User Guide
+nav:
+    - Getting Started: index.md
+    - What is Conclave Cloud?: what-is-conclave-cloud.md
+    - Conclave Cloud Concepts: conclave-cloud-concepts.md
+    - Creating your first function: creating-your-first-function.md
+    - JavaScript in Conclave Functions: javascript-in-conclave-functions.md
+    - ConclavePass Sample using Conclave Functions: conclavepass-sample.md
+
+theme: material
+
+# Install the 'render_swagger' plugin with:
+#  pip install mkdocs-render-swagger-plugin
+
+plugins:
+    - search
+    - render_swagger
+#    - pdf-export:
+#        combined: true
