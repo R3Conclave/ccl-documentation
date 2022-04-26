@@ -22,5 +22,5 @@ This repository contains source files for various different R3 Conclave Cloud pl
 ## Documents
 | Document | Folder | Notes |
 | -------- | ------ | ----- |
-| Conclave Cloud user documentation | `user-guide` | A collection of document source files that are used to build the Conclave Cloud user documentation pages. |
+| Conclave Cloud user documentation | `docs` | A collection of document source files that are used to build the Conclave Cloud user documentation pages. |
 | REST API specification | `openapi` | An OpenAPI specification that defines the REST interface for Conclave Cloud. |
