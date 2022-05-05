@@ -2,7 +2,7 @@
 
 This is a set-up tutorial on how to invoke a simple JavaScript function using the React framework and the Conclave Cloud JS SDK.
 
-> This is a step-by-step walkthrough and uses the [Hello Conclave Cloud project](https://github.com/R3Conclave/ccl-sample-conclavepass).  
+> This is a step-by-step walkthrough and uses the `Hello Conclave Cloud project` from the [Conclave Cloud Samples Repo](https://github.com/R3Conclave/conclave-cloud-samples/).  
 > Once completed the User can invoke a conclave cloud function from the project ui.
 
 ## Prerequisites
@@ -10,19 +10,19 @@ This is a set-up tutorial on how to invoke a simple JavaScript function using th
 In order to follow this tutorial you should already have done the following:
 
 - Sign-up for a [Conclave Cloud Beta](https://www.dev.conclave.cloud/) account and log in to the portal.
-- Download and install the `ccl` tool for your operating system and verify it
+- Download and install the `cli` tool for your operating system and verify it
   works.
 - Upload the simple.js function to [Conclave Cloud Beta](https://www.dev.conclave.cloud/) by following the steps documented in ["Creating your first function"](/creating-your-first-function/).
 
 ## 1. Run the Hello Conclave Cloud project
 
-Get the [Hello Conclave Cloud Tutorial](https://github.com/R3Conclave/ccl-sample-conclavepass) repository:
+Get the [Hello Conclave Cloud Tutorial](https://github.com/R3Conclave/conclave-cloud-samples/) repository:
 
 ```
 git clone https://github.com/R3Conclave/conclave-cloud-samples.git
 ```
 
-In the project directory install and run the project:  
+In the `hello-conclave-cloud-tutorial` directory install and run the project:  
 `npm install`  
 `npm start`
 
@@ -31,7 +31,8 @@ _This is the base ui set-up for the sayHello function call, the sdk has yet to b
 ## 2. Install and Configure the Conclave Cloud SDK
 
 Install the conclave-cloud-sdk npm package:  
-`npm install conclave-cloud-sdk --save`
+`npm install conclave-cloud-sdk --save`  
+`npm install /path to file/conclave-cloud-sdk-0.1.0.tgz --save`
 
 In the projects root directory create a new file and call it `ConclaveCloud.js`  
 Add the following configurations:
@@ -47,23 +48,26 @@ const conclaveConfig = new Conclave.create({
 export default conclaveConfig;
 ```
 
-~ Id's can be found in a selected projects dashboard screen in ([Conclave Cloud Beta](https://www.dev.conclave.cloud/)) or running the following CLI commands:
+> Id's can be found in a selected projects dashboard screen in ([Conclave Cloud Beta](https://www.dev.conclave.cloud/))  
+> or by running the following CLI commands:
 
 `ccl platform tenant`
 
 `ccl projects list`
 
-> This project was built using create-react-app which due to webpack 5 have breaking changes. The project has already been set-up to use react-app-rewired to bypass the errors. To learn more about breaking changes and the options to bypass read Section 4.Fixing Breaking Changes with create-react-app below.
+> This project was built using create-react-app which due to webpack 5 have breaking changes. The project has already been set-up to use react-app-rewired to bypass the errors.  
+> To learn more about breaking changes and the options to bypass read:  
+> Section 4.Fixing Breaking Changes with create-react-app below.
 
 ## 3. Invoke Call via SDK
 
-import conclaveConfig into the app.tsx
+Import conclaveConfig into the App.tsx file
 
 ```
 import conclaveConfig from "./ConclaveCloud";
 ```
 
-Add the following to the sendMessage() function:
+Add the following to the `sendMessage` function:
 
 ```
       response = await conclaveConfig.functions.call(
@@ -73,7 +77,7 @@ Add the following to the sendMessage() function:
       );
 ```
 
-> [args] value will be the input value from the project
+> the [args] value will be the input value from the project
 > It should look like so:
 
 ```
@@ -84,7 +88,7 @@ Add the following to the sendMessage() function:
       );
 ```
 
-You can Now invoke the function from the ui.
+You can now invoke the function from the ui.
 
 ## 4. Fixing Breaking Changes with create-react-app
 
