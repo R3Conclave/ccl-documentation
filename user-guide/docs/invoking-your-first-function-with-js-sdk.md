@@ -9,10 +9,10 @@ This is a set-up tutorial on how to invoke a simple JavaScript function using th
 
 In order to follow this tutorial you should already have done the following:
 
-- Sign-up for a [Conclave Cloud Beta](https://www.dev.conclave.cloud/) account and log in to the portal.
+- Sign-up for a [Conclave Cloud Beta](https://www.conclave.cloud/) account and log in to the portal.
 - Download and install the `ccl` tool for your operating system and verify it
   works.
-- Upload the simple.js function to [Conclave Cloud Beta](https://www.dev.conclave.cloud/) by following the steps documented in ["Creating your first function"](/creating-your-first-function/).
+- Upload the simple.js function to [Conclave Cloud Beta](https://www.conclave.cloud/) by following the steps documented in ["Creating your first function"](/creating-your-first-function/).
 
 ## 1. Run the Hello Conclave Cloud project
 
@@ -48,7 +48,7 @@ const conclaveConfig = new Conclave.create({
 export default conclaveConfig;
 ```
 
-> Id's can be found in a selected projects dashboard screen in ([Conclave Cloud Beta](https://www.dev.conclave.cloud/))  
+> Id's can be found in a selected projects dashboard screen in ([Conclave Cloud Beta](https://www.conclave.cloud/))  
 > or by running the following CLI commands:
 
 `ccl platform tenant`
