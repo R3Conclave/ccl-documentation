@@ -10,7 +10,7 @@ This is a set-up tutorial on how to invoke a simple JavaScript function using th
 In order to follow this tutorial you should already have done the following:
 
 - Sign-up for a [Conclave Cloud Beta](https://www.dev.conclave.cloud/) account and log in to the portal.
-- Download and install the `cli` tool for your operating system and verify it
+- Download and install the `ccl` tool for your operating system and verify it
   works.
 - Upload the simple.js function to [Conclave Cloud Beta](https://www.dev.conclave.cloud/) by following the steps documented in ["Creating your first function"](/creating-your-first-function/).
 
@@ -77,8 +77,9 @@ Add the following to the `sendMessage` function:
       );
 ```
 
-> the [args] value will be the input value from the project
-> It should look like so:
+> the [args] value will be the input value from the project.
+
+It should look like so:
 
 ```
       response = await conclaveConfig.functions.call(
