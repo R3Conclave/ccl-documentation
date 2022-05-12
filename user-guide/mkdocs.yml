@@ -3,8 +3,13 @@ nav:
     - Getting Started: index.md
     - What is Conclave Cloud?: what-is-conclave-cloud.md
     - Conclave Cloud Concepts: conclave-cloud-concepts.md
-    - Creating your first function: creating-your-first-function.md
-    - JavaScript in Conclave Functions: javascript-in-conclave-functions.md
+    - Conclave Functions:
+        - Overview: javascript-in-conclave-functions.md
+        - Creating your first function: creating-your-first-function.md
+        - Creating a Function Module: creating-a-function-module.md
+        - Built-in Modules:
+            - Fetch: fetch.md
+            - Crypto: crypto.md
     - ConclavePass Sample using Conclave Functions: conclavepass-sample.md
 
 theme: material
