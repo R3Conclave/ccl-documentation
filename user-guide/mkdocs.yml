@@ -11,14 +11,21 @@ nav:
             - Fetch: fetch.md
             - Crypto: crypto.md
     - ConclavePass Sample using Conclave Functions: conclavepass-sample.md
+    - Tutorial - Invoking your function using Conclave Cloud JS SDK: invoking-your-first-function-with-js-sdk.md
 
-theme: material
+theme:
+  name: material
+  favicon: assets/favicon.ico
+  logo: assets/cloud-logo.svg
+
+extra_css:
+  - stylesheets/extra.css
 
 # Install the 'render_swagger' plugin with:
 #  pip install mkdocs-render-swagger-plugin
 
 plugins:
-    - search
-    - render_swagger
+  - search
+  - render_swagger
 #    - pdf-export:
 #        combined: true
