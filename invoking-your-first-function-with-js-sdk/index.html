@@ -14,7 +14,7 @@
     
     
       
-        <title>What is Conclave Cloud? - Conclave Cloud User Guide</title>
+        <title>Tutorial - Invoking your function using Conclave Cloud JS SDK - Conclave Cloud User Guide</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-conclave-cloud" class="md-skip">
+        <a href="#invoking-your-first-function-using-the-conclave-cloud-js-sdk" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              What is Conclave Cloud?
+              Tutorial - Invoking your function using Conclave Cloud JS SDK
             
           </span>
         </div>
@@ -183,63 +183,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          What is Conclave Cloud?
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../what-is-conclave-cloud/" class="md-nav__link">
         What is Conclave Cloud?
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#so-what-services-does-conclave-cloud-deliver-now" class="md-nav__link">
-    So what services does Conclave Cloud deliver now?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-can-you-do-with-conclave-cloudfunctions" class="md-nav__link">
-    What can you do with Conclave Cloud/Functions?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#but-what-problems-can-be-solved-with-conclave-functions" class="md-nav__link">
-    But what problems can be solved with Conclave Functions?
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -399,11 +347,111 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../invoking-your-first-function-with-js-sdk/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Tutorial - Invoking your function using Conclave Cloud JS SDK
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Tutorial - Invoking your function using Conclave Cloud JS SDK
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-run-the-hello-conclave-cloud-project" class="md-nav__link">
+    1. Run the Hello Conclave Cloud project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-install-and-configure-the-conclave-cloud-sdk" class="md-nav__link">
+    2. Install and Configure the Conclave Cloud SDK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-invoke-call-via-sdk" class="md-nav__link">
+    3. Invoke Call via SDK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-fixing-breaking-changes-with-create-react-app" class="md-nav__link">
+    4. Fixing Breaking Changes with create-react-app
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Fixing Breaking Changes with create-react-app">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downgrading-react-scripts" class="md-nav__link">
+    Downgrading react-scripts:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-webpack-config-file-with-fallback" class="md-nav__link">
+    Adding a Webpack config file with fallback:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-fallback-to-react-scripts-webpack-configuration-file" class="md-nav__link">
+    Adding fallback to react-script's webpack configuration file:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-react-app-rewired" class="md-nav__link">
+    Using react-app-rewired:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -433,23 +481,71 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#so-what-services-does-conclave-cloud-deliver-now" class="md-nav__link">
-    So what services does Conclave Cloud deliver now?
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-can-you-do-with-conclave-cloudfunctions" class="md-nav__link">
-    What can you do with Conclave Cloud/Functions?
+  <a href="#1-run-the-hello-conclave-cloud-project" class="md-nav__link">
+    1. Run the Hello Conclave Cloud project
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#but-what-problems-can-be-solved-with-conclave-functions" class="md-nav__link">
-    But what problems can be solved with Conclave Functions?
+  <a href="#2-install-and-configure-the-conclave-cloud-sdk" class="md-nav__link">
+    2. Install and Configure the Conclave Cloud SDK
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-invoke-call-via-sdk" class="md-nav__link">
+    3. Invoke Call via SDK
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-fixing-breaking-changes-with-create-react-app" class="md-nav__link">
+    4. Fixing Breaking Changes with create-react-app
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Fixing Breaking Changes with create-react-app">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downgrading-react-scripts" class="md-nav__link">
+    Downgrading react-scripts:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-webpack-config-file-with-fallback" class="md-nav__link">
+    Adding a Webpack config file with fallback:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-fallback-to-react-scripts-webpack-configuration-file" class="md-nav__link">
+    Adding fallback to react-script's webpack configuration file:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-react-app-rewired" class="md-nav__link">
+    Using react-app-rewired:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -466,84 +562,155 @@
               
                 
                 
-                <h1 id="what-is-conclave-cloud">What is Conclave Cloud?</h1>
-<p>Conclave Cloud is a platform for hosting privacy-preserving applications. Built
-on top of the Conclave SDK, which in turn is built to take advantage of Intel
-Software Guard Extensions (Intel SGX), Conclave Cloud is a platform that will
-provide all the tools necessary to ensure that access to data is provided only
-to authorised parties.</p>
-<p>The Conclave Cloud platform will bring together an expanding set of services
-that will seamlessly integrate with each other providing a rich set of tools for
-implementing solutions without ever having to leave the Conclave Cloud platform.</p>
-<p><img alt="" src="../assets/ImmersiveEcosystem-CCL.drawio.png" /></p>
-<p>But we're not there yet! We don't have all of the services in the diagram above
-in the platform. In fact, we will be relying on our customers (including you) to
-drive the requirements for which services we should prioritise.</p>
-<h3 id="so-what-services-does-conclave-cloud-deliver-now">So what services <em>does</em> Conclave Cloud deliver now?</h3>
-<p>The current platform delivers our first service, Conclave Functions, which is a
-serverless execution environment, much like AWS Lambda or Azure Cloud Functions.</p>
-<p>Conclave Functions differs from other similar services by using end-to-end
-encryption between the end user and the container that runs the function, with
-data-in-use encryption provided by using a Conclave Enclave to run the code. The
-use of an enclave ensures the integrity and privacy of the user's data as well
-as providing hardware-backed assurances over the exact code that will be
-processing the data.</p>
-<p>With Conclave Functions, developers can deploy their code once to the platform
-where it will then be hosted for them. Their functions can be called once a
-year, once an hour, up to thousands of times an hour. The platform will cope
-with the demand and scale accordingly with no management or intervention from
-the developer.</p>
-<h2 id="what-can-you-do-with-conclave-cloudfunctions">What can you do with Conclave Cloud/Functions?</h2>
-<p>Conclave Functions allows you to write code that will run inside an enclave with
-<em>absolutely no boilerplate whatsover</em>! This means that you can focus on writing
-your data processing logic that will run inside an enclave without worrying
-about how to transfer data to and from the enclave, or how to encrypt data, or
-how to ensure the platform integrity is maintained.</p>
-<p>You can prove to your users that the code that you say will process their data
-actually is the code that processes the data, as well as proving that you as a
-service host or author do not have access to the keys that encrypt the user's
-data. In fact, it also proves that <em>nobody except the Conclave Functions enclave
-can access the data</em>, and that includes R3 and Azure: our cloud service
-provider.</p>
-<p>Theoretically, any problem that can be solved using the Conclave SDK can also be
-solved in Conclave Functions. However, features such as persistence and
-authentication will be provided by additional services in the platform that do
-not yet exist.</p>
-<p>One thing to remember is that Conclave Functions are stateless. Every time you
-invoke your function in the Conclave Functions service, any previous state is
-likely to be lost. There is a chance that previous state is available in-memory
-but you cannot rely on it - the best you can do is use any previous state as a
-cache that can be used if present.</p>
-<p>Obviously stateless functions have limited use - you may as well just run the function
-locally on the user's machine if you don't have the ability save or share data
-from the cloud.</p>
-<p>Luckily, Conclave Functions provides an alternative to storing state directly.
-It supports a subset of the JavaScript <code>fetch()</code> API allowing outgoing calls to
-external services. This means that a function can retrieve and set data using an
-external service. Care must be taken to ensure private data is not leaked by the
-external call, as the actual call takes place outside of the enclave.</p>
-<h2 id="but-what-problems-can-be-solved-with-conclave-functions">But what problems can be solved with Conclave Functions?</h2>
-<p>Conclave functions can be used to provide solutions or enhance the privacy for
-many different types of application, including:</p>
+                <h1 id="invoking-your-first-function-using-the-conclave-cloud-js-sdk">Invoking your first Function using the Conclave Cloud JS SDK</h1>
+<p>This is a set-up tutorial on how to invoke a simple JavaScript function using the React framework and the Conclave Cloud JS SDK.</p>
+<blockquote>
+<p>This is a step-by-step walkthrough and uses the <code>Hello Conclave Cloud project</code> from the <a href="https://github.com/R3Conclave/conclave-cloud-samples/">Conclave Cloud Samples Repo</a>.<br />
+Once completed the User can invoke a conclave cloud function from the project ui.</p>
+</blockquote>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>In order to follow this tutorial you should already have done the following:</p>
 <ul>
-<li>Pure data protection products such as cloud-based file storage with secure
-  file sharing.</li>
-<li>Zero Knowledge Proof type applications, such as proving identity or age
-  without providing the actual data to the verifying party.</li>
-<li>Multiparty computation where data is collated from multiple parties and
-  derived into a combined result, without divulging the shared data with any
-  other party or service.</li>
-<li>Private set intersection applications, such as allowing different
-  institutions to find common data between their own private datasets and the
-  data of other parties.</li>
+<li>Sign-up for a <a href="https://www.conclave.cloud/">Conclave Cloud Beta</a> account and log in to the portal.</li>
+<li>Download and install the <code>ccl</code> tool for your operating system and verify it
+  works.</li>
+<li>Upload the simple.js function to <a href="https://www.conclave.cloud/">Conclave Cloud Beta</a> by following the steps documented in <a href="/creating-your-first-function/">"Creating your first function"</a>.</li>
 </ul>
-<p>Conclave Cloud provides a sample which shows how to implement a password manager
-using Conclave Functions along with a web-based frontend, a Kotlin-based CLI
-tool and a Spring backend for persistence. You can find the sample in <a href="https://github.com/R3Conclave/ccl-sample-conclavepass">this
-GitHub repository</a>. The
-sample does not really fit into any of the categories above, but you can imagine
-expanding it to allow, for example, the service to automatically scan for
-compromised keys and notify the user.</p>
+<h2 id="1-run-the-hello-conclave-cloud-project">1. Run the Hello Conclave Cloud project</h2>
+<p>Get the <a href="https://github.com/R3Conclave/conclave-cloud-samples/">Hello Conclave Cloud Tutorial</a> repository:</p>
+<pre><code>git clone https://github.com/R3Conclave/conclave-cloud-samples.git
+</code></pre>
+
+<p>In the <code>hello-conclave-cloud-tutorial</code> directory install and run the project:<br />
+<code>npm install</code><br />
+<code>npm start</code></p>
+<p><em>This is the base ui set-up for the sayHello function call, the sdk has yet to be configured.</em></p>
+<h2 id="2-install-and-configure-the-conclave-cloud-sdk">2. Install and Configure the Conclave Cloud SDK</h2>
+<p>Install the conclave-cloud-sdk npm package:<br />
+<code>npm install conclave-cloud-sdk --save</code><br />
+<code>npm install /path to file/conclave-cloud-sdk-0.1.0.tgz --save</code></p>
+<p>In the projects root directory create a new file and call it <code>ConclaveCloud.js</code><br />
+Add the following configurations:</p>
+<pre><code>import { Conclave } from 'conclave-cloud-sdk'
+
+const conclaveConfig = new Conclave.create({
+    tenantID: 'tenantId',
+    projectID: 'projectId',
+});
+
+export default conclaveConfig;
+</code></pre>
+
+<blockquote>
+<p>Id's can be found in a selected projects dashboard screen in (<a href="https://www.conclave.cloud/">Conclave Cloud Beta</a>)<br />
+or by running the following CLI commands:</p>
+</blockquote>
+<p><code>ccl platform tenant</code></p>
+<p><code>ccl projects list</code></p>
+<blockquote>
+<p>This project was built using create-react-app which due to webpack 5 have breaking changes. The project has already been set-up to use react-app-rewired to bypass the errors.<br />
+To learn more about breaking changes and the options to bypass read:<br />
+Section 4.Fixing Breaking Changes with create-react-app below.</p>
+</blockquote>
+<h2 id="3-invoke-call-via-sdk">3. Invoke Call via SDK</h2>
+<p>Import conclaveConfig into the App.tsx file</p>
+<pre><code>import conclaveConfig from &quot;./ConclaveCloud&quot;;
+</code></pre>
+
+<p>Add the following to the <code>sendMessage</code> function:</p>
+<pre><code>      response = await conclaveConfig.functions.call(
+        &quot;function name&quot;,
+        &quot;function hash&quot;,
+        [args]
+      );
+</code></pre>
+
+<blockquote>
+<p>the [args] value will be the input value from the project.</p>
+</blockquote>
+<p>It should look like so:</p>
+<pre><code>      response = await conclaveConfig.functions.call(
+        &quot;sayHello&quot;,
+        &quot;60C5AEFCE46A44163467EC82C204AB5207B780A45527A65A6580886AECAC49D4&quot;,
+        [input]
+      );
+</code></pre>
+
+<p>You can now invoke the function from the ui.</p>
+<h2 id="4-fixing-breaking-changes-with-create-react-app">4. Fixing Breaking Changes with create-react-app</h2>
+<p>Due to create-react-app using Webpack 5+, you will experience some breaking changes due to polyfills not being included. Below are options to use in your project to include polyfills, either by downgrading to Webpack 4.*or by manually including polyfills:</p>
+<h3 id="downgrading-react-scripts">Downgrading react-scripts:</h3>
+<p><code>npm uninstall react-scripts</code><br />
+<code>npm install react-scripts@4.0.3</code></p>
+<h3 id="adding-a-webpack-config-file-with-fallback">Adding a Webpack config file with fallback:</h3>
+<p>In the root project directory create the file webpack.config.js, add the following:</p>
+<pre><code>module.exports = {
+  resolve: {
+    fallback: {
+      crypto: require.resolve('crypto-browserify'),
+      stream: require.resolve('stream-browserify'),
+    },
+  },
+};
+</code></pre>
+
+<p>then<br />
+<code>npm install crypto-browserify stream-browserify --save</code></p>
+<h3 id="adding-fallback-to-react-scripts-webpack-configuration-file">Adding fallback to react-script's webpack configuration file:</h3>
+<p>After initial npm install navigate to `node_modules/react-scripts/config/webpack.config.js, find module.exports in this file.<br />
+In module.exports section find resolve section and add the following</p>
+<pre><code>fallback: {
+crypto: require.resolve('crypto-browserify'),
+stream: require.resolve('stream-browserify'),
+}
+</code></pre>
+
+<p>The section should look like this:</p>
+<pre><code>module.exports = function (webpackEnv) {
+...
+return {
+...
+resolve: {
+...
+fallback: {
+crypto: require.resolve('crypto-browserify'),
+stream: require.resolve('stream-browserify'),
+}
+}
+}
+}
+</code></pre>
+
+<h3 id="using-react-app-rewired">Using react-app-rewired:</h3>
+<p>Run the following:<br />
+<code>npm install react-app-rewired</code></p>
+<p>In the root project directory create the file <code>config-overrides.js</code><br />
+Add the following:</p>
+<pre><code>module.exports = function override(config) {
+const fallback = config.resolve.fallback || {};
+Object.assign(fallback, {
+&quot;stream&quot;: require.resolve(&quot;stream-browserify&quot;),
+&quot;crypto&quot;: require.resolve(&quot;crypto-browserify&quot;)
+});
+config.resolve.fallback = fallback;
+return config;
+};
+</code></pre>
+
+<p>then:<br />
+<code>npm install crypto-browserify stream-browserify --save</code><br />
+in package.json change the start scripts:</p>
+<pre><code>&quot;scripts&quot;: {
+&quot;start&quot;: &quot;react-scripts start&quot;,
+</code></pre>
+
+<p>change to</p>
+<pre><code>&quot;scripts&quot;: {
+&quot;start&quot;: &quot;react-app-rewired start&quot;,
+</code></pre>
+
+<p>then</p>
+<p><code>npm start</code></p>
                 
               
               
@@ -562,7 +729,7 @@ compromised keys and notify the user.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href=".." class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../conclavepass-sample/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -571,25 +738,11 @@ compromised keys and notify the user.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Getting Started
+                ConclavePass Sample using Conclave Functions
               </div>
             </div>
           </a>
         
-        
-          <a href="../conclave-cloud-concepts/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Conclave Cloud Concepts
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
         
       </nav>
     </div>

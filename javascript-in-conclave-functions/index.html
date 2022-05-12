@@ -9,12 +9,12 @@
       
       
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.6">
     
     
       
-        <title>JavaScript in Conclave Functions - Conclave Cloud User Guide</title>
+        <title>Overview - Conclave Cloud User Guide</title>
       
     
     
@@ -35,6 +35,8 @@
       
     
     
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
     
       
@@ -73,8 +75,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href=".." title="Conclave Cloud User Guide" class="md-header-nav__button md-logo" aria-label="Conclave Cloud User Guide">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -90,7 +91,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              JavaScript in Conclave Functions
+              Overview
             
           </span>
         </div>
@@ -153,8 +154,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Conclave Cloud User Guide" class="md-nav__button md-logo" aria-label="Conclave Cloud User Guide">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     Conclave Cloud User Guide
@@ -213,19 +213,28 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../creating-your-first-function/" class="md-nav__link">
-        Creating your first function
-      </a>
-    </li>
-  
-
     
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
       
-
+      <label class="md-nav__link" for="nav-4">
+        Conclave Functions
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Conclave Functions" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Conclave Functions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
   
   
     
@@ -239,12 +248,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          JavaScript in Conclave Functions
+          Overview
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        JavaScript in Conclave Functions
+        Overview
       </a>
       
         
@@ -261,22 +270,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conclave-functions-nodejs" class="md-nav__link">
-    Conclave Functions != Node.js
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#accessing-external-web-services" class="md-nav__link">
-    Accessing external web services
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#accessing-a-per-function-cryptographic-key" class="md-nav__link">
-    Accessing a per-function cryptographic key
+  <a href="#javascript-engine" class="md-nav__link">
+    JavaScript Engine
   </a>
   
 </li>
@@ -285,6 +280,88 @@
   
 </nav>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creating-your-first-function/" class="md-nav__link">
+        Creating your first function
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creating-a-function-module/" class="md-nav__link">
+        Creating a Function Module
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4" >
+      
+      <label class="md-nav__link" for="nav-4-4">
+        Built-in Modules
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Built-in Modules" data-md-level="2">
+        <label class="md-nav__title" for="nav-4-4">
+          <span class="md-nav__icon md-icon"></span>
+          Built-in Modules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fetch/" class="md-nav__link">
+        Fetch
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crypto/" class="md-nav__link">
+        Crypto
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -299,6 +376,21 @@
     <li class="md-nav__item">
       <a href="../conclavepass-sample/" class="md-nav__link">
         ConclavePass Sample using Conclave Functions
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../invoking-your-first-function-with-js-sdk/" class="md-nav__link">
+        Tutorial - Invoking your function using Conclave Cloud JS SDK
       </a>
     </li>
   
@@ -329,22 +421,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#conclave-functions-nodejs" class="md-nav__link">
-    Conclave Functions != Node.js
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#accessing-external-web-services" class="md-nav__link">
-    Accessing external web services
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#accessing-a-per-function-cryptographic-key" class="md-nav__link">
-    Accessing a per-function cryptographic key
+  <a href="#javascript-engine" class="md-nav__link">
+    JavaScript Engine
   </a>
   
 </li>
@@ -366,73 +444,22 @@
 <p>Conclave Functions provides a fully capable ES6 JavaScript engine in which to
 execute your function code. However, due to the nature of enclaves, not
 everything works inside an enclave.</p>
-<h2 id="conclave-functions-nodejs">Conclave Functions != Node.js</h2>
-<p>Conclave functions provides a pure JavaScript engine. It does not provide
-Node.js support (yet). This means that you do not have access to Node.js
-built-ins such as file support or Buffer.</p>
+<h2 id="javascript-engine">JavaScript Engine</h2>
+<p>Conclave functions provides a pure JavaScript engine. It does not provide full
+support for environments like Node.js (yet). This means that without importing
+libraries, you do not have access to Node.js built-ins such as file support or
+<code>Buffer</code>.</p>
 <p>However, you can create a project using npm and import standard packages to fill
-in the gaps, particular with support for objects like <code>Buffer</code>.</p>
+in the gaps.</p>
 <p>The <a href="https://github.com/R3Conclave/ccl-sample-conclavepass">ConclavePass sample</a>
 uses this technique, implementing an npm component that compiles to a single
 JavaScript file for upload, importing a cryptographic library, buffer and other
 useful tools.</p>
-<h2 id="accessing-external-web-services">Accessing external web services</h2>
-<p>Conclave Functions are stateless and do not have access to any persistent
-storage. Therefore, external storage within the cloud is necessary in order to
-persist the user databases. </p>
-<p>The JavaScript engine in Conclave Functions supports a subset of the JavaScript
-<code>fetch()</code> built-in capability to query and update an external data store with
-each user's encrypted database entries. </p>
-<p>It is vitally important to ensure that any data exchanged via <code>fetch()</code> is
-encrypted as the request is made outside the Conclave Functions Intel SGX
-enclave. </p>
-<p>Here is an example of using <code>fetch()</code> to <code>GET</code> a URL:</p>
-<pre><code class="javascript">cclexports = {
-    lookup: async (url) =&gt; {
-        var retval = await fetch(url);
-        return await retval.text();
-    }
-}
-</code></pre>
-
-<p>And another example showing a <code>POST</code>:</p>
-<pre><code class="javascript">cclexports = {
-    lookup: (url) =&gt; {
-        var retval;
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: &quot;{ \&quot;test\&quot;: \&quot;Hello\&quot; }&quot;
-        }).then(result =&gt; {
-            result.text().then(text =&gt; {
-                retval = text;
-                }, error =&gt; {})
-        });
-        return retval;
-    }
-}
-</code></pre>
-
-<h2 id="accessing-a-per-function-cryptographic-key">Accessing a per-function cryptographic key</h2>
-<p>In order to allow data to be safely exported from a function, an encryption key
-is provided that can be used to encrypt data that can subsequently only be
-encrypted by exactly the same function code within the same project.</p>
-<p>The key is derived directly from the project key - a key that is unique to the
-tenant/project that can only be accessed within the Conclave Functions enclave.
-This key is not used directly, instead it is derived using the hash of the code
-module that is currently executing. </p>
-<p>Note that it does not include the entry point in the derivation process meaning
-that a single code module that exports multiple functions will have the same
-hash, allowing a set of Conclave Functions to all access the same encryption
-key.</p>
-<p>The key can be obtained from within JavaScript code using:</p>
-<pre><code class="javascript">const key = crypto.getProjectKey();
-</code></pre>
-
-<p>Note that this API is likely to change in future versions of Conclave Functions,
-to add more key derivation possibilities.</p>
+<p>In addition, the Conclave Cloud <code>ccl</code> tool provides a command to bootstrap a new
+JavaScript or TypeScript project that supports multiple code modules and
+packages and packs them into a single JavaScript file for uploading to Conclave
+Functions. You can read how you can use this to 
+<a href="../creating-a-function-module/">create your function module here</a>.</p>
                 
               
               
@@ -451,7 +478,7 @@ to add more key derivation possibilities.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../creating-your-first-function/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../conclave-cloud-concepts/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -460,19 +487,19 @@ to add more key derivation possibilities.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Creating your first function
+                Conclave Cloud Concepts
               </div>
             </div>
           </a>
         
         
-          <a href="../conclavepass-sample/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../creating-your-first-function/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                ConclavePass Sample using Conclave Functions
+                Creating your first function
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
