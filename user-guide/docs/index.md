@@ -46,7 +46,7 @@ tools and SDKs can be obtained using the information in the table below:
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Command Line tool for Linux or macOS](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta1/ccl)                                      | The `ccl` tool can be used from the terminal to manage your Conclave Cloud projects and services.                                                     |
 | [Command Line tool for Windows](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta1/ccl.zip)                                         | The `ccl` tool can be used from the Windows command prompt to manage your Conclave Cloud projects and services.                                       |
-| [Conclave Cloud JavaScript Client SDK](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta1/conclave-cloud-sdk-js-1.0.0-beta1.zip)    | The JavaScript Client SDK that allows you to interact with Conclave Cloud and invoke Conclave Functions from your TypeScript/JavaScript applications. |
+| [Conclave Cloud JavaScript Client SDK](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta1/conclave-cloud-sdk-1.0.0-beta1.tgz)       | The JavaScript Client SDK that allows you to interact with Conclave Cloud and invoke Conclave Functions from your TypeScript/JavaScript applications. |
 | [Conclave Cloud Java/Kotlin Client SDK](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta1/conclave-cloud-sdk-java-1.0.0-beta1.zip) | The Java/Kotlin Client SDK that allows you to interact with Conclave Cloud and invoke Conclave Functions from your Java or Kotlin applications.       |
 
 ## Installing the `ccl` tool
@@ -96,7 +96,7 @@ correct path to where you unzipped the SDK.
 ```json
 "dependencies": {
     ...
-    "conclave-cloud-sdk": "file:path/to/conclave-cloud-sdk-js",
+    "conclave-cloud-sdk": "file:path/to/conclave-cloud-sdk-1.0.0-beta1.tgz",
     ...
 }
 ```
