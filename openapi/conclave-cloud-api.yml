@@ -1,508 +1,189 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
   version: 1.0.0
   title: Conclave Cloud API
   description: The API for interacting with Conclave Cloud.
-servers:
-  - url: http://localhost:8080
 tags:
   - name: Platform
-    description: General purpose endpoints regarding the Platform. You can use them to get the current tenant.
+    description: General purpose endpoints regarding the Platform.
+  - name: API Keys
+    description: Management of API keys. A key is bound to a specific project and allows the usage of some of the endpoints of this API. To see what actions you can execute, check the `platform.whoami` operation.
   - name: Projects
-    description: Management of projects. Every project can contain functions.
+    description: Management of projects. Every project can contain functions which can be invoked(see `Functions`,`Invocations` and `Keys`).
   - name: Functions
-    description: Management of functions(see Invocations/Client for calling functions/getting results). Every function is part of a project.
+    description: Management of functions(see `Invocations` for calling functions/getting results). Every function is bound to a single project.
+  - name: Keys
+    description: Keys that are used to encrypt the payload when invoking functions.
   - name: Invocations
-    description: "At the moment most of the endpoints here are duplicated by the Client ones(excluding the list all
-   invocations). The difference being that you don't need to specify a tenantID when using the endpoints from the
-   Invocations, but you will have to authenticate."
-  - name: Client
-    description: "Unauthenticated endpoints to be used for getting keys, invoking functions and getting the results
-   of those invocations."
-components:
-  parameters:
-    tenantID:
-      name: tenantID
-      description: The ID of the tenant containing function module to invoke. This information can be obtained from the Conclave Cloud portal.
-      example: 4EB65FC2224AEC7E4D38297DB7BC29DB3B66C2D3E2EF94CF25D4134E1502C402
-      in: path
-      required: true
-      schema:
-        type: string
-    projectID:
-      name: projectID
-      description: The ID of the project containing the activation. This information can be obtained from the Conclave Cloud portal.
-      example: 24AEC7E4D34EB65FC228297DB7BC6C2D3E2EF94CF25D4134E1502C40229DB3B6
-      in: path
-      required: true
-      schema:
-        type: string
-    invocationID:
-      name: invocationID
-      description: ID of the invocation to fetch
-      in: path
-      required: true
-      schema:
-        type: string
-  schemas:
-    Function:
-      required:
-        - name
-        - version
-        - exec
-        - limits
-        - updated
-        - hash
-      properties:
-        name:
-          type: string
-          description: Name of the item
-          minLength: 1
-        version:
-          type: string
-          description: Semantic version of the item
-          minLength: 1
-        exec:
-          $ref: "#/components/schemas/FunctionExec"
-        limits:
-          $ref: "#/components/schemas/FunctionLimits"
-        updated:
-          type: integer
-          format: int64
-          description: Time when the action was updated
-        hash:
-          type: string
-          description: The SHA256 hash of the code
-          minLength: 64
-
-    FunctionExec:
-      description: definition of the function including the JavaScript
-      properties:
-        code:
-          type: string
-          description: The code to execute
-        main:
-          type: string
-          description: The entry point of the code
-
-    FunctionLimits:
-      description: Limits on a specific function
-      properties:
-        timeout:
-          type: integer
-          format: int32
-          description: timeout in milliseconds
-          default: 60000
-        memory:
-          type: integer
-          format: int32
-          description: memory in megabytes
-          default: 256
-        epc:
-          type: integer
-          format: int32
-          description: epc in megabytes
-          default: 256
-
-    FunctionMetadata:
-      required:
-        - name
-        - version
-        - limits
-        - updated
-        - hash
-      properties:
-        name:
-          type: string
-          description: Name of the item
-          minLength: 1
-          example: hello-world
-        version:
-          type: string
-          description: Semantic version of the item
-          minLength: 1
-          example: 1.0.0
-        limits:
-          $ref: "#/components/schemas/FunctionLimits"
-        updated:
-          type: integer
-          format: int64
-          description: Time when the action was updated
-        hash:
-          type: string
-          description: The SHA256 of the function code
-          minLength: 64
-          example: 7EC88782A989E8C9F989CB898E97866554343445A7EC88782A989E8C9F989CB8
-
-    Invocation:
-      properties:
-        name:
-          type: string
-          description: Name of the item
-        version:
-          type: string
-          description: Semantic version of the item
-        invocationId:
-          type: string
-          description: Id of the invocation
-        start:
-          type: integer
-          format: int64
-          description: Time when the invocation began
-        end:
-          type: integer
-          format: int64
-          description: Time when the invocation completed
-        duration:
-          type: integer
-          description: How long the invocation took, in millisecnods
-        response:
-          $ref: "#/components/schemas/InvocationResult"
-        logs:
-          type: array
-          description: Logs generated by the invocation
-          items:
-            type: string
-        cause:
-          type: string
-          description: the invocation id that caused this invocation
-        statusCode:
-          type: integer
-          format: int32
-          description: The status code
-        waitTime:
-          type: number
-          description: The time spent waiting in Conclave Cloud before the function was invoked.
-        timeout:
-          type: boolean
-          description: Indicates whether the invocation exceeded the maximum permitted time for a function.
-        initTime:
-          type: number
-          description: The time spent initialising the function. If present it indicates that the function required a cold start.
-
-    InvocationResult:
-      properties:
-        status:
-          type: string
-          description: Exit status of the invocation
-        result:
-          description: The return value from the invocation
-        success:
-          type: boolean
-          description: Whether the invocation was successful or not
-        size:
-          type: integer
-          description: Size of response
-
-    InvocationLogs:
-      properties:
-        logs:
-          type: array
-          description: Logs generated by the invocation
-          items:
-            type: string
-
-    FunctionInvoke:
-      required:
-        - data
-      properties:
-        data:
-          type: string
-          description: A Base64 encoded string containing encrypted parameters for the invocation.
-          example: RXhhbXBsZSBGdW5jdGlvbiBEYXRh
-      description: Provides the parameters to pass to a function when it is invoked.
-
-    Tenant:
-      type: object
-      required:
-        - tenantID
-      properties:
-        tenantID:
-          type: string
-          description: The ID if the tenant the authenticate user belongs to.
-          example: 7DB7BC6C2D3E2EF924AEC7E4D34EB65FC228294CF25D4139DB3B64E1502C4022
-
-    ProjectAdd:
-      type: object
-      required:
-        - name
-      properties:
-        name:
-          type: string
-          description: The name of the project.
-          example: My Project
-
-    Project:
-      type: object
-      required:
-        - projectID
-        - name
-      properties:
-        projectID:
-          type: string
-          description: A project ID.
-          example: 24AEC7E4D34EB65FC228297DB7BC6C2D3E2EF94CF25D4134E1502C40229DB3B6
-        name:
-          type: string
-          description: The name of the project.
-          example: My Project
-
-    PublicKey:
-      type: object
-      required:
-        - keySpecification
-        - publicKey
-        - platformReport
-        - publicKeySignature
-      properties:
-        keySpecification:
-          $ref: "#/components/schemas/KeySpecification"
-        publicKey:
-          type: string
-          description: A Base64 encoded public key.
-          example: bGtzZGpmbHNrZGpmbHNkamxrc2RrbGZzamRsZmtqc2Rsa2Zqc2xka2Zqc2xkZmxzZGpsZms=
-        platformReport:
-          type: string
-          description: The remote attestation for the key issuer.
-          example: RsZmtqc2Rsa2bmbHNrZGpmbHNkamxrc2RrbGZzamZqc2xka2Zqc2xkZmxzZGpsZmsGtzZGp=
-        publicKeySignature:
-          type: string
-          description: The signature that proves the public key and key specification are valid.
-          example: D4134E1502C40229DB3B624AEC7E4D34EB65FC228297DB7BC6C2D3E2EF94CF25
-
-    KeySpecification:
-      type: object
-      required:
-        - name
-        - masterKeyType
-        - policyConstraint
-      properties:
-        name:
-          type: string
-          description: The name of the key.
-          example: E2EF94CF25D497DB7BC6C2D313434EB65FC2282E1502C40229DB3B624AEC7E4D=
-        masterKeyType:
-          type: string
-          description: The master key to use to derive the key from
-          example: r3production
-        policyConstraint:
-          type: string
-          description: The policy to use to constrain access of the private key material.
-          example: SEC:SECURE
-
-    ErrorDetails:
-      type: object
-      required:
-        - code
-        - message
-      properties:
-        code:
-          description: An application specific error code.
-          type: integer
-          example: 120
-        message:
-          description: A description of the error that can be presented on a user interface.
-          type: string
-          example: Incorrect username or password.
-        detail:
-          description: An optional detailed explanation of the error for use by developers - not the end user.
-          type: string
-          example: Ensure that the username and password included in the request are correct.
-
-    ErrorResponse:
-      type: object
-      required:
-        - error
-      properties:
-        error:
-          $ref: "#/components/schemas/ErrorDetails"
-
-  securitySchemes:
-    conclaveAuth:
-      type: oauth2
-      description: This API uses the OAuth 2 Authorization Code flow to authenticate users.
-      flows:
-        authorizationCode:
-          authorizationUrl: http://20.62.73.94:8080/auth/realms/conclave-cloud/protocol/openid-connect/auth
-          tokenUrl: http://20.62.73.94:8080/auth/realms/conclave-cloud/protocol/openid-connect/certs
-          scopes:
-            tenant-admin: Grants tenant access
-
-    #bearerAuth:
-    #  type: http
-    #  scheme: bearer
-    #  bearerFormat: JWT
-  responses:
-    UnauthorizedError:
-      description: The access token for the request is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-    ForbiddenError:
-      description: The access token does not have the required permission to access the resource.
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-
+    description: Invocation of functions. You will need to encrypt the payload with the project public key(see `keys.public.get` operation of `Keys`).
+security:
+  - conclaveAuth: []
 paths:
-  /platform/tenant:
+  /platform/whoami:
     get:
-      security:
-        - conclaveAuth: []
-      description: Return the tenant ID of the authenticated user.
+      description: Return information about the currently authenticated principal.
       tags:
         - Platform
-      operationId: getTenantID
+      operationId: platform.whoami
       responses:
         '200':
-          description: Successfully returned the tenant ID.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Tenant'
+          $ref: "#/components/responses/Platform.Whoami"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/GenericError"
+  /projects/{projectUID}/apikeys:
+    get:
+      description: Return a list of all API keys of a project.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/ApiKeys.Read"
+      operationId: apikeys.list
+      parameters:
+        - $ref: "#/components/parameters/projectUID"
+      tags:
+        - API Keys
+      responses:
+        '200':
+          $ref: "#/components/responses/ApiKeys.List"
+        '400':
+          $ref: '#/components/responses/ParametersError'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          $ref: "#/components/responses/GenericError"
+    post:
+      description: Create a new API key for a project.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/ApiKeys.Write"
+      operationId: apikeys.create
+      parameters:
+        - $ref: "#/components/parameters/projectUID"
+      tags:
+        - API Keys
+      responses:
+        '201':
+          $ref: "#/components/responses/ApiKeys.Create"
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          $ref: "#/components/responses/GenericError"
+  /projects/{projectUID}/apikeys/{apiKeyUID}:
+    delete:
+      description: Delete an existing API key.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/ApiKeys.Write"
+      operationId: apikeys.delete
+      parameters:
+        - $ref: "#/components/parameters/projectUID"
+        - $ref: "#/components/parameters/apiKeyUID"
+      tags:
+        - API Keys
+      responses:
+        '204':
+          description: The API key was deleted successfully.
+        '400':
+          $ref: '#/components/responses/ParametersError'
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          $ref: "#/components/responses/GenericError"
   /projects:
     get:
-      security:
-        - conclaveAuth: []
       description: Return a list of all projects.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Projects.Read"
       tags:
         - Projects
-      operationId: getProjects
+      operationId: projects.list
       responses:
         '200':
-          description: Successfully returned a list of all projects.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Project'
+          $ref: "#/components/responses/Projects.List"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/GenericError"
     post:
-      security:
-        - conclaveAuth: []
-      description: Add a new project.
+      description: Create a new project.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Projects.Write"
       tags:
         - Projects
-      operationId: createProject
+      operationId: projects.create
       requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProjectAdd'
+        $ref: "#/components/requestBodies/Projects.Create"
       responses:
-        '200':
-          description: The project was successfully created.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Project'
+        '201':
+          $ref: "#/components/responses/Projects.Create"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/GenericError"
 
 
-  /projects/{projectID}:
+  /projects/{projectUID}:
     get:
-      security:
-        - conclaveAuth: []
       description: Return data about a specific project.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Projects.Read"
       tags:
         - Projects
-      operationId: getProject
+      operationId: projects.get
       parameters:
-        - $ref: "#/components/parameters/projectID"
+        - $ref: "#/components/parameters/projectUID"
       responses:
         '200':
-          description: Successfully returned information about the project.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Project'
+          $ref: "#/components/responses/Projects.Get"
         '400':
-          description: The project ID was not valid.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/ParametersError"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/GenericError"
     delete:
-      security:
-        - conclaveAuth: []
-      description: Delete a project.
+      description: Delete an existing project.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Projects.Write"
       tags:
         - Projects
-      operationId: deleteProject
+      operationId: projects.delete
       parameters:
-        - $ref: "#/components/parameters/projectID"
+        - $ref: "#/components/parameters/projectUID"
       responses:
-        '200':
+        '204':
           description: The project was deleted successfully.
         '400':
-          description: The project ID was not valid.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/ParametersError"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/GenericError"
 
-  /projects/{projectID}/functions:
+  /projects/{projectUID}/functions:
     get:
-      security:
-        - conclaveAuth: []
       description: Get the list of functions in a project.
-      operationId: getFunctions
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Functions.Read"
+      operationId: functions.list
       tags:
         - Functions
       parameters:
-        - $ref: "#/components/parameters/projectID"
+        - $ref: "#/components/parameters/projectUID"
         - name: limit
           description: Number of entities to include in the result (0-200). The default limit is 30. A value of 0 sets the limit to the maximum.
           in: query
@@ -517,86 +198,27 @@ paths:
             type: integer
       responses:
         '200':
-          description: Successfully returned the function details.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FunctionMetadata'
+          $ref: "#/components/responses/Functions.List"
         '400':
-          description: The project ID was not valid.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/ParametersError"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/GenericError"
 
-    post:
-      security:
-        - conclaveAuth: []
-      description: Create or update a function.
-      operationId: updateFunction
-      tags:
-        - Functions
-      parameters:
-        - $ref: "#/components/parameters/projectID"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Function'
-      responses:
-        '200':
-          description: Successfully updated the function.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Function'
-        '400':
-          description: Bad request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
-          $ref: "#/components/responses/UnauthorizedError"
-        '403':
-          $ref: "#/components/responses/ForbiddenError"
-        default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /projects/{projectID}/functions/{name}:
+  /projects/{projectUID}/functions/{functionName}:
     get:
-      security:
-        - conclaveAuth: []
       description: Get details for a particular function.
-      operationId: getFunction
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Functions.Read"
+      operationId: functions.get
       tags:
         - Functions
       parameters:
-        - $ref: "#/components/parameters/projectID"
-        - name: name
-          description: Name of the function.
-          example: hello-world
-          in: path
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/projectUID"
+        - $ref: "#/components/parameters/functionName"
         - name: code
           description: Include action code in the result
           in: query
@@ -605,74 +227,132 @@ paths:
             type: boolean
       responses:
         '200':
-          description: Successfully returned the function details.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Function'
+          $ref: "#/components/responses/Functions.Get"
         '400':
-          description: The project ID or function name was not valid.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/ParametersError"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-    delete:
-      security:
-        - conclaveAuth: []
-      description: Delete a function from a project.
+          $ref: "#/components/responses/GenericError"
+    put:
+      description: Create or update a function.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Functions.Write"
+      operationId: functions.createOrUpdate
       tags:
         - Functions
-      operationId: deleteFunction
       parameters:
-        - $ref: "#/components/parameters/projectID"
-        - name: name
-          description: Name of the function to delete.
-          example: hello-world
-          in: path
-          required: true
-          schema:
-            type: string
+        - $ref: "#/components/parameters/projectUID"
+        - $ref: "#/components/parameters/functionName"
+      requestBody:
+        $ref: '#/components/requestBodies/Functions.CreateOrUpdate'
       responses:
         '200':
-          description: The function was deleted successfully.
+          $ref: "#/components/responses/Functions.CreateOrUpdate"
         '400':
-          description: The project ID or function name was not valid.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/ParametersError"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/GenericError"
+    delete:
+      description: Delete an existing function.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Functions.Write"
+      tags:
+        - Functions
+      operationId: functions.delete
+      parameters:
+        - $ref: "#/components/parameters/projectUID"
+        - $ref: "#/components/parameters/functionName"
+      responses:
+        '204':
+          description: The function was deleted successfully.
+        '400':
+          $ref: "#/components/responses/ParametersError"
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          $ref: "#/components/responses/GenericError"
 
-
-  /projects/{projectID}/invocations:
+  /projects/{projectUID}/keys/public:
     get:
-      security:
-        - conclaveAuth: []
-      description: Get a list of invocation for a specific project.
+      description: Return the public key for a project.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/KeysPublic.Read"
+      tags:
+        - Keys
+      operationId: keys.public.get
+      parameters:
+        - $ref: "#/components/parameters/projectUID"
+      responses:
+        '200':
+          $ref: "#/components/responses/Keys.Public.Get"
+        '400':
+          $ref: "#/components/responses/ParametersError"
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          $ref: "#/components/responses/GenericError"
+
+  /projects/{projectUID}/invocations:
+    post:
+      description: Invoke a function.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Invocations.Invoke"
       tags:
         - Invocations
-      operationId: getInvocations
+      operationId: invocations.invoke
       parameters:
-        - $ref: "#/components/parameters/projectID"
+        - $ref: "#/components/parameters/projectUID"
+        - name: blocking
+          description: Blocking or non-blocking invocation. Default is non-blocking.
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: result
+          description: Return only the result of a blocking invocation. Default is false.
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: timeout
+          description: Wait no more than specified duration in milliseconds for a blocking response. Default value and max allowed timeout are 60000.
+          in: query
+          required: false
+          schema:
+            type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/Invocations.Invoke'
+      responses:
+        '200':
+          $ref: "#/components/responses/Invocations.Invoke"
+        '400':
+          $ref: "#/components/responses/ParametersError"
+        '401':
+          $ref: "#/components/responses/UnauthorizedError"
+        '403':
+          $ref: "#/components/responses/ForbiddenError"
+        default:
+          $ref: "#/components/responses/GenericError"
+    get:
+      description: Get a list of invocations for a specific project.
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Invocations.Read.List"
+      tags:
+        - Invocations
+      operationId: invocations.list
+      parameters:
+        - $ref: "#/components/parameters/projectUID"
         - name: name
           description: Name of the item
           in: query
@@ -713,327 +393,632 @@ paths:
             type: boolean
       responses:
         '200':
-          description: Successfully returned the invocation list.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Invocation"
+          $ref: "#/components/responses/Invocations.List"
         '400':
-          description: Bad request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/ParametersError"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/GenericError"
 
-  /projects/{projectID}/invocations/{invocationID}:
+
+  /projects/{projectUID}/invocations/{invocationUID}:
     get:
-      security:
-        - conclaveAuth: []
-      description: Get details for a specific invocation ID
+      description: Get details for a specific invocation
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Invocations.Read.Get"
       tags:
         - Invocations
-      operationId: getInvocation
+      operationId: invocations.get
       parameters:
-        - $ref: "#/components/parameters/projectID"
-        - $ref: "#/components/parameters/invocationID"
+        - $ref: "#/components/parameters/projectUID"
+        - $ref: "#/components/parameters/invocationUID"
       responses:
         '200':
-          description: Successfully returned the invocation.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Invocation"
+          $ref: "#/components/responses/Invocations.Get"
         '400':
-          description: Bad request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/ParametersError"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/GenericError"
 
-  /projects/{projectID}/invocations/logs/{invocationID}:
+  /projects/{projectUID}/invocations/{invocationUID}/logs:
     get:
-      security:
-        - conclaveAuth: []
-      description: Get the logs for a specific invocation ID
+      description: Get the logs for a specific invocation
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Invocations.Read.Get"
       tags:
         - Invocations
-      operationId: getInvocationLogs
+      operationId: invocations.get.logs
       parameters:
-        - $ref: "#/components/parameters/projectID"
-        - $ref: "#/components/parameters/invocationID"
+        - $ref: "#/components/parameters/projectUID"
+        - $ref: "#/components/parameters/invocationUID"
       responses:
         '200':
-          description: Successfully returned the invocation logs.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/InvocationLogs"
+          $ref: "#/components/responses/Invocations.Get.Logs"
         '400':
-          description: Bad request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/ParametersError"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/GenericError"
 
-  /projects/{projectID}/invocations/result/{invocationID}:
+  /projects/{projectUID}/invocations/{invocationUID}/result:
     get:
-      security:
-        - conclaveAuth: []
-      description: Get the result for a specific invocation ID
+      description: Get the result for a specific invocation
+      x-permissions-required:
+        $ref: "#/components/x-permissions/Invocations.Read.Get"
       tags:
         - Invocations
-      operationId: getInvocationResult
+      operationId: invocations.get.result
       parameters:
-        - $ref: "#/components/parameters/projectID"
-        - $ref: "#/components/parameters/invocationID"
+        - $ref: "#/components/parameters/projectUID"
+        - $ref: "#/components/parameters/invocationUID"
       responses:
         '200':
-          description: Successfully returned the invocation result.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/InvocationResult"
+          $ref: "#/components/responses/Invocations.Get.Result"
         '400':
-          description: Bad request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: "#/components/responses/ParametersError"
         '401':
           $ref: "#/components/responses/UnauthorizedError"
         '403':
           $ref: "#/components/responses/ForbiddenError"
         default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-
-  /client/{tenantID}/{projectID}/keys/public:
-    get:
-      description: Return the default public key for a project.
-      tags:
-        - Client
-      operationId: getProjectPublicKey
-      parameters:
-        - $ref: "#/components/parameters/tenantID"
-        - $ref: "#/components/parameters/projectID"
-      responses:
-        '200':
-          description: Successfully returned the public key.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PublicKey'
-        '400':
-          description: The tenant ID or project ID was not valid.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /client/{tenantID}/{projectID}/functions/{name}:
-    post:
-      description: Invoke a function module for a specific project.
-      tags:
-        - Client
-      operationId: invoke
-      parameters:
-        - $ref: "#/components/parameters/tenantID"
-        - $ref: "#/components/parameters/projectID"
-        - name: name
-          description: Name of the function to invoke.
-          example: hello-world
-          in: path
-          required: true
+          $ref: "#/components/responses/GenericError"
+components:
+  x-permissions:
+    Projects.Read: Projects.Read
+    Projects.Write: Projects.Write
+    Functions.Read: Functions.Read
+    Functions.Write: Functions.Write
+    Invocations.Read.List: Invocations.Read.List
+    Invocations.Read.Get: Invocations.Read.Get
+    Invocations.Invoke: Invocations.Invoke
+    ApiKeys.Write: ApiKeys.Write
+    ApiKeys.Read: ApiKeys.Read
+    KeysPublic.Read: KeysPublic.Read
+  securitySchemes:
+    conclaveAuth:
+      type: http
+      description: "This API uses JWT tokens(attached via Authorization header) which can be obtained via various flows. Consult the authentication docs."
+      scheme: bearer
+      bearerFormat: JWT
+  requestBodies:
+    Projects.Create:
+      required: true
+      content:
+        application/json:
           schema:
+            $ref: '#/components/schemas/Projects.Create'
+    Functions.CreateOrUpdate:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Functions.CreateOrUpdate'
+    Invocations.Invoke:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Invocations.Invoke"
+  responses:
+    ApiKeys.Create:
+      description: An API key that you can use to execute operations against a specific project.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiKeys.Create'
+    ApiKeys.List:
+      description: A list of all API keys for the project.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiKeys.List'
+    Projects.Create:
+      description: The project was successfully created.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Projects.Project'
+    Projects.List:
+      description: Successfully returned a list of all projects.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Projects.List'
+    Projects.Get:
+      description: Successfully returned information about the project.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Projects.Project'
+    Functions.List:
+      description: Successfully returned the function details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Functions.List'
+    Functions.Get:
+      description: Successfully returned the function details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Functions.Function'
+    Functions.CreateOrUpdate:
+      description: Successfully created/updated the function.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Functions.Function'
+    Keys.Public.Get:
+      description: Successfully returned the public key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Keys.PublicKey'
+    Invocations.Invoke:
+      description: The function was invoked successfully.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Invocations.Invocation"
+    Invocations.List:
+      description: Successfully returned the invocation list.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Invocations.List"
+    Invocations.Get:
+      description: Successfully returned the invocation.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Invocations.Invocation"
+    Invocations.Get.Result:
+      description: Successfully returned the invocation result.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Invocations.Invocation.Result"
+    Invocations.Get.Logs:
+      description: Successfully returned the invocation logs.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Invocations.Invocation.Logs.List"
+    ParametersError:
+      description: Invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Generic.ErrorResponse'
+    Platform.Whoami:
+      description: Successfully returned information about the current user.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Platform.Whoami'
+    UnauthorizedError:
+      description: The request does not contain valid authentication.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Generic.ErrorResponse"
+    ForbiddenError:
+      description: The currently authenticated context does not have permissions to execute the operation.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Generic.ErrorResponse"
+    GenericError:
+      description: Generic error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Generic.ErrorResponse'
+  parameters:
+    apiKeyUID:
+      name: apiKeyUID
+      description: The UID of the API Key.
+      in: path
+      required: true
+      schema:
+        $ref: "#/components/schemas/Generic.Uid"
+    projectUID:
+      name: projectUID
+      description: The UID of a project.
+      in: path
+      required: true
+      schema:
+        $ref: "#/components/schemas/Generic.Uid"
+    invocationUID:
+      name: invocationUID
+      description: The UID of an invocation.
+      in: path
+      required: true
+      schema:
+        # TODO: add constraints here
+        type: string
+    functionName:
+      name: functionName
+      description: Name of a function.
+      example: hello-world
+      in: path
+      required: true
+      schema:
+        # TODO: add constraints here
+        type: string
+  schemas:
+    ApiKeys.ApiKey:
+      type: object
+      required:
+        - uid
+        - apiKey
+      properties:
+        uid:
+          type: string
+          example: 42fdd63831b98ee1639e23c9739c5f30c8927a6d85c093cd84e396c4317c5f2f
+        note:
+          type: string
+          description: An optional note about the API key.
+          example: "n/a"
+    ApiKeys.Create:
+      allOf:
+        - $ref: '#/components/schemas/ApiKeys.ApiKey'
+        - properties:
+            apiKey:
+              type: string
+              description: "The key credential that you can use as means to obtain tokes to use this API. You
+              will only see this once upon creating an API key."
+              minLength: 1
+              example: eyJ0ZW5hbnRVaWQiOiJURUY4QkM0QzlFMEE0NUZCRjAyNjg3M0FDRDU0RjQzOTQ4QTMxRjcwQzU5NTYzQzQ1NkQ3NDI3NDgzMDBGRDIxIiwiYXBpS2V5UGxhaW4iOiJjOTZlMmNmYTRhNjkwNDRiMzc4Y2IzYzYxMGMxNzJlMGE1ZTkzZDNkZDQwZDM4ZTBmNmM3YzBiNmFiNjQ3ODY5In0=
+    ApiKeys.List:
+      type: object
+      required:
+        - list
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKeys.ApiKey'
+    Functions.List:
+      type: object
+      required:
+        - list
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/Functions.List.Item"
+    Functions.List.Item:
+      allOf:
+        - $ref: "#/components/schemas/Functions.Partial.Name"
+        - $ref: "#/components/schemas/Functions.Partial"
+    Functions.CreateOrUpdate:
+      allOf:
+        - $ref: "#/components/schemas/Functions.Partial"
+        - $ref: "#/components/schemas/Functions.Partial.Exec"
+    Functions.Function:
+      allOf:
+        - $ref: "#/components/schemas/Functions.Partial.Name"
+        - $ref: "#/components/schemas/Functions.Partial.Updated"
+        - $ref: "#/components/schemas/Functions.Partial"
+        - $ref: "#/components/schemas/Functions.Partial.Exec"
+    Functions.Partial.Name:
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Name of the function
+          minLength: 1
+    Functions.Partial.Updated:
+      required:
+        - updated
+      properties:
+        updated:
+          type: integer
+          format: int64
+          description: Time when the function was last updated
+    Functions.Partial.Exec:
+      required:
+        - exec
+      properties:
+        exec:
+          $ref: "#/components/schemas/Functions.Function.Exec"
+    Functions.Partial:
+      required:
+        - version
+        - limits
+        - hash
+      properties:
+        version:
+          type: string
+          description: Semantic version of the function
+          minLength: 1
+          example: 1.0.0
+        limits:
+          $ref: "#/components/schemas/Functions.Function.Limits"
+        hash:
+          type: string
+          description: The SHA256 of the function code
+          minLength: 64
+          example: 7EC88782A989E8C9F989CB898E97866554343445A7EC88782A989E8C9F989CB8
+    Functions.Function.Exec:
+      description: The actual code and entrypoint that's executed in the context of the function
+      required:
+        - code
+        - main
+      properties:
+        code:
+          type: string
+          description: The code to execute
+        main:
+          type: string
+          description: The entry point of the code
+    Functions.Function.Limits:
+      description: Limits on a specific function
+      properties:
+        timeout:
+          type: integer
+          format: int32
+          description: timeout in milliseconds
+          default: 60000
+        memory:
+          type: integer
+          format: int32
+          description: memory in megabytes
+          default: 256
+        epc:
+          type: integer
+          format: int32
+          description: epc in megabytes
+          default: 256
+    Invocations.Invocation:
+      properties:
+        uid:
+          type: string
+          description: UID of an invocation
+        function:
+          type: object
+          description: The function that was invoked
+          properties:
+            name:
+              type: string
+              description: Name of the invoked function
+            version:
+              type: string
+              description: Semantic version of the invoked function
+        start:
+          type: integer
+          format: int64
+          description: Time when the invocation began
+        end:
+          type: integer
+          format: int64
+          description: Time when the invocation completed
+        duration:
+          type: integer
+          description: How long the invocation took(milliseconds)
+        response:
+          $ref: "#/components/schemas/Invocations.Invocation.Result"
+        logs:
+          $ref: "#/components/schemas/Invocations.Invocation.Logs"
+        cause:
+          type: string
+          description: The invocation cause UID that caused this invocation
+        statusCode:
+          type: integer
+          format: int32
+          description: The status code
+        # TODO: mark if it's ms, s, etc.
+        waitTime:
+          type: number
+          description: The time spent waiting in Conclave Cloud before the function was invoked.
+        timeout:
+          type: boolean
+          description: Indicates whether the invocation exceeded the maximum permitted time for a function.
+        initTime:
+          type: number
+          description: The time spent initialising the function. If present, it indicates that the function required a cold start.
+
+    Invocations.Invocation.Result:
+      description: The result of the invocation
+      type: object
+      properties:
+        status:
+          type: string
+          description: Exit status of the invocation
+        result:
+          description: The return value from the invocation
+        success:
+          type: boolean
+          description: Whether the invocation was successful or not
+        size:
+          type: integer
+          description: Size of response
+
+    Invocations.Invocation.Logs.List:
+      description: List of logs generated by the invocation
+      type: object
+      required:
+        - list
+      properties:
+        list:
+          $ref: "#/components/schemas/Invocations.Invocation.Logs"
+
+    Invocations.Invocation.Logs:
+      description: Logs generated by the invocation
+      items:
+        type: string
+
+    Invocations.Invoke:
+      required:
+        - name
+        - data
+      properties:
+        name:
+          type: string
+          description: Function name
+        data:
+          type: string
+          description: A Base64 encoded string containing encrypted parameters for the invocation.
+          example: RXhhbXBsZSBGdW5jdGlvbiBEYXRh
+      description: Provides the parameters to pass to a function when it is invoked.
+
+    Invocations.List:
+      type: object
+      required:
+        - list
+      properties:
+        list:
+          items:
+            $ref: "#/components/schemas/Invocations.Invocation"
+
+    Platform.Whoami:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: The name of the currently authenticated principal.
+          example: johndoe
+        roles:
+          type: array
+          description: The roles of the currently authenticated principal.
+          items:
             type: string
-        - name: blocking
-          description: Blocking or non-blocking invocation. Default is non-blocking.
-          in: query
-          required: false
-          schema:
+            minLength: 1
+            uniqueItems: true
+            example: tenant-admin
+        permissions:
+          type: array
+          description: The permissions of the currently authenticated principal.
+          items:
             type: string
-        - name: result
-          description: Return only the result of a blocking invocation. Default is false.
-          in: query
-          required: false
-          schema:
-            type: string
-        - name: timeout
-          description: Wait no more than specified duration in milliseconds for a blocking response. Default value and max allowed timeout are 60000.
-          in: query
-          required: false
-          schema:
-            type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/FunctionInvoke"
-      responses:
-        '200':
-          description: The function was invoked successfully.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Invocation"
-        '400':
-          description: Bad request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
-          $ref: "#/components/responses/UnauthorizedError"
-        '403':
-          $ref: "#/components/responses/ForbiddenError"
-        default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+            minLength: 1
+            uniqueItems: true
+            example: "Invocations.Invoke"
+    Projects.Create:
+      type: object
+      required:
+        - name
+      properties:
+        uid:
+          allOf:
+            - description: UID of the project. Will be auto-generated from the name if not supplied
+            - $ref: "#/components/schemas/Generic.Uid"
+        name:
+          type: string
+          description: The name of the project.
+          example: My Project
+          minLength: 1
+          maxLength: 255
+    Projects.Project:
+      type: object
+      required:
+        - uid
+        - name
+      properties:
+        uid:
+          type: string
+          description: A project UID.
+          example: 24AEC7E4D34EB65FC228297DB7BC6C2D3E2EF94CF25D4134E1502C40229DB3B6
+        name:
+          type: string
+          description: The name of the project.
+          example: My Project
+    Projects.List:
+      type: object
+      required:
+        - list
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/Projects.Project"
+    Keys.PublicKey:
+      type: object
+      required:
+        - keySpecification
+        - publicKey
+        - platformReport
+        - publicKeySignature
+      properties:
+        keySpecification:
+          $ref: "#/components/schemas/Keys.PublicKey.KeySpecification"
+        publicKey:
+          type: string
+          description: A Base64 encoded public key.
+          example: bGtzZGpmbHNrZGpmbHNkamxrc2RrbGZzamRsZmtqc2Rsa2Zqc2xka2Zqc2xkZmxzZGpsZms=
+        platformReport:
+          type: string
+          description: The remote attestation for the key issuer.
+          example: RsZmtqc2Rsa2bmbHNrZGpmbHNkamxrc2RrbGZzamZqc2xka2Zqc2xkZmxzZGpsZmsGtzZGp=
+        publicKeySignature:
+          type: string
+          description: The signature that proves the public key and key specification are valid.
+          example: D4134E1502C40229DB3B624AEC7E4D34EB65FC228297DB7BC6C2D3E2EF94CF25
 
-  /client/{tenantID}/{projectID}/invocations/{invocationID}:
-    get:
-      description: Get details for a specific invocation ID
-      tags:
-        - Client
-      operationId: getClientInvocation
-      parameters:
-        - $ref: "#/components/parameters/tenantID"
-        - $ref: "#/components/parameters/projectID"
-        - $ref: "#/components/parameters/invocationID"
-      responses:
-        '200':
-          description: Successfully returned the invocation.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Invocation"
-        '400':
-          description: Bad request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
-          $ref: "#/components/responses/UnauthorizedError"
-        '403':
-          $ref: "#/components/responses/ForbiddenError"
-        default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+    Keys.PublicKey.KeySpecification:
+      type: object
+      required:
+        - name
+        - masterKeyType
+        - policyConstraint
+      properties:
+        name:
+          type: string
+          description: The name of the key.
+          example: E2EF94CF25D497DB7BC6C2D313434EB65FC2282E1502C40229DB3B624AEC7E4D=
+        masterKeyType:
+          type: string
+          description: The master key to use to derive the key from
+          example: r3production
+        policyConstraint:
+          type: string
+          description: The policy to use to constrain access of the private key material.
+          example: SEC:SECURE
 
-  /client/{tenantID}/{projectID}/invocations/logs/{invocationID}:
-    get:
-      description: Get the logs for a specific invocation ID
-      tags:
-        - Client
-      operationId: getClientInvocationLogs
-      parameters:
-        - $ref: "#/components/parameters/tenantID"
-        - $ref: "#/components/parameters/projectID"
-        - $ref: "#/components/parameters/invocationID"
-      responses:
-        '200':
-          description: Successfully returned the invocation logs.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/InvocationLogs"
-        '400':
-          description: Bad request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
-          $ref: "#/components/responses/UnauthorizedError"
-        '403':
-          $ref: "#/components/responses/ForbiddenError"
-        default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+    Generic.Uid:
+      type: string
+      example: my-project
+      minLength: 1
+      maxLength: 64
+      pattern: "^[.A-Za-z0-9_ -]*$"
 
-  /client/{tenantID}/{projectID}/invocations/result/{invocationID}:
-    get:
-      description: Get the result for a specific invocation ID
-      tags:
-        - Client
-      operationId: getClientInvocationResult
-      parameters:
-        - $ref: "#/components/parameters/tenantID"
-        - $ref: "#/components/parameters/projectID"
-        - $ref: "#/components/parameters/invocationID"
-      responses:
-        '200':
-          description: Successfully returned the invocation result.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/InvocationResult"
-        '400':
-          description: Bad request.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
-          $ref: "#/components/responses/UnauthorizedError"
-        '403':
-          $ref: "#/components/responses/ForbiddenError"
-        default:
-          description: Any error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+    Generic.ErrorDetails:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          description: An application specific error code.
+          type: integer
+          example: 120
+        message:
+          description: A description of the error that can be presented on a user interface.
+          type: string
+          example: Incorrect username or password.
+        detail:
+          description: An optional detailed explanation of the error for use by developers - not the end user.
+          type: string
+          example: Ensure that the username and password included in the request are correct.
+
+    Generic.ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          $ref: "#/components/schemas/Generic.ErrorDetails"

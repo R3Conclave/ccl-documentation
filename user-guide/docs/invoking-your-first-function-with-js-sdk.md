@@ -36,21 +36,25 @@ Install the conclave-cloud-sdk npm package:
 In the projects root directory create a new file and call it `ConclaveCloud.js`  
 Add the following configurations:
 
+1. _ConclaveCloud.ts_
 ```
 import { Conclave } from 'conclave-cloud-sdk'
 
+const accessToken: ()=>Promise<String>=...;
+
 const conclaveConfig = new Conclave.create({
-    tenantID: 'tenantId',
-    projectID: 'projectId',
+    projectUid: 'projectUid',
+    accessToken
 });
 
 export default conclaveConfig;
 ```
 
-> Id's can be found in a selected projects dashboard screen in ([Conclave Cloud Beta](https://www.conclave.cloud/))  
-> or by running the following CLI commands:
+_Note_:
+> You need to create a function that will return an accessToken.
 
-`ccl platform tenant`
+> UID's can be found in a selected projects dashboard screen in ([Conclave Cloud Beta](https://www.conclave.cloud/))  
+> or by running the following CLI command:
 
 `ccl projects list`
 
