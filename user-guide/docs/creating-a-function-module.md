@@ -19,16 +19,16 @@ Open a terminal or command prompt in the directory where you want to create your
 module and run the following command:
 
 ```
-ccl module new --language=[language] --project=[project name or id] --root=[module_name]
+ccl module new --language=[language] --project=[project name or UID] --root=[module_name]
 ```
 
 The `language` value can be either `typescript` or `javascript` depending on the
 type of module you want to create.
 
-The `project name or id` should be set to the project that you will be uploading
+The `project name or UID` should be set to the project that you will be uploading
 the function module into. This can be changed after the module has been created
 by editing the configuration files. If you have used the command `ccl save` to
-set a default project ID then you can omit this parameter.
+set a default project UID/name then you can omit this parameter.
 
 The `module_name` is the name of the module and will be used as the name for the
 directory containing the module.
@@ -116,7 +116,7 @@ npm run upload
 
 ## Targeting a different Conclave Cloud Project
 If you wish to change the project that the module is targeting then you must edit the 
-project ID in `cclmodule.json` and the entries in the upload script in
+project UID in `cclmodule.json` and the entries in the upload script in
 `package.json`.
 
 ## Adding modules using npm

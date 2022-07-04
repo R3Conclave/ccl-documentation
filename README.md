@@ -20,10 +20,10 @@ the platform, all of which can be accessed using this client library.
 This repository contains source files for various different R3 Conclave Cloud platform information sites and sources. Each subfolder contains a different set of documentation as outlined in the table below.
 
 ## Documents
-| Document | Folder | Notes |
-| -------- | ------ | ----- |
+| Document | Folder/URL   | Notes |
+| -------- |--------------| ----- |
 | Conclave Cloud user documentation | `user-guide` | A collection of document source files that are used to build the Conclave Cloud user documentation pages. |
-| REST API specification | `openapi` | An OpenAPI specification that defines the REST interface for Conclave Cloud. |
+| REST API specification | `https://raw.githubusercontent.com/R3Conclave/conclave-cloud-api-spec/main/conclave-cloud-api.yml`    | An OpenAPI specification that defines the REST interface for Conclave Cloud. |
 
 ## Publishing
 The rendered pages from `user-guide` are hosted on GitHub pages at [https://r3conclave.github.io/ccl-documentation/](https://r3conclave.github.io/ccl-documentation/).

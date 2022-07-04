@@ -21,22 +21,25 @@ Click the "New Project" button and enter a name for the project.
 ```bash
 ccl projects create --name "My Project"
 ```
+_Note:_ A project UID will be auto-generated for you. Optionally you may pick the UID of your project by adding
+`--uid my-project` to the command above. Both UID and the name must be unique.
+
 You may be prompted to login using your Conclave Cloud username and password.
 
 ## 2. Set the project as the default project in `ccl`
 This is just for convenience to make subsequent command lines shorter.
 
-Firstly you need to get the project ID. You can see this in the portal project
+Firstly you need to get the project UID/name. You can see this in the portal project
 page, or you can find it using `ccl`.
 
 ```
 ccl projects list
 ```
 
-Set the project ID as the default, replacing [ID] with the actual ID.
+Set the project UID/Name as the default, replacing [UID/name] with the actual ID.
 
 ```
-ccl save --project [ID]
+ccl save --project [UID/name]
 ```
 
 ## Write a JavaScript function using any editor
@@ -79,10 +82,10 @@ and the `entry` do not need to be the same.
 Again, you can use the `ccl` tool to do this:
 
 ```bash
-ccl functions invoke --name "sayHello" --args "[\"World\"]"
+ccl invocations invoke --name "sayHello" --args "[\"World\"]"
 ```
 
-This should work and you should see something similar to the following:
+The result should be similar to this:
 
 ```
 *** The expected code hash has not been specified and has been set to the value calculated when the function was uploaded. Please ensure this hash is correct. ***

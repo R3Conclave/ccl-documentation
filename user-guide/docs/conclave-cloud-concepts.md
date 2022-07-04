@@ -50,6 +50,17 @@ may have projects named 'Project X Payment Processor' and 'Project X User Data'.
 When experimenting with the platform, just create yourself a project named
 'Test' or whatever you like. You can always delete it when you're finished.
 
+###  Project UID
+When you first open a project in the portal, you will be presented with a value called `Project UID`.
+
+The project UID is the unique identifier for the current project.
+
+__Note:__ Project names are also unique.
+
+The project UID is not a confidential value. You will need to provide it to
+the client SDK when you are writing you applications that use Conclave Cloud to
+tell it which set of functions to use.
+
 ## Functions
 Each project will allow the configuration of a set of functions for invoking
 using the Conclave Functions service. But what is a function?
@@ -70,18 +81,6 @@ functions. This is the approach used by the Conclave Cloud Password sample, so
 go and take a look at the [source
 code](https://github.com/R3Conclave/ccl-sample-conclavepass/tree/main/functions)
 for an example.
-
-## Tenant ID and Project ID
-When you first open a project in the portal, you will be presented with two long
-values named `Tenant ID` and `Project ID`. 
-
-The `Tenant ID` is the unique code that identifies your account. 
-
-The `Project ID` is the unique identifier for the current project.
-
-Don't worry, these values are not a secret. You will need to provide these to
-the client SDK when you are writing you applications that use Conclave Cloud to
-tell it which set of functions to use.
 
 ## Function hashes
 You may see reference to function hashes in `ccl` or elsewhere in the
