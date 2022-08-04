@@ -31,7 +31,7 @@ _This is the base ui set-up for the sayHello function call, the sdk has yet to b
 ## 2. Install and Configure the Conclave Cloud SDK
 
 Install the conclave-cloud-sdk npm package:  
-`npm install /path to file/conclave-cloud-sdk-1.0.0-beta1.tgz --save`
+`npm install /path to file/conclave-cloud-sdk-1.0.0-beta2.tgz --save`
 
 In the projects root directory create a new file and call it `ConclaveCloud.js`  
 Add the following configurations:

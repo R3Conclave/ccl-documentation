@@ -1,6 +1,7 @@
 site_name: Conclave Cloud User Guide
 nav:
     - Getting Started: index.md
+    - Tools and SDKs: releases.md
     - What is Conclave Cloud?: what-is-conclave-cloud.md
     - Conclave Cloud Concepts: conclave-cloud-concepts.md
     - Conclave Functions:
