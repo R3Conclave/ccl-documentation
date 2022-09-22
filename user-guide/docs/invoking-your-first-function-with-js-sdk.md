@@ -12,7 +12,7 @@ In order to follow this tutorial you should already have done the following:
 - Sign-up for a [Conclave Cloud Beta](https://www.conclave.cloud/) account and log in to the portal.
 - Download and install the `ccl` tool for your operating system and verify it
   works.
-- Upload the simple.js function to [Conclave Cloud Beta](https://www.conclave.cloud/) by following the steps documented in ["Creating your first function"](/creating-your-first-function/).
+- Upload the simple.js function to [Conclave Cloud Beta](https://www.conclave.cloud/) by following the steps documented in [Creating your first function](creating-your-first-function.md).
 
 ## 1. Run the Hello Conclave Cloud project
 
