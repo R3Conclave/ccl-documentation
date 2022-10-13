@@ -2,100 +2,82 @@
 
 Welcome to Conclave Cloud - the serverless platform that preserves privacy.
 
-This site will provide you with all the information you need to get started in
-understanding what Conclave Cloud is and what it can do. It will also give you
-information on how to create your first Conclave Function, through to developing
-a simple password manager as an example.
+This site provides you with all the information you need to understand what Conclave Cloud is and what it can do. You
+can also find information on how to create your first *Conclave function* and develop a simple password manager as 
+an example.
 
 ## Sign-up for access to Conclave Cloud
 
-The first thing to do if you haven't already is to sign-up and create yourself
-an account on Conclave Cloud. You can sign up at the [Conclave Cloud portal landing page](https://www.conclave.cloud/).
+If you haven't already, the first thing to do is sign up and create an account on Conclave Cloud. You can sign up at 
+the [Conclave Cloud portal landing page](https://www.conclave.cloud/).
 
-Click on `CREATE BETA ACCOUNT` then enter your details to register.
+Click on `CREATE ACCOUNT` and enter your details to register.
 
-![](assets/start_for_free.png)
+![a screenshot of a banner with a CREATE ACCOUNT button](assets/start_for_free.png)
 
-Once you have signed up, you can login to the Conclave Cloud portal.
+Once you have signed up, you can log in to the Conclave Cloud portal.
 
 ## What next?
 
-From here you need to create yourself a project and then upload one or more
-functions to play with.
+You need to create a project and upload one or more functions to your project.
 
-Use the resources below to guide you through using the platform.
+Use the resources below to use the platform.
 
 ## Resources
 
-The following pages will tell you more about Conclave Cloud as well as giving
-examples on how to write and invoke functions.
+The following pages describe Conclave Cloud and give examples to write and invoke Conclave functions.
 
-| Page                                                                    | Description                                                                                                                         |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| [What is Conclave Cloud?](what-is-conclave-cloud.md)                    | An overview of the Conclave Cloud platform, what it is and what it can do.                                                          |
-| [Conclave Cloud Concepts](conclave-cloud-concepts.md)                   | What is a project? What is a function? Your questions answered here.                                                                |
-| [Creating your first function](creating-your-first-function.md)         | Dive into writing your first JavaScript function, uploading it to the platform and invoking it.                                     |
-| [JavaScript in Conclave Functions](javascript-in-conclave-functions.md) | Writing JavaScript for Conclave Functions is not quite the same as for other platforms such as node. Find more out about it here.   |
-| [The ConclavePass Sample](conclavepass-sample.md)                       | See a more in-depth example which shows how to use TypeScript in Conclave Functions as well as use the Java and JavaScript clients. |
+| Page                                                                    | Description                                                                                                                       |
+| ----------------------------------------------------------------------- |-----------------------------------------------------------------------------------------------------------------------------------|
+| [What is Conclave Cloud?](what-is-conclave-cloud.md)                    | An overview of the Conclave Cloud platform and what it can do.                                                                    |
+| [Conclave Cloud Concepts](conclave-cloud-concepts.md)                   | Understand projects and functions in Conclave CLoud.                                                                              |
+| [Creating your first function](creating-your-first-function.md)         | Write your first JavaScript function, upload it to the platform, and invoke it.                                                   |
+| [JavaScript in Conclave Functions](javascript-in-conclave-functions.md) | Writing JavaScript for Conclave Functions is not quite the same as for other platforms such as node. Find more out about it here. |
+| [The ConclavePass Sample](conclavepass-sample.md)                       | View an in-depth example which shows how to use TypeScript in Conclave Functions, Java clients, and JavaScript clients.           |
 
-You can interact with Conclave Cloud using the Conclave Cloud Command Line
-Interface (`ccl`) as well as client SDKs for Java/Kotlin and JavaScript. The
-latest version of these tools and SDKs can be obtained using the information in
-the table below:
+You can interact with Conclave Cloud using the *Conclave Cloud Command Line Interface (`ccl`)* as well as client SDKs 
+for Java, Kotlin, and JavaScript. You can obtain the latest versions of these tools and SDKs from the table below.
 
-| Tool/SDK                                                                                                                                                       | Description                                                                                                                                           | Copyright Notice                                                                                                            | License                                                                                              |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| [Command Line tool for Linux or macOS](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/ccl)                                      | The `ccl` tool can be used from the terminal to manage your Conclave Cloud projects and services.                                                     | [Copyright](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/CLI.NOTICE.txt)                   | [License](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/License.txt) |
-| [Command Line tool for Windows](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/ccl.zip)                                         | The `ccl` tool can be used from the terminal to manage your Conclave Cloud projects and services.                                                     | [Copyright](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/CLI.NOTICE.txt)                   | [License](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/License.txt) |
-| [Conclave Cloud JavaScript Client SDK](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/conclave-cloud-sdk-1.0.0-beta2.tgz)       | The JavaScript Client SDK that allows you to interact with Conclave Cloud and invoke Conclave Functions from your TypeScript/JavaScript applications. | [Copyright](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/JavaScript.Client.SDK.Notice.txt) | [License](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/License.txt) |
-| [Conclave Cloud Java/Kotlin Client SDK](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/conclave-cloud-sdk-java-1.0.0-beta2.zip) | The Java/Kotlin Client SDK that allows you to interact with Conclave Cloud and invoke Conclave Functions from your Java or Kotlin applications.       | [Copyright](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/Java.Client.SDK.Notice.txt)       | [License](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/License.txt) |
+| Tool/SDK                                                                                                                                                       | Description                                                                                              | Copyright Notice                                                                                                            | License                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- |----------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| [Command Line tool for Linux or macOS](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/ccl)                                      | Manage your Conclave Cloud projects and services from the terminal.                                      | [Copyright](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/CLI.NOTICE.txt)                   | [License](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/License.txt) |
+| [Command Line tool for Windows](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/ccl.zip)                                         | Manage your Conclave Cloud projects and services from the terminal.                                      | [Copyright](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/CLI.NOTICE.txt)                   | [License](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/License.txt) |
+| [Conclave Cloud JavaScript Client SDK](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/conclave-cloud-sdk-1.0.0-beta2.tgz)       | Interact with Conclave Cloud and invoke Conclave Functions from your TypeScript/JavaScript applications. | [Copyright](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/JavaScript.Client.SDK.Notice.txt) | [License](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/License.txt) |
+| [Conclave Cloud Java/Kotlin Client SDK](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/conclave-cloud-sdk-java-1.0.0-beta2.zip) | Interact with Conclave Cloud and invoke Conclave Functions from your Java or Kotlin applications.        | [Copyright](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/Java.Client.SDK.Notice.txt)       | [License](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/License.txt) |
 
-For information about the current release and about previous releases, please
-visit the [releases page](releases.md).
+For information about the current release and about previous releases, please visit the [releases page](releases.md).
 
 ## Installing the `ccl` tool
 
-Whichever operating system you are using you will need to ensure you have a Java
-11 or greater runtime environment installed in order to be able to run the `ccl` tool.
+You need Java 11 or higher runtime environment to run the `ccl` tool.
 
-_Linux:_
+=== "Linux/macOS"
 
-1. Download the tool using the link above.
-2. Copy the tool into a directory that is on your path (such as `~/bin`) _or_
-   add the directory containing the tool to your `PATH` environment variable.
-3. Test it by executing `ccl`.
+    1. Download the `ccl` tool using [this link](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/ccl).
+    2. Add the directory containing the `ccl` tool to your `PATH` environment variable.
+    3. Test it by executing `ccl`.
 
-_macOS:_
+=== "Windows"
 
-1. Download the tool using the link above.
-2. Copy the tool into a directory that is on your path _or_
-   add the directory containing the tool to your `PATH` environment variable.
-3. Test it by executing `ccl`.
+    1. Download the zip file using [this link](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/ccl.zip).
+    2. Unzip the contents to the folder of your choice.
+    3. Open the start menu, type **env**, and choose **Edit the system environment variables**.
+    4. Click the **Environment Variables** button.
+    5. Find the **Path** entry, edit it, and add the folder containing the tool to the path value.
+    6. Restart your command prompt to ensure the path has been updated.
 
-_Windows:_
+Note that for Windows, whenever you are asked to type `ccl`, you need to replace it with `ccl.bat`.
 
-1. Download the tool zipfile using the link above.
-2. Unzip the contents to the folder of your choice.
-3. Open the start menu and type "env" then choose "Edit the system environment
-   variables".
-4. Click the "Environment Variables" button.
-5. Find the "Path" entry, edit it and add the folder containing the tool to the
-   path value.
-6. Restart your command prompt to ensure the path has been updated.
+## Installing the Conclave Cloud JavaScript client SDK
 
-Note that for Windows, whenever you are asked to type `ccl` you need to replace
-it with `ccl.bat`.
+1. Download and unzip [the SDK](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/conclave-cloud-sdk-1.0.0-beta2.tgz))
+   to the directory of your choice.
+   
+   The zip file contains an NPM-compatible component. You can import it into your JavaScript/TypeScript 
+   application by setting it as a dependency in your project.
 
-## Installing the Conclave Cloud JavaScript Client SDK
-
-For the beta version of Conclave Cloud, the JavaScript Client SDK is delivered
-in a zip file that contains an npm compatible component that can be imported
-into your JavaScript/TypeScript application by setting it as a dependency in
-your project.
-
-Download and unzip the SDK to the directory of your choice. To add it as a
-dependency, add the following to your `package.json`, making sure to provide the
-correct path to where you unzipped the SDK.
+2. To add it as a dependency, add the following to your `package.json`, making sure to provide the correct path to 
+   where you unzipped the SDK.
 
 ```json
 "dependencies": {
@@ -105,16 +87,16 @@ correct path to where you unzipped the SDK.
 }
 ```
 
+
 ## Installing the Conclave Cloud Java/Kotlin Client SDK
 
-For the beta version of Conclave Cloud, the Java/Kotlin Client SDK is delivered
-in a zip file that contains a file-based maven repository. This can be added as
-a dependency in your Java/Kotlin project by adding the repository then
-describing the dependency.
 
-Download and unzip the SDK to the directory of your choice. Add the repository
-to your `build.gradle.kts`, making sure to provide the correct path to where you
-unzipped the SDK.
+1. Download and unzip [the SDK](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/conclave-cloud-sdk-java-1.0.0-beta2.zip)
+   to the directory of your choice.
+
+   The zip file contains a file-based Maven repository.
+
+2. Add the repository to your `build.gradle.kts`, making sure to provide the correct path to where you unzipped the SDK.
 
 ```kotlin
 repositories {
@@ -123,7 +105,7 @@ repositories {
 }
 ```
 
-Then add the SDK as a dependency:
+3. Add the SDK as a dependency:
 
 ```kotlin
 	// Conclave Cloud
