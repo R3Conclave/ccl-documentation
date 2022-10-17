@@ -40,10 +40,10 @@ present.
 
 Obviously, stateless functions have limited use. Luckily, Conclave Functions provides an alternative to storing 
 state directly. It supports a subset of the JavaScript `fetch()` API, allowing outgoing calls to external services. 
-This means that a function can retrieve and set data using an external service. You must take care to ensure that 
-private data is not leaked by the external call, as the actual call takes place outside the enclave.
+This means that a function can retrieve and set data using an external service. You must ensure that private data is 
+not leaked by the external call, as the actual call takes place outside the enclave.
 
-## What problems can be solved with Conclave Functions?
+## What problems can you solve with Conclave Functions?
 
 You can use Conclave Functions to provide solutions or enhance the privacy for different types of applications, 
 including:
@@ -51,12 +51,12 @@ including:
 * Pure data protection products such as cloud-based file storage with secure file sharing.
 * Zero-knowledge proof applications, such as proving identity or age without providing the actual data to the 
   verifying party.
-* Multiparty computation where data is collated from multiple parties and derived into a combined result, without 
+* Multiparty computation, where data is collated from multiple parties and derived into a combined result without 
   divulging the shared data with any other party or service.
 * Private set intersection applications, such as allowing different institutions to find common data between their 
-  own private datasets and the data of other parties.
+  private datasets and the data of other parties.
 
-Conclave Cloud provides a sample which shows how to implement a password manager using Conclave Functions along with 
+Conclave Cloud provides a sample that shows how to implement a password manager using Conclave Functions along with 
 a web-based frontend, a Kotlin-based CLI tool, and a Spring backend for persistence. You can find the sample in [this
 GitHub repository](https://github.com/R3Conclave/ccl-sample-conclavepass).
 
@@ -67,4 +67,4 @@ other, providing a rich set of tools for implementing solutions without ever hav
 
 ![An architecture diagram of the proposed Conclave CLoud ecosystem](assets/ImmersiveEcosystem-CCL.drawio.png)
 
-You can let us know which services we should prioritize, through this [feedback form](https://r3corda.typeform.com/to/SQoseSTK#source=conclaveCloud).
+You can let us know which services we should prioritize through this [feedback form](https://r3corda.typeform.com/to/SQoseSTK#source=conclaveCloud).
