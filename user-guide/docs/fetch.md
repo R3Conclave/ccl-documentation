@@ -6,7 +6,7 @@ within the cloud is necessary to persist the user databases.
 The JavaScript engine in Conclave Functions supports a subset of the JavaScript `fetch()` built-in capability to 
 query and update an external data store with each user's encrypted database entries. 
 
-It is critical to ensure that any data exchanged via `fetch()` is encrypted, as the request is made outside the
+It is critical to ensure that any data exchanged via `fetch()` is encrypted, as the request comes from outside the
 Intel SGX enclave of Conclave Functions. 
 
 ## Example
@@ -44,13 +44,12 @@ cclexports = {
 }
 ```
 
-# Fetch Interface
+## Fetch Interface
 
-`fetch()`
-
-The main method that is used to fetch a resource.
+`fetch()` is the method used to fetch a resource.
 
 ### Usage:
+
 ```javascript
 fetch(url, options).then(function(response) {
     // Handle HTTP response
