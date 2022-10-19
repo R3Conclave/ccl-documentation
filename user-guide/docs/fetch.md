@@ -1,15 +1,13 @@
 # Conclave Functions `fetch` module
-Conclave Functions are stateless and do not have access to any persistent
-storage. Therefore, external storage within the cloud is necessary in order to
-persist the user databases. 
 
-The JavaScript engine in Conclave Functions supports a subset of the JavaScript
-`fetch()` built-in capability to query and update an external data store with
-each user's encrypted database entries. 
+Conclave Functions are stateless and do not have access to any persistent storage. Therefore, external storage 
+within the cloud is necessary to persist the user databases. 
 
-It is vitally important to ensure that any data exchanged via `fetch()` is
-encrypted as the request is made outside the Conclave Functions Intel SGX
-enclave. 
+The JavaScript engine in Conclave Functions supports a subset of the JavaScript `fetch()` built-in capability to 
+query and update an external data store with each user's encrypted database entries. 
+
+It is critical to ensure that any data exchanged via `fetch()` is encrypted, as the request is made outside the
+Intel SGX enclave of Conclave Functions. 
 
 ## Example
 
@@ -47,6 +45,7 @@ cclexports = {
 ```
 
 # Fetch Interface
+
 `fetch()`
 
 The main method that is used to fetch a resource.
@@ -61,21 +60,23 @@ fetch(url, options).then(function(response) {
 ```
 
 ### Options
-| Field | Description |
-| ----- | ------------|
-| `method` | The HTTP verb: POST/PUT/GET/DELETE/PATCH |
-| `body` | The request body. |
-| `headers` | Optional headers specified as an object. |
-| `credentials` | Authentication credentials. |
+
+| Field         | Description                              |
+|---------------|------------------------------------------|
+| `method`      | The HTTP verb: POST/PUT/GET/DELETE/PATCH |
+| `body`        | The request body.                        |
+| `headers`     | Optional headers specified as an object. |
+| `credentials` | Authentication credentials.              |
 
 ### Response
+
 An object that represents the response from a server.
 
-| Field/Method | Description |
-| ------------ | ----------- |
-| `status` | HTTP response status (100-599). |
-| `statusText` | Textual representation of the status. |
-| `ok` | True if the status is `2xx`. |
-| `text()` | Return the response as a string. |
-| `json()` | Response parsed using `JSON.parse`. |
-| `arrayBuffer()` | Response as an array buffer. |
+| Field/Method    | Description                           |
+|-----------------|---------------------------------------|
+| `status`        | HTTP response status (100-599).       |
+| `statusText`    | Textual representation of the status. |
+| `ok`            | True if the status is `2xx`.          |
+| `text()`        | Return the response as a string.      |
+| `json()`        | Response parsed using `JSON.parse`.   |
+| `arrayBuffer()` | Response as an array buffer.          |
