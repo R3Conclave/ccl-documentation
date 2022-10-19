@@ -43,10 +43,10 @@ Firstly, you need to get the project UID/name. You can see this in the portal's 
 ccl projects list
 ```
 
-Set the project UID/name as the default, replacing [UID/name] with the actual ID.
+Set the project UID/name as the default, replacing `UID/name` with the actual ID.
 
 ```bash
-ccl save --project [UID/name]
+ccl save --project <UID/name>
 ```
 
 ## 3. Write a JavaScript function using any editor

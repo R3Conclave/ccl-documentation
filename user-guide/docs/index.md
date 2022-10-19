@@ -73,7 +73,7 @@ Note that for Windows, whenever you are asked to type `ccl`, you need to replace
 1. Download and unzip [the SDK](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/conclave-cloud-sdk-1.0.0-beta2.tgz))
    to the directory of your choice.
    
-   The zip file contains an NPM-compatible component. You can import it into your JavaScript/TypeScript 
+   The zip file contains an npm-compatible component. You can import it into your JavaScript/TypeScript 
    application by setting it as a dependency in your project.
 
 2. To add it as a dependency, add the following to your `package.json`, making sure to provide the correct path to 
