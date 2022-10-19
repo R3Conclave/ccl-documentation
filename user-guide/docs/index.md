@@ -98,16 +98,16 @@ Note that for Windows, whenever you are asked to type `ccl`, you need to replace
 
 2. Add the repository to your `build.gradle.kts`, making sure to provide the correct path to where you unzipped the SDK.
 
-```kotlin
-repositories {
-	maven(url = "path/to/conclave-cloud-sdk/repo")
-	mavenCentral()
-}
-```
+   ```kotlin
+        repositories {
+	        maven(url = "path/to/conclave-cloud-sdk/repo")
+	        mavenCentral()
+        }
+   ```
 
 3. Add the SDK as a dependency:
 
-```kotlin
-	// Conclave Cloud
-	implementation("com.r3.conclave.cloud:conclave-cloud-sdk:1.0-RC1")
-```
+   ```kotlin
+	    // Conclave Cloud
+	    implementation("com.r3.conclave.cloud:conclave-cloud-sdk:1.0-RC1")
+   ```
