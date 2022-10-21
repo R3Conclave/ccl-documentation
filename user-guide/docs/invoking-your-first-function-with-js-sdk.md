@@ -57,8 +57,8 @@ To follow this tutorial, you should already have done the following:
 
    > UIDs can be found in a selected project's dashboard screen in ([Conclave Cloud Beta](https://www.conclave.cloud/)) or by running the following CLI command: `ccl projects list`
 
-   > This project was built using create-react-app which due to webpack 5 have breaking changes. The project has already been set up to use react-app-rewired to bypass the errors.  
-   > To learn more about breaking changes and the options to bypass read: [Section 4.Fixing Breaking Changes with create-react-app](#4.-Fixing-Breaking-Changes-with-create-react-app).
+   > This project was built using create-react-app, which due to webpack 5, has breaking changes. The project has already been set up to use react-app-rewired to bypass the errors.  
+   > To learn more about breaking changes and the options to bypass, you can read [this section](#4. Fixing-Breaking-Changes-with-create-react-app).
 
 ## 3. Invoke Call via SDK
 
@@ -76,7 +76,7 @@ To follow this tutorial, you should already have done the following:
       );
   ```
 
-  > the [args] value is the input value from the project.
+  > The [args] value is the input value from the project.
 
 * It should look like this:
   ```

@@ -36,7 +36,7 @@ You may be prompted to log in using your Conclave Cloud username and password.
 
 This step is for convenience to make subsequent command lines shorter.
 
-Firstly, you need to get the project UID/name. You can see this in the portal's project page, or you can find it using 
+Firstly, you need to get the project UID/name. You can see this on the portal's project page, or you can find it using 
 `ccl`.
 
 ```bash
@@ -111,7 +111,7 @@ Decrypted:
 { "return": "Hello World" }
 ```
 
-This result is the raw data returned by the function. The important bit is in the `Decrypted:` section at the 
+This result is the raw data returned by the function. The significant bit is in the `Decrypted:` section at the 
 bottom, as it contains the decrypted return of the function. The `ccl` tool creates a private key for communicating with
 Conclave Cloud. This private key is the only entity that can decrypt the encrypted result in the data returned from 
 the invocation.

@@ -5,15 +5,15 @@ the Command Line Interface (CLI). Let's start by defining those two:
 
 ## Conclave Cloud Portal
 
-The [Conclave Cloud portal](https://www.conclave.cloud/) provides you the tools to manage your Conclave Cloud 
-account and projects in a user-friendly, web-based interface.
+The [Conclave Cloud portal](https://www.conclave.cloud/) gives you the tools to manage your Conclave Cloud account 
+and projects in a user-friendly, web-based interface.
 
 ![A screenshot of the Conclave Cloud portal](assets/Portal.png)
 
 When you first log in, you can see a list of existing projects and an option to create a new project. The definition 
 of a project is given [below](#projects).
 
-Within a project, you can check to see which functions you have deployed, how many times they've been called, and 
+Within a project, you can check to see which functions you have deployed, how many times you have called them, and
 lots of other information and metrics about the platform.
 
 ## Conclave Cloud Command Line Tool
@@ -24,8 +24,7 @@ the terminal or command prompt.
 You can download the tool [here](https://r3conclave.github.io/ccl-documentation/releases/).
 
 The `ccl` tool provides all the management options available in the portal. It allows you to upload and invoke
-functions without writing client code. This is great for testing out your functions or trying out the Conclave Cloud 
-platform.
+functions without writing client code. This feature helps to test your functions or try out the Conclave Cloud platform.
 
 Enter `ccl` in your terminal or command prompt to see available commands. There is help available for each 
 command too. For example, you can enter the following command to get help for the `functions` command.
@@ -48,7 +47,7 @@ finished.
 
 ###  Project UID
 
-When you first open a project in the portal, you will get with a value called `Project UID`.
+When you first open a project in the portal, you will get a value called `Project UID`.
 
 The project UID is the unique identifier for the current project.
 
@@ -66,22 +65,22 @@ Each project will allow the configuration of a set of functions to invoke using 
 
 You can upload as many functions as you want, each designed to perform a different task.
 
-You might find it more convenient to create an NPM package and configure it using a tool such as webpack to assemble 
+You might find it more convenient to create an npm package and configure it using a tool such as webpack to assemble 
 multiple files or even languages into a single JavaScript file for uploading to Conclave Functions. You can 
 even define multiple exported functions from a JavaScript module, then upload the same file multiple times but 
-change the entry point each time to create multiple functions. This is the approach used by the Conclave Cloud 
-Password sample. Take a look at the source code [here](https://github.com/R3Conclave/ccl-sample-conclavepass/tree/main/functions).
+change the entry point each time to create multiple functions. The Conclave Cloud Password Manager sample uses this 
+approach. Take a look at the source code [here](https://github.com/R3Conclave/ccl-sample-conclavepass/tree/main/functions).
 
 ## Function hashes
 
 Whenever you upload a function to Conclave Functions, `ccl` will calculate the [SHA256](https://www.simplilearn.com/tutorials/cyber-security-tutorial/sha-256-algorithm#what_is_the_sha256_algorithm)
 hash of the JavaScript code with the entry point's name concatenated to the end. If the code or entry point changes, 
-then the hash will also change.
+the hash also changes.
 
-Whenever an end user wants to invoke a function, they specify the hash of the code and entry point of the function 
+Whenever an end user wants to invoke a function, they specify the hash of the code and the function's entry point
 that they expect to be processing their data. Once the Conclave Functions enclave receives the request, it checks
 the expected hash against the actual hash as calculated inside the enclave and rejects the invocation request if 
-they do not match. This ensures the user fully controls what code can access their data.
+they do not match. This verification ensures that the user fully controls what code can access their data.
 
 The `ccl` tool will automatically use the previously calculated hash. This is not the most secure way to execute a 
 function because if the hash changes, the `ccl` calculation will automatically update and call the function

@@ -1,15 +1,20 @@
 # Conclave Cloud Tools and SDKs
-You can interact with Conclave Cloud using the Conclave Cloud Command Line
-Interface (`ccl`) as well as client SDKs for Java/Kotlin and JavaScript. 
 
-This page provides information and download links for the current version of each of the tools but also provides information and downloads for previous versions.
+You can interact with Conclave Cloud using the Conclave Cloud Command Line Interface (`ccl`) as well as client SDKs 
+for Java/Kotlin and JavaScript. 
+
+This page provides information and download links for each tool's current version and information and downloads for 
+previous versions.
 
 ## 1.0.0-GA - Current Version
+
 ### Changes
+
 This release coincides with the update of the Conclave Cloud platform to the first 1.0.0 production release.
 
 The changes include:
-* Introduction of paid usage places in the platform along with tools to query usage against the plan.
+
+* Introduction of paid usage plans in the platform along with tools to query usage against the plan.
 * Update tools and services to use the latest Conclave V1.3 core.
 
 ### Download
@@ -23,13 +28,17 @@ The changes include:
 
 
 ## 1.0.0-beta2
+
 ### Changes
-The Conclave Cloud platform introduced a number of breaking changes as part of the Beta development process. Please ensure you download the current version of each of these tools and SDKs to ensure compatibility with the platform.
+
+The Conclave Cloud platform introduced breaking changes as part of the Beta development process. Please ensure you 
+download the current version of each tool and SDK to ensure compatibility with the platform.
 
 The changes include:
+
 * Improvements to the Conclave Cloud REST interface defined [here](https://github.com/R3Conclave/conclave-cloud-api-spec).
 * Use of API keys to control access to Conclave Functions invocations.
-* Internal platform hardening and preparation for GA.
+* Internal platform hardening and preparation for General Availability (GA).
 
 ### Download
 
@@ -42,7 +51,9 @@ The changes include:
 
 
 ## 1.0.0-beta1
+
 ### Changes
+
 This was the initial public version.
 
 ### Download

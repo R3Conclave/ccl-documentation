@@ -45,8 +45,8 @@ These components are described below:
 ### Functions
 
 The functions component consists of a typescript that provides methods that you can use to add, query, get, 
-and remove entries within the user's database. This component requires access to the unencrypted database and therefore,
-to ensure privacy, runtime encryption is used by hosting the functions within Conclave Cloud in the Conclave 
+and remove entries within the user's database. This component requires access to the unencrypted database, and 
+therefore, to ensure privacy, runtime encryption is used by hosting the functions within Conclave Cloud in the Conclave 
 Functions service.
 
 Conclave Functions are stateless and do not have access to any persistent storage. Therefore, external storage 
@@ -60,9 +60,8 @@ function code and uses this key to encrypt/decrypt the user's database before ex
 
 ### Backend
 
-The backend service is used to store and retrieve the encrypted database for each user. The encrypted data it 
-handles can only be accessed within the functions component, ensuring that no unauthorized entity can access the 
-user databases.
+The backend service stores and retrieves the encrypted database for each user. The encrypted data it handles can 
+only be accessed within the functions component, ensuring that no unauthorized entity can access the user databases.
 
 The simple implementation provided within this project consists of a Spring application that stores the databases in 
 a key/value map in memory. All entries are lost if the service restarts.
@@ -100,28 +99,27 @@ can only be accessed within an approved Conclave Functions enclave. The client S
 the key signature matches the report's signature. After validating the key, Conclave Cloud encrypts data using this key,
 safe in the knowledge that only a valid Conclave Functions enclave can decrypt it.
 
-The password entry is encrypted using this key and the `addEntry` function is invoked. The encrypted password is then 
+The password entry is encrypted using this key, and the `addEntry` function is invoked. The encrypted password is then 
 picked up inside a Conclave Functions enclave which can decrypt the parameters using the private key that only it 
 has access to. The function retrieves the encrypted user database from the external service.
 
 Once the function has the user's encrypted database, it decrypts it. The key used to encrypt/decrypt the enclave is 
 derived from many sources, all of which need to be present to obtain the correct key:
 
-1. The project key - this is the same key that is used to decrypt the function code itself and the invocation 
-   parameters that were provided to the function.
-2. The hash of the code that is executing. Mixing this into the encryption key ensures that if the code is modified, 
-   then it cannot access the database.
-3. The user's password - It ensures that one user cannot access the database for another user.
+1. The project key. This is the same key used to decrypt the function code and the invocation parameters provided to 
+   the function.
+2. The hash of the code that is executing. Mixing this into the encryption key ensures that if someone modifies the 
+   code, it cannot access the database.
+3. The user's password. It ensures that one user cannot access the database for another user.
 
 The function decrypts the database, adds the new entry, re-encrypts it, and sends it back to the backend.
 
-So, you can see that the only entity that has access to all the secrets required to access each user's database 
-entry is a Conclave Function running the exact code that the user expects it to run, and when it has the user's 
-password.
+So, you can see that the only entity that has access to all the secrets required to access each user's database
+entry is a Conclave Function running the exact code the user expects it to run and when it has the user's password.
 
 ## Building and deploying the demonstration
 
-You must host or build and deploy each of these components to run the demonstration.
+You must host each of the below components to run the demonstration.
 
 ### 1. Backend
 
@@ -164,7 +162,7 @@ You can find detailed instructions [here](https://github.com/R3Conclave/ccl-samp
 
 Once the front end is running, you can access it at http://localhost:4200.
 
-### 4. CLI
+### 4. Command Line Interface (CLI)
 
 * Download and unzip the Conclave Cloud Java client SDK and update the CLI project to use your local copy.
 
@@ -180,8 +178,8 @@ handling. There are a few things to note when you try the demo.
 ### The username is used as the user token
 
 When you enter your username, Conclave Cloud runs it through a [SHA256](https://www.simplilearn.com/tutorials/cyber-security-tutorial/sha-256-algorithm#what_is_the_sha256_algorithm)
-hashing algorithm and converts it to a hex string. This hex string is used as the token for the user. The
-backend service stores and retrieves encrypted databases using this token.
+hashing algorithm and converts it to a hex string. This hex string acts as the token for the user. The backend 
+service stores and retrieves encrypted databases using this token.
 
 ### The password is fixed on the first access
 

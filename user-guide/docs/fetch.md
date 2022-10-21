@@ -69,7 +69,7 @@ fetch(url, options).then(function(response) {
 
 ### Response
 
-An object that represents the response from a server.
+It is an object that represents the response from a server.
 
 | Field/Method    | Description                           |
 |-----------------|---------------------------------------|

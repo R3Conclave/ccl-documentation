@@ -5,8 +5,7 @@ Conclave Functions provides a powerful ES6 JavaScript engine to execute your fun
 ## JavaScript Engine
 
 Conclave Functions provides a pure JavaScript engine. It does not offer full support for environments like Node.js
-(yet). This means that without importing libraries, you do not have access to Node.js built-ins such as file support or
-`Buffer`.
+(yet). Without importing libraries, you do not have access to Node.js built-ins such as file support or `Buffer`.
 
 However, you can create a project using npm and import standard packages to fill in the gaps.
 

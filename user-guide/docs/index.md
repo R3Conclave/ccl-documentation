@@ -13,7 +13,7 @@ the [Conclave Cloud portal landing page](https://www.conclave.cloud/).
 
 Click on `CREATE ACCOUNT` and enter your details to register.
 
-![a screenshot of a banner with a CREATE ACCOUNT button](assets/start_for_free.png)
+![A screenshot of a banner with a CREATE ACCOUNT button](assets/start_for_free.png)
 
 Once you have signed up, you can log in to the Conclave Cloud portal.
 
