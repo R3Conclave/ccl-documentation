@@ -43,10 +43,11 @@ To follow this tutorial, you should already have done the following:
 
 * Add the following configurations to `ConclaveCloud.js`
    ```
-   export interface ConclaveClientConfig {
-       apiKey: <string>;
-       apiURL: <string> | undefined;
-   }
+   import { Conclave } from 'conclave-cloud-sdk'
+   const conclaveConfig = new Conclave.create({
+         apiKey: 'apiKey' // replace with the apiKey you've created.
+   });
+   export default conclaveConfig;
    ```
 
 _Note_
