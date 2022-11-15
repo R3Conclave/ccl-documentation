@@ -1,192 +1,177 @@
-# Invoking your first Function using the Conclave Cloud JS SDK
+# Invoking a Conclave Function using the Conclave Cloud JavaScript SDK
 
-This is a set-up tutorial on how to invoke a simple JavaScript function using the React framework and the Conclave Cloud JS SDK.
+This tutorial details how to invoke a simple JavaScript function using the React framework and the Conclave Cloud
+JavaScript SDK. It uses the `Hello Conclave Cloud project` from the [Conclave Cloud samples repo](https://github.com/R3Conclave/conclave-cloud-samples/).
 
-> This is a step-by-step walkthrough and uses the `Hello Conclave Cloud project` from the [Conclave Cloud Samples Repo](https://github.com/R3Conclave/conclave-cloud-samples/).  
-> Once completed the User can invoke a conclave cloud function from the project ui.
+After completing this tutorial, you will be able to invoke a Conclave Cloud function from the project UI.
 
 ## Prerequisites
 
-In order to follow this tutorial you should already have done the following:
+To follow this tutorial, you should already have done the following:
 
-- Sign-up for a [Conclave Cloud Beta](https://www.conclave.cloud/) account and log in to the portal.
-- Download and install the `ccl` tool for your operating system and verify it
-  works.
-- Upload the simple.js function to [Conclave Cloud Beta](https://www.conclave.cloud/) by following the steps documented in [Creating your first function](creating-your-first-function.md).
+- Sign-up for a [Conclave Cloud](https://www.conclave.cloud/) account and log in to the portal.
+- Download and install the `ccl` tool as per the instructions [here](index.md).
+- Upload the simple.js function to [Conclave Cloud](https://www.conclave.cloud/) as per the instructions [here](creating-your-first-function.md).
 
 ## 1. Run the Hello Conclave Cloud project
 
-Get the [Hello Conclave Cloud Tutorial](https://github.com/R3Conclave/conclave-cloud-samples/) repository:
+* Get the [Hello Conclave Cloud Tutorial](https://github.com/R3Conclave/conclave-cloud-samples/) repository:
 
-```
-git clone https://github.com/R3Conclave/conclave-cloud-samples.git
-```
+  ```
+  git clone https://github.com/R3Conclave/conclave-cloud-samples.git
+  ```
 
-In the `hello-conclave-cloud-tutorial` directory install and run the project:  
-`npm install`  
-`npm start`
+* Change to the `hello-conclave-cloud-tutorial` directory.
 
-_This is the base ui set-up for the sayHello function call, the sdk has yet to be configured._
+* Install and run the project:  
+  `npm install`  
+  `npm start`
 
-## 2. Install and Configure the Conclave Cloud SDK
+  _This is the base UI set-up for the sayHello function call. The SDK is yet to be configured._
 
-Install the conclave-cloud-sdk npm package:  
-`npm install /path to file/conclave-cloud-sdk-1.0.0-beta2.tgz --save`
+## 2. Install and configure the Conclave Cloud SDK
 
-In the projects root directory create a new file and call it `ConclaveCloud.js`  
-Add the following configurations:
+* Install the conclave-cloud-sdk npm package:  
+  `npm install /path to file/conclave-cloud-sdk-1.0.0-beta2.tgz --save`
 
-1. _ConclaveCloud.ts_
-```
-import { Conclave } from 'conclave-cloud-sdk'
+* Create a project.
 
-const accessToken: ()=>Promise<String>=...;
+* In the project's root directory, create a new file and call it `ConclaveCloud.js`.
 
-const conclaveConfig = new Conclave.create({
-    projectUid: 'projectUid',
-    accessToken
-});
+* Create an API key using the Conclave Cloud CLI command line tool:
+  `ccl apikeys create`
 
-export default conclaveConfig;
-```
+* Add the following configurations to `ConclaveCloud.js`
+   ```
+   import { Conclave } from 'conclave-cloud-sdk'
+   const conclaveConfig = new Conclave.create({
+         apiKey: 'apiKey' // replace with the apiKey you've created.
+   });
+   export default conclaveConfig;
+   ```
 
-_Note_:
-> You need to create a function that will return an accessToken.
-
-> UID's can be found in a selected projects dashboard screen in ([Conclave Cloud Beta](https://www.conclave.cloud/))  
-> or by running the following CLI command:
-
-`ccl projects list`
-
-> This project was built using create-react-app which due to webpack 5 have breaking changes. The project has already been set-up to use react-app-rewired to bypass the errors.  
-> To learn more about breaking changes and the options to bypass read:  
-> Section 4.Fixing Breaking Changes with create-react-app below.
+_Note_
+ 
+  > This project was built using create-react-app, which due to webpack 5, has breaking changes. The project has already been set up to use react-app-rewired to bypass the errors.  
+  > To learn more about breaking changes and the options to bypass, you can read [this section](#4. Fixing-Breaking-Changes-with-create-react-app).
 
 ## 3. Invoke Call via SDK
 
-Import conclaveConfig into the App.tsx file
+* Import conclaveConfig into the app.tsx file
+  ```
+  import conclaveConfig from "./ConclaveCloud";
+  ```
 
-```
-import conclaveConfig from "./ConclaveCloud";
-```
-
-Add the following to the `sendMessage` function:
-
-```
+* Add the following to the `sendMessage` function:
+  ```
       response = await conclaveConfig.functions.call(
         "function name",
         "function hash",
         [args]
       );
-```
+  ```
 
-> the [args] value will be the input value from the project.
+  > The [args] value is the input value from the project.
 
-It should look like so:
-
-```
+* It should look like this:
+  ```
       response = await conclaveConfig.functions.call(
         "sayHello",
         "60C5AEFCE46A44163467EC82C204AB5207B780A45527A65A6580886AECAC49D4",
         [input]
       );
-```
+  ```
 
-You can now invoke the function from the ui.
+* You can now invoke the function from the UI.
 
 ## 4. Fixing Breaking Changes with create-react-app
 
-Due to create-react-app using Webpack 5+, you will experience some breaking changes due to polyfills not being included. Below are options to use in your project to include polyfills, either by downgrading to Webpack 4.\*or by manually including polyfills:
+Due to create-react-app using Webpack 5+, you will experience some breaking changes due to polyfills not being included.
+Below are options to use in your project to include polyfills, either by downgrading to Webpack 4.\*or by manually
+including polyfills:
 
 ### Downgrading react-scripts:
 
-`npm uninstall react-scripts`  
-`npm install react-scripts@4.0.3`
+* Run the following commands:
+  `npm uninstall react-scripts`  
+  `npm install react-scripts@4.0.3`
 
 ### Adding a Webpack config file with fallback:
 
-In the root project directory create the file webpack.config.js, add the following:
-
-```
-module.exports = {
-  resolve: {
-    fallback: {
-      crypto: require.resolve('crypto-browserify'),
-      stream: require.resolve('stream-browserify'),
+* In the root project directory, create the file webpack.config.js.
+* Add the following to webpack.config.js:
+  ```
+  module.exports = {
+    resolve: {
+      fallback: {
+        crypto: require.resolve('crypto-browserify'),
+        stream: require.resolve('stream-browserify'),
+      },
     },
-  },
-};
-```
+  };
+  ```
 
-then  
-`npm install crypto-browserify stream-browserify --save`
+* Run the following command.  
+  `npm install crypto-browserify stream-browserify --save`
 
 ### Adding fallback to react-script's webpack configuration file:
 
-After initial npm install navigate to `node_modules/react-scripts/config/webpack.config.js, find module.exports in this file.  
-In module.exports section find resolve section and add the following
+* After the initial npm install, navigate to `node_modules/react-scripts/config/webpack.config.js` and find the
+  module.exports section.
 
-```
-fallback: {
-crypto: require.resolve('crypto-browserify'),
-stream: require.resolve('stream-browserify'),
-}
-```
+* In the module.exports section, find the resolve section, and add the following:
+  ```
+  fallback: {
+  crypto: require.resolve('crypto-browserify'),
+  stream: require.resolve('stream-browserify'),
+  }
+  ```
 
-The section should look like this:
-
-```
-module.exports = function (webpackEnv) {
-...
-return {
-...
-resolve: {
-...
-fallback: {
-crypto: require.resolve('crypto-browserify'),
-stream: require.resolve('stream-browserify'),
-}
-}
-}
-}
-```
+* The section should look like this:
+  ```
+  module.exports = function (webpackEnv) {
+  ...
+  return {
+  ...
+  resolve: {
+  ...
+  fallback: {
+  crypto: require.resolve('crypto-browserify'),
+  stream: require.resolve('stream-browserify'),
+            }
+           }
+         }
+  }
+  ```
 
 ### Using react-app-rewired:
 
-Run the following:  
-`npm install react-app-rewired`
+* Run the following command:  
+  `npm install react-app-rewired`
 
-In the root project directory create the file `config-overrides.js`  
-Add the following:
+* In the root project directory, create a file `config-overrides.js`
 
-```
-module.exports = function override(config) {
-const fallback = config.resolve.fallback || {};
-Object.assign(fallback, {
-"stream": require.resolve("stream-browserify"),
-"crypto": require.resolve("crypto-browserify")
-});
-config.resolve.fallback = fallback;
-return config;
-};
-```
+* Add the following code to the `config-overrides.js` file:
+  ```
+  module.exports = function override(config) {
+  const fallback = config.resolve.fallback || {};
+  Object.assign(fallback, {
+  "stream": require.resolve("stream-browserify"),
+  "crypto": require.resolve("crypto-browserify")
+  });
+  config.resolve.fallback = fallback;
+  return config;
+  };
+  ```
 
-then:  
-`npm install crypto-browserify stream-browserify --save`  
-in package.json change the start scripts:
+* Run the following command:  
+  `npm install crypto-browserify stream-browserify --save`
 
-```
-"scripts": {
-"start": "react-scripts start",
-```
+* In package.json, substitute the start scripts with the following lines:
+  ```
+  "scripts": {
+  "start": "react-app-rewired start",
+  ```
 
-change to
-
-```
-"scripts": {
-"start": "react-app-rewired start",
-```
-
-then
-
-`npm start`
+* Run the following command:
+  `npm start`
