@@ -1,6 +1,6 @@
 :root {
-  --color-main: #003245;
-  --color-secondary-blue: #2aafc8;
+  --color-main: #191A25;
+  --color-secondary-blue: #007BA7;
   --color-secondary-blue-200: rgb(175, 229, 238);
 
   --color-secondary-400: #008ca4;
@@ -29,7 +29,7 @@
 }
 
 .md-search__input {
-  background-color: #30576c;
+  background-color: #424258;
 }
 
 .md-typeset a:focus,
