@@ -1,9 +1,7 @@
 # Invoking a Conclave Function using the Conclave Cloud Java SDK
 
-This tutorial details how to invoke a simple function using the Conclave Cloud Java/Kotlin SDK. It uses the 
-`Hello Conclave Cloud project` from the [Conclave Cloud samples repo](https://github.com/R3Conclave/conclave-cloud-samples/).
-
-After completing this tutorial, you will be able to invoke a Conclave Cloud function from the project UI.
+This tutorial details how to invoke a simple function using the Conclave Cloud Java/Kotlin SDK. After completing 
+this tutorial, you will be able to invoke a Conclave Cloud function from the project UI.
 
 ## Prerequisites
 
