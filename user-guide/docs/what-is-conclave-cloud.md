@@ -62,6 +62,6 @@ The Conclave Cloud platform will bring together an expanding set of services tha
 other, providing a rich set of tools for implementing solutions without ever having to leave the Conclave Cloud 
 platform.
 
-![An architecture diagram of the proposed Conclave CLoud ecosystem](assets/ImmersiveEcosystem-CCL.drawio.png)
+![An architecture diagram of the proposed Conclave Cloud ecosystem](assets/ImmersiveEcosystem-CCL.drawio.png)
 
 You can let us know which services we should prioritize through this [feedback form](https://r3corda.typeform.com/to/SQoseSTK#source=conclaveCloud).

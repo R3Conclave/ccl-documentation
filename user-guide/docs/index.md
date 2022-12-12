@@ -21,11 +21,11 @@ Once you have signed up, you can log in to the Conclave Cloud portal.
 
 You need to create a project and upload one or more functions to your project.
 
-Use the resources below to use the platform.
+Use the resources below to guide you through the platform.
 
 ## Resources
 
-The following pages describe Conclave Cloud and give examples to write and invoke Conclave functions.
+The following pages describe Conclave Cloud and give examples to write and invoke Conclave Functions.
 
 | Page                                                                    | Description                                                                                                                       |
 | ----------------------------------------------------------------------- |-----------------------------------------------------------------------------------------------------------------------------------|
@@ -53,13 +53,14 @@ You need Java 11 or higher runtime environment to run the `ccl` tool.
 
 === "Linux/macOS"
 
-    1. Download the `ccl` tool using [this link](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/ccl).
-    2. Add the directory containing the `ccl` tool to your `PATH` environment variable.
-    3. Test it by executing `ccl`.
+    1. Download the `ccl` tool using [this link](https://github.com/R3Conclave/ccl-documentation/releases/tag/1.0.0-GA/ccl).
+    2. Make the tool executable with the command: `chmod +x ccl`
+    3. Add the directory containing the `ccl` tool to your `PATH` environment variable.
+    4. Test it by executing `ccl`.
 
 === "Windows"
 
-    1. Download the zip file using [this link](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-beta2/ccl.zip).
+    1. Download the zip file using [this link](https://github.com/R3Conclave/ccl-documentation/releases/download/1.0.0-GA/conclave-cloud-sdk-java-1.0.0-GA.zip).
     2. Unzip the contents to the folder of your choice.
     3. Open the start menu, type **env**, and choose **Edit the system environment variables**.
     4. Click the **Environment Variables** button.

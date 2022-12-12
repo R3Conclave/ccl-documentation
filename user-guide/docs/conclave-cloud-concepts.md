@@ -53,8 +53,7 @@ The project UID is the unique identifier for the current project.
 
 __Note:__ Project names are also unique.
 
-The project UID is not a confidential value. You need to provide it to the client SDK to inform which set of 
-functions to use in your application.
+The project UID is not a confidential value.
 
 ## Functions
 

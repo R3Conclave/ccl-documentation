@@ -44,7 +44,7 @@ These components are described below:
 
 ### Functions
 
-The functions component consists of a typescript that provides methods that you can use to add, query, get, 
+The functions component consists of a typescript module that provides methods that you can use to add, query, get, 
 and remove entries within the user's database. This component requires access to the unencrypted database, and 
 therefore, to ensure privacy, runtime encryption is used by hosting the functions within Conclave Cloud in the Conclave 
 Functions service.
@@ -123,11 +123,11 @@ You must host each of the below components to run the demonstration.
 
 ### 1. Backend
 
-The backend service needs to be available as a fixed IP on the internet to allow Conclave Functions to access it for 
+The backend service needs to be available with a fixed IP on the internet to allow Conclave Functions to access it for 
 storing user databases.
 
 Conclave Cloud recommends setting up a new virtual machine with your cloud service provider to host this. You can 
-choose a VM with the smallest size, as the resource requirements are less.
+choose a VM with the smallest size, as the resource requirements are minimal.
 
 * Build the service using this command:
 
