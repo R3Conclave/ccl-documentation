@@ -77,7 +77,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Conclave Cloud User Guide" class="md-header__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -162,7 +162,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Conclave Cloud User Guide" class="md-nav__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     Conclave Cloud User Guide
@@ -329,7 +329,7 @@
       
         <li class="md-nav__item">
   <a href="#creating-a-new-function-module" class="md-nav__link">
-    Creating a new Function Module
+    Creating a new function module
   </a>
   
 </li>
@@ -510,7 +510,7 @@
       
         <li class="md-nav__item">
   <a href="#creating-a-new-function-module" class="md-nav__link">
-    Creating a new Function Module
+    Creating a new function module
   </a>
   
 </li>
@@ -571,36 +571,37 @@
                 
 
 
-<h1 id="creating-a-function-module-using-ccl">Creating a Function Module using <code>ccl</code></h1>
-<p>A Conclave Function needs to be uploaded in a single JavaScript file. However,
-you can use a transpiler and a packing tool to take a multi-file project using any
-language that can be transpiled into JavaScript, transpile it then pack it into
-a single file for upload.</p>
-<p>When configuring a module in this way, it can be quite difficult to get the
-correct configuration in order to support the version of JavaScript and export
-mechanism that Conclave Functions uses. For that reason, the Conclave Cloud
-<code>ccl</code> tool provides commands to create both TypeScript and JavaScript modules as
-well as to add new functions to existing modules.</p>
-<h2 id="creating-a-new-function-module">Creating a new Function Module</h2>
-<p>Firstly 
+<h1 id="creating-a-function-module-using-ccl">Creating a function module using <code>ccl</code></h1>
+<p>You need to upload a Conclave Function in a single JavaScript file. However, if you have a multi-file project, you can 
+use a packing tool to pack it into a single file for upload. You can also use a transpiler to transpile your projects 
+in other languages to Javascript.</p>
+<p>When configuring a module using a transpiler, getting the correct configuration to support the version of JavaScript 
+and export mechanism that Conclave Functions uses can be challenging. For that reason, the Conclave Cloud <code>ccl</code> tool 
+provides commands to create TypeScript and JavaScript modules and add new functions to existing modules.</p>
+<h2 id="creating-a-new-function-module">Creating a new function module</h2>
+<ol>
+<li>
+<p>Firstly,
 <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">ensure you have the <code>npm</code> tool installed</a> 
-to allow the Function Module to be managed and built.</p>
-<p>Open a terminal or command prompt in the directory where you want to create your
-module and run the following command:</p>
-<pre><code>ccl module new --language=[language] --project=[project name or UID] --root=[module_name]
-</code></pre>
-<p>The <code>language</code> value can be either <code>typescript</code> or <code>javascript</code> depending on the
-type of module you want to create.</p>
-<p>The <code>project name or UID</code> should be set to the project that you will be uploading
-the function module into. This can be changed after the module has been created
-by editing the configuration files. If you have used the command <code>ccl save</code> to
-set a default project UID/name then you can omit this parameter.</p>
-<p>The <code>module_name</code> is the name of the module and will be used as the name for the
-directory containing the module.</p>
-<p>For example, to create a TypeScript module named <code>mymodule</code> in the current
-default project, use the following command:</p>
-<pre><code>ccl module new --language=typescript --root=mymodule
-</code></pre>
+to build and manage function modules.</p>
+</li>
+<li>
+<p>Open a terminal or command prompt and change to the directory where you want to create your function module.</p>
+</li>
+<li>
+<p>Run the following command:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>ccl module new --language=&lt;language_name&gt; --project=&lt;project_name or UID&gt; --root=&lt;module_name&gt;
+</code></pre></div>
+<p>The <code>language</code> value can be either <code>typescript</code> or <code>javascript</code> depending on the type of module you want to create.</p>
+<p>The <code>project name or UID</code> should be set to the project to which you upload the function module. You can change this 
+after creating the module by editing the configuration files. You can omit this parameter if you have used the 
+command <code>ccl save</code> to set a default project UID/name.</p>
+<p>The <code>module_name</code> is the name of the module and is used as the name for the directory containing the module.</p>
+<p>For example, to create a TypeScript module named <code>mymodule</code> in the current default project, use the following command:</p>
+<div class="highlight"><pre><span></span><code>ccl module new --language=typescript --root=mymodule
+</code></pre></div>
 <p>The generated module will contain the following files:</p>
 <table>
 <thead>
@@ -612,7 +613,7 @@ default project, use the following command:</p>
 <tbody>
 <tr>
 <td>cclmodule.json</td>
-<td>The configuration of the module during creation. This information will be used by <code>ccl</code> when running commands to modify the module.</td>
+<td>The module configuration during creation. <code>ccl</code> uses this information when running commands to modify the module.</td>
 </tr>
 <tr>
 <td>package.json</td>
@@ -620,7 +621,7 @@ default project, use the following command:</p>
 </tr>
 <tr>
 <td>README.md</td>
-<td>Information about the generated module, including information about how to build and upload the module to Conclave Cloud.</td>
+<td>Information about the generated module, including how to build and upload the module to Conclave Cloud.</td>
 </tr>
 <tr>
 <td>tsconfig.json</td>
@@ -632,11 +633,11 @@ default project, use the following command:</p>
 </tr>
 <tr>
 <td>src/index.ts</td>
-<td>A code module that exports the functions defined in the module. This will be updated by <code>ccl</code> each time you add a function to the module.</td>
+<td>A code module that exports the functions defined in the module. <code>ccl</code> updates this information each time you add a function to the module.</td>
 </tr>
 <tr>
 <td>test/test.js</td>
-<td>A JavaScript file that can be edited to test the functions within your module.</td>
+<td>A JavaScript file that you can edit to test the functions within your module.</td>
 </tr>
 <tr>
 <td>test/template/polyfill.js</td>
@@ -645,63 +646,63 @@ default project, use the following command:</p>
 </tbody>
 </table>
 <h2 id="adding-a-function-to-the-module">Adding a function to the module</h2>
-<p>When you first create a function module it is created as an empty module that
-does not contain any exported functions. In order to create a Conclave Function
-you need to create a new function within the module.</p>
-<p>From a terminal within the root directory of your module:</p>
-<pre><code>ccl module add --name=[name of function]
-</code></pre>
+<p>When you first create a function module, it is an empty module that does not contain any exported functions.</p>
+<p>To create a Conclave Function, you must create a new function within the module.</p>
+<ol>
+<li>Open a terminal or command prompt and use the following command within the root directory of your module:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>ccl module add --name=&lt;name_of_function&gt;
+</code></pre></div>
 <p>For example, to create a function named <code>function1</code> in the <code>mymodule</code> module:</p>
-<pre><code>cd mymodule
+<div class="highlight"><pre><span></span><code>cd mymodule
 ccl module add --name=function1
-</code></pre>
-<p>The command will generate a new source file named <code>src/functions/function1.ts</code>
-which contains the following placeholder code:</p>
-<pre><code class="language-typescript">// Auto-generated function code, generated with the Conclave Cloud ccl tool.
-// Replace the implementation below with your own code.
-export async function function1(arg1: string, arg2: string): Promise&lt;string&gt; {
-    return arg1 + arg2;
-}
-</code></pre>
-<p>Replace the code in the function with your own implementation.</p>
+</code></pre></div>
+<p>The command generates a new source file named <code>src/functions/function1.ts</code> which contains the following placeholder 
+   code:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Auto-generated function code, generated with the Conclave Cloud ccl tool.</span>
+<span class="c1">// Replace the implementation below with your code.</span>
+   <span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">function1</span><span class="p">(</span><span class="nx">arg1</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">arg2</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="nx">arg1</span> <span class="o">+</span> <span class="nx">arg2</span><span class="p">;</span>
+   <span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>Replace the code in the function with your implementation.</li>
+</ol>
 <h2 id="preparing-the-module-build">Preparing the module build</h2>
-<p>Like with any other <code>npm</code> module, you need to install the tools and dependencies
-for the module before it can be built or uploaded.</p>
+<p>Like with any other <code>npm</code> module, you need to install the tools and dependencies for the module before you can build 
+or upload the module.</p>
 <p>Run this command from the root directory of the module.</p>
-<pre><code>npm install
-</code></pre>
+<div class="highlight"><pre><span></span><code>npm install
+</code></pre></div>
 <h2 id="testing">Testing</h2>
-<p>An empty test module has been provided in <code>test/test.js</code>. Modify this file to exercise your
-Conclave Functions before uploading. You can run the tests with the following command:</p>
-<pre><code>npm run test
-</code></pre>
+<p>You can find an empty test module in <code>test/test.js</code>. Modify this file to call your Conclave Functions before 
+uploading. You can run the tests with the following command:</p>
+<div class="highlight"><pre><span></span><code>npm run test
+</code></pre></div>
 <h2 id="uploading-your-module">Uploading your module</h2>
-<p>Once you have added and implemented your functions you can use <code>npm</code> to upload
-them to Conclave Cloud. They will be uploaded to the project you defined when
-creating the module unless you have edited the configuration to use a different
-project.</p>
+<p>Once you have added and implemented your functions, you can use <code>npm</code> to upload them. Conclave Cloud uploads your 
+functions to the project you defined when creating the module unless you have edited the configuration to use a 
+different project.</p>
 <p>Run this command to upload to the module project:</p>
-<pre><code>npm run upload
-</code></pre>
+<div class="highlight"><pre><span></span><code>npm run upload
+</code></pre></div>
 <h2 id="targeting-a-different-conclave-cloud-project">Targeting a different Conclave Cloud Project</h2>
-<p>If you wish to change the project that the module is targeting then you must edit the 
-project UID in <code>cclmodule.json</code> and the entries in the upload script in
-<code>package.json</code>.</p>
+<p>If you wish to change the project that the module is targeting, then you must edit the project UID in <code>cclmodule.json</code>
+and the entries in the upload script in <code>package.json</code>.</p>
 <h2 id="adding-modules-using-npm">Adding modules using npm</h2>
-<p>You can add third party dependencies to your module using the <code>npm</code> tool, as
-long as they do not depend on capabilities that are not present in Conclave
-Functions (such as <code>fs</code> file support).</p>
+<p>You can add third-party dependencies to your module using the <code>npm</code> tool, as long as they do not depend on 
+capabilities not present in Conclave Functions (such as <code>fs</code> file support).</p>
 <p>For example, to add the <code>CryptoJS</code> library to your module:</p>
-<pre><code>npm install crypto-js
-</code></pre>
+<div class="highlight"><pre><span></span><code>npm install crypto-js
+</code></pre></div>
 <p>You can then use CryptoJS in your function module:</p>
-<pre><code class="language-typescript">import {AES} from &quot;crypto-js&quot;;
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span><span class="nx">AES</span><span class="p">}</span> <span class="kr">from</span> <span class="s2">&quot;crypto-js&quot;</span><span class="p">;</span>
 
-export async function function1(arg1: string, arg2: string): Promise&lt;string&gt; {
-    const encrypted = AES.encrypt(arg1 + arg2, crypto.getProjectKey());
-    return encrypted.toString()
-}
-</code></pre>
+<span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">function1</span><span class="p">(</span><span class="nx">arg1</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">arg2</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">encrypted</span> <span class="o">=</span> <span class="nx">AES</span><span class="p">.</span><span class="nx">encrypt</span><span class="p">(</span><span class="nx">arg1</span> <span class="o">+</span> <span class="nx">arg2</span><span class="p">,</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">getProjectKey</span><span class="p">());</span>
+    <span class="k">return</span> <span class="nx">encrypted</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
 
               
             </article>

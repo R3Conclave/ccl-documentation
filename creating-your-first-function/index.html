@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#creating-your-first-function-in-conclave-cloud" class="md-skip">
+        <a href="#create-upload-and-invoke-your-first-function-in-conclave-cloud" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Conclave Cloud User Guide" class="md-header__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -162,7 +162,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Conclave Cloud User Guide" class="md-nav__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     Conclave Cloud User Guide
@@ -355,64 +355,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#write-a-javascript-function-using-any-editor" class="md-nav__link">
-    Write a JavaScript function using any editor
+  <a href="#3-write-a-javascript-function-using-any-editor" class="md-nav__link">
+    3. Write a JavaScript function using any editor
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#upload-the-function" class="md-nav__link">
-    Upload the function
+  <a href="#4-upload-the-function" class="md-nav__link">
+    4. Upload the function
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#invoke-the-function" class="md-nav__link">
-    Invoke the function
+  <a href="#5-invoke-the-function" class="md-nav__link">
+    5. Invoke the function
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#and-thats-it" class="md-nav__link">
-    And that's it!!!
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#things-to-try" class="md-nav__link">
-    Things to try
-  </a>
-  
-    <nav class="md-nav" aria-label="Things to try">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#previous-invocations" class="md-nav__link">
     Previous invocations
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#function-list" class="md-nav__link">
     Function list
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#explore-the-portal" class="md-nav__link">
     Explore the portal
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -604,64 +584,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#write-a-javascript-function-using-any-editor" class="md-nav__link">
-    Write a JavaScript function using any editor
+  <a href="#3-write-a-javascript-function-using-any-editor" class="md-nav__link">
+    3. Write a JavaScript function using any editor
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#upload-the-function" class="md-nav__link">
-    Upload the function
+  <a href="#4-upload-the-function" class="md-nav__link">
+    4. Upload the function
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#invoke-the-function" class="md-nav__link">
-    Invoke the function
+  <a href="#5-invoke-the-function" class="md-nav__link">
+    5. Invoke the function
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#and-thats-it" class="md-nav__link">
-    And that's it!!!
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#things-to-try" class="md-nav__link">
-    Things to try
-  </a>
-  
-    <nav class="md-nav" aria-label="Things to try">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#previous-invocations" class="md-nav__link">
     Previous invocations
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#function-list" class="md-nav__link">
     Function list
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#explore-the-portal" class="md-nav__link">
     Explore the portal
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -679,97 +639,112 @@
                 
 
 
-<h1 id="creating-your-first-function-in-conclave-cloud">Creating your first Function in Conclave Cloud</h1>
-<p>This is a very basic tutorial on how to create a simple JavaScript function and
-upload it to the Conclave Functions service in the Conclave Cloud platform.</p>
+<h1 id="create-upload-and-invoke-your-first-function-in-conclave-cloud">Create, upload, and invoke your first function in Conclave Cloud</h1>
+<p>This tutorial illustrates the steps to create a simple JavaScript function, upload it to the Conclave Functions 
+service, and invoke it.</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>In order to follow this tutorial you should already have done the following:</p>
+<p>To follow this tutorial, you should already have done the following as per the instructions <a href="..">here</a>:</p>
 <ul>
-<li>Sign-up for the Conclave Cloud beta and log in to the portal.</li>
-<li>Download and install the <code>ccl</code> tool for your operating system and verify it
-  works.</li>
+<li>Sign-up for Conclave Cloud and log in to the portal.</li>
+<li>Download, install, and test the <code>ccl</code> tool.</li>
 </ul>
 <h2 id="1-create-a-new-project">1. Create a new project</h2>
-<p>A new project can be created either in the portal or using the <code>ccl</code> tool.</p>
+<p>You can create a new project using the <a href="https://www.conclave.cloud/">Conclave Cloud portal</a> or the <code>ccl</code> tool.</p>
 <h3 id="using-the-portal">Using the portal</h3>
-<p>Click the "New Project" button and enter a name for the project.</p>
-<p><img alt="" src="../assets/NewProject.png" /></p>
+<p>Click the <strong>New Project</strong> button and enter a name for the project.</p>
+<p><img alt="A screenshot of a button named 'New Project'" src="../assets/NewProject.png" /></p>
 <h3 id="using-the-cli">Using the CLI</h3>
-<pre><code class="language-bash">ccl projects create --name &quot;My Project&quot;
-</code></pre>
-<p><em>Note:</em> A project UID will be auto-generated for you. Optionally you may pick the UID of your project by adding
-<code>--uid my-project</code> to the command above. Both UID and the name must be unique.</p>
-<p>You may be prompted to login using your Conclave Cloud username and password.</p>
+<p>Use the following command to create a new project.</p>
+<p><div class="highlight"><pre><span></span><code>ccl projects create --name <span class="s2">&quot;My Project&quot;</span>
+</code></pre></div>
+<em>Note:</em> A project UID will be auto-generated for you. Optionally, you may pick the UID of your project by adding
+<code>--uid my-project</code> to the command above. Both the UID and the name must be unique.</p>
+<p>You may be prompted to log in using your Conclave Cloud username and password.</p>
 <h2 id="2-set-the-project-as-the-default-project-in-ccl">2. Set the project as the default project in <code>ccl</code></h2>
-<p>This is just for convenience to make subsequent command lines shorter.</p>
-<p>Firstly you need to get the project UID/name. You can see this in the portal project
-page, or you can find it using <code>ccl</code>.</p>
-<pre><code>ccl projects list
-</code></pre>
-<p>Set the project UID/Name as the default, replacing [UID/name] with the actual ID.</p>
-<pre><code>ccl save --project [UID/name]
-</code></pre>
-<h2 id="write-a-javascript-function-using-any-editor">Write a JavaScript function using any editor</h2>
+<p>This step is for convenience to make subsequent command lines shorter.</p>
+<p>Firstly, you need to get the project UID/name. You can see this on the portal's project page, or you can find it using 
+<code>ccl</code>.</p>
+<div class="highlight"><pre><span></span><code>ccl projects list
+</code></pre></div>
+<p>Set the project UID/name as the default, replacing <code>UID/name</code> with the actual ID.</p>
+<div class="highlight"><pre><span></span><code>ccl save --project &lt;UID/name&gt;
+</code></pre></div>
+<h2 id="3-write-a-javascript-function-using-any-editor">3. Write a JavaScript function using any editor</h2>
 <p>Here's an example for you. Save it as 'simple.js'.</p>
-<pre><code class="language-javascript">cclexports = {
-    sayHello: (name) =&gt; {
-        return &quot;Hello &quot; + name;
-    }
-}
-</code></pre>
-<p>This creates a global object named <code>cclexports</code> that contains all of the
-functions that should be exported from the JavaScript module. In this case,
-there is one function named <code>sayHello</code> that returns a string that says "Hello "
-appended with the <code>name</code> argument.</p>
-<p><em>Note:</em> The <code>cclexports</code> object is important. Conclave Functions will look for
-this when the code is uploaded to determine what functions can be called within
-the code module. Make sure you always populate this object with the function you
+<div class="highlight"><pre><span></span><code><span class="nx">cclexports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">sayHello</span><span class="o">:</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This creates a global object named <code>cclexports</code> that contains all the functions that should be exported from the 
+JavaScript module. In this example, one function named <code>sayHello</code> returns a string that says "Hello " appended with the 
+<code>name</code> argument.</p>
+<p><em>Note:</em> The <code>cclexports</code> object is important. Conclave Functions will look for this when you upload the code to 
+determine what functions can be called within the code module. Always populate this object with the function you 
 want to call.</p>
-<h2 id="upload-the-function">Upload the function</h2>
-<p>You can use the <code>ccl</code> tool to upload the function:</p>
-<pre><code class="language-bash">ccl functions upload --name &quot;sayHello&quot; --code simple.js --entry &quot;sayHello&quot;
-</code></pre>
-<p>At this point your function is live and hosted! It can be called from anywhere
-in the world!</p>
-<p>Just a word on the arguments before we invoke it. <code>name</code> is the name of the
-function that appears in the portal. <code>code</code> defines the code module to upload.
-<code>entry</code> defines the name of the exported function we want to call. The <code>name</code>
-and the <code>entry</code> do not need to be the same.</p>
-<h2 id="invoke-the-function">Invoke the function</h2>
-<p>Again, you can use the <code>ccl</code> tool to do this:</p>
-<pre><code class="language-bash">ccl invocations invoke --name &quot;sayHello&quot; --args &quot;[\&quot;World\&quot;]&quot;
-</code></pre>
+<h2 id="4-upload-the-function">4. Upload the function</h2>
+<p>You can use the <code>ccl</code> tool to upload a function:</p>
+<div class="highlight"><pre><span></span><code>ccl functions upload --name <span class="s2">&quot;sayHello&quot;</span> --code simple.js --entry <span class="s2">&quot;sayHello&quot;</span>
+</code></pre></div>
+<p>Your function is live and hosted. You can call your function from anywhere.</p>
+<p>Here, the arguments used are:</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>The function's name that appears in the portal.</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td>The code module to upload.</td>
+</tr>
+<tr>
+<td><code>entry</code></td>
+<td>The name of the exported function you want to call.</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>name</code> and the <code>entry</code> need not be identical.</p>
+<h2 id="5-invoke-the-function">5. Invoke the function</h2>
+<p>You can use the <code>ccl</code> tool to invoke a function:</p>
+<div class="highlight"><pre><span></span><code>ccl invocations invoke --name <span class="s2">&quot;sayHello&quot;</span> --args <span class="s2">&quot;[\&quot;World\&quot;]&quot;</span>
+</code></pre></div>
 <p>The result should be similar to this:</p>
-<pre><code>*** The expected code hash has not been specified and has been set to the value calculated when the function was uploaded. Please ensure this hash is correct. ***
+<div class="highlight"><pre><span></span><code>*** The expected code hash has not been specified and has been set to the value calculated when the function was 
+uploaded. Please ensure this hash is correct. ***
 
 Result:
 {&quot;name&quot;:&quot;sayHello&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;invocationId&quot;:&quot;73904ecb224a4971904ecb224a69713d&quot;,&quot;start&quot;:1649432866241,&quot;end&quot;:1649432866671,&quot;duration&quot;:430,&quot;response&quot;:{&quot;status&quot;:&quot;success&quot;,&quot;result&quot;:{&quot;result&quot;:&quot;ABUBAAAAAAAAAAAABmludm9rZQAAAACyBkdL95AXywZ8ayxSOKGyIAb07XFAFRqIKsHG66ytZHrQC5SUS+SIc/3bc3jN/sPl5TKZQefKvgSEn+MBttCI2n49X0FB0zQ5gQjal5Z7w2JbcL0VYWtuXdN34wbpKpHyAQ90oqAQ1nw7O3iQQAyHjfO2ho3WatdAKvXGCj6fbnfGHL+vTfApXhSsrEDsEdp8iuRuT/jp/0V7NgP/DhWiA8sJS9AE9VCv0HWap/Us0jvmFKQUrrKB/jHAqTmDvRi5EPCSyaN/I3X8+xbIWXYtiXN4UNHmb2OxfMUzYkRdozx1VGNorsw9oZkos5/NvUbdUWfRV1d9+42ywK6qIWtDTADP0ITIkOaX9CpmZWgck9PkeFK/YEHhrTostoLmKzNxniaEUD/nVHexjzNXX31XFWTZ7cqPlT8fZ3gn8IqD7VuwAoxXQ0tNPfF7TqUqTXthqCO+7F+e63hXuD4rmUsV+sMeoiezt7ZQeCTvg4psSyomABK3kpkbWD/lKz9mgNB87DQsGGs=&quot;},&quot;success&quot;:true,&quot;size&quot;:565},&quot;logs&quot;:[],&quot;cause&quot;:null,&quot;statusCode&quot;:null,&quot;waitTime&quot;:235.0,&quot;timeout&quot;:false,&quot;initTime&quot;:334.0}
 
 Decrypted:
 { &quot;return&quot;: &quot;Hello World&quot; }
-</code></pre>
-<p>That is the raw data that is returned by the function. The important bit is in
-the <code>Decrypted:</code> section at the bottom as it contains the decrypted return of
-the function. The <code>ccl</code> tool creates a private key for communicating with
-Conclave Cloud and is the only entity that can decrypted the encrypted result
-you can see in the data returned from the invocation.</p>
-<h2 id="and-thats-it">And that's it!!!</h2>
-<p>You've successfully written, deployed and invoked your first function!</p>
-<h2 id="things-to-try">Things to try</h2>
-<h3 id="previous-invocations">Previous invocations</h3>
+</code></pre></div>
+<p>This result is the raw data returned by the function. The significant bit is in the <code>Decrypted:</code> section at the 
+bottom, as it contains the decrypted return of the function. The <code>ccl</code> tool creates a private key for communicating with
+Conclave Cloud. This private key is the only entity that can decrypt the encrypted result in the data returned from 
+the invocation.</p>
+<p>You've successfully invoked your first function.</p>
+<h2 id="previous-invocations">Previous invocations</h2>
 <p>You can see a list of previous invocations using this command:</p>
-<pre><code class="language-bash">ccl invocations list
-</code></pre>
-<p>This shows information such as how long the function took to run as well as
-whether it was a cold or warm start (Google it!). It doesn't always update
-immediately so you may have to run it more than once.</p>
-<h3 id="function-list">Function list</h3>
-<p>You can see the list of functions that you have uploaded with:</p>
-<pre><code class="language-bash">ccl functions list
-</code></pre>
-<h3 id="explore-the-portal">Explore the portal</h3>
-<p>The portal provides you with graphs and metrics about your functions and
-invocations. Have a browse around and see what you discover!</p>
+<div class="highlight"><pre><span></span><code>ccl invocations list
+</code></pre></div>
+<p>This command shows information such as how long the function took to run and whether it was a
+<a href="https://azure.microsoft.com/en-in/blog/understanding-serverless-cold-start/">cold or warm start</a>. You may have to 
+run the command more than once, as it doesn't always update immediately.</p>
+<h2 id="function-list">Function list</h2>
+<p>You can see the list of functions that you have uploaded with the following command:</p>
+<div class="highlight"><pre><span></span><code>ccl functions list
+</code></pre></div>
+<h2 id="explore-the-portal">Explore the portal</h2>
+<p>The <a href="https://www.conclave.cloud/">Conclave Cloud portal</a> provides you with graphs and metrics about your functions 
+and invocations. Browse around and see what you discover.</p>
 
               
             </article>

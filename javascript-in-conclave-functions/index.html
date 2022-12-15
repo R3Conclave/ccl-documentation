@@ -77,7 +77,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Conclave Cloud User Guide" class="md-header__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -162,7 +162,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Conclave Cloud User Guide" class="md-nav__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     Conclave Cloud User Guide
@@ -488,25 +488,17 @@
 
 
 <h1 id="using-javascript-in-conclave-functions">Using JavaScript in Conclave Functions</h1>
-<p>Conclave Functions provides a fully capable ES6 JavaScript engine in which to
-execute your function code. However, due to the nature of enclaves, not
-everything works inside an enclave.</p>
+<p>Conclave Functions provides a powerful ES6 JavaScript engine to execute your function code.</p>
 <h2 id="javascript-engine">JavaScript Engine</h2>
-<p>Conclave functions provides a pure JavaScript engine. It does not provide full
-support for environments like Node.js (yet). This means that without importing
-libraries, you do not have access to Node.js built-ins such as file support or
-<code>Buffer</code>.</p>
-<p>However, you can create a project using npm and import standard packages to fill
-in the gaps.</p>
-<p>The <a href="https://github.com/R3Conclave/ccl-sample-conclavepass">ConclavePass sample</a>
-uses this technique, implementing an npm component that compiles to a single
-JavaScript file for upload, importing a cryptographic library, buffer and other
-useful tools.</p>
-<p>In addition, the Conclave Cloud <code>ccl</code> tool provides a command to bootstrap a new
-JavaScript or TypeScript project that supports multiple code modules and
-packages and packs them into a single JavaScript file for uploading to Conclave
-Functions. You can read how you can use this to 
-<a href="../creating-a-function-module/">create your function module here</a>.</p>
+<p>Conclave Functions provides a pure JavaScript engine. It does not offer full support for environments like Node.js
+(yet). Without importing libraries, you do not have access to Node.js built-ins such as file support or <code>Buffer</code>.</p>
+<p>However, you can create a project using npm and import standard packages to fill in the gaps.</p>
+<p>The <a href="https://github.com/R3Conclave/ccl-sample-conclavepass">ConclavePass sample</a> uses this technique, implementing 
+an npm component that compiles to a single JavaScript file for upload, importing a cryptographic library, buffer, and 
+other useful tools.</p>
+<p>In addition, the Conclave Cloud <code>ccl</code> tool provides a command to bootstrap a new JavaScript or TypeScript project 
+that supports multiple code modules and packages and packs them into a single JavaScript file for uploading to Conclave
+Functions. You can read how to use this to create your function module <a href="../creating-a-function-module/">here</a>.</p>
 
               
             </article>

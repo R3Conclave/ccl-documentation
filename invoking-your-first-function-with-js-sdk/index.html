@@ -77,7 +77,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Conclave Cloud User Guide" class="md-header__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -162,7 +162,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Conclave Cloud User Guide" class="md-nav__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     Conclave Cloud User Guide
@@ -610,7 +610,7 @@
 
 
 <h1 id="invoking-a-conclave-function-using-the-conclave-cloud-javascript-sdk">Invoking a Conclave Function using the Conclave Cloud JavaScript SDK</h1>
-<p>This tutorial details how to invoke a simple JavaScript function using the React framework and the Conclave Cloud
+<p>This tutorial details how to invoke a simple JavaScript function using the React framework and the Conclave Cloud 
 JavaScript SDK. It uses the <code>Hello Conclave Cloud project</code> from the <a href="https://github.com/R3Conclave/conclave-cloud-samples/">Conclave Cloud samples repo</a>.</p>
 <p>After completing this tutorial, you will be able to invoke a Conclave Cloud function from the project UI.</p>
 <h2 id="prerequisites">Prerequisites</h2>
@@ -624,7 +624,8 @@ JavaScript SDK. It uses the <code>Hello Conclave Cloud project</code> from the <
 <ul>
 <li>Get the <a href="https://github.com/R3Conclave/conclave-cloud-samples/">Hello Conclave Cloud Tutorial</a> repository:</li>
 </ul>
-<p><code>git clone https://github.com/R3Conclave/conclave-cloud-samples.git</code></p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/R3Conclave/conclave-cloud-samples.git
+</code></pre></div>
 <ul>
 <li>
 <p>Change to the <code>hello-conclave-cloud-tutorial</code> directory.</p>
@@ -643,26 +644,28 @@ JavaScript SDK. It uses the <code>Hello Conclave Cloud project</code> from the <
 <code>npm install /path to file/conclave-cloud-sdk-1.0.0-beta2.tgz --save</code></p>
 </li>
 <li>
-<p>Create a project.</p>
+<p>In the project's root directory, create a new file and call it <code>ConclaveCloud.js</code>. </p>
 </li>
 <li>
-<p>In the project's root directory, create a new file and call it <code>ConclaveCloud.js</code>.</p>
-</li>
-<li>
-<p>Create an API key using the Conclave Cloud CLI command line tool:
-  <code>ccl apikeys create</code></p>
-</li>
-<li>
-<p>Add the following configurations to <code>ConclaveCloud.js</code>
-   <code>import { Conclave } from 'conclave-cloud-sdk'
-   const conclaveConfig = new Conclave.create({
-         apiKey: 'apiKey' // replace with the apiKey you've created.
-   });
-   export default conclaveConfig;</code></p>
+<p>Add the following configurations:</p>
 </li>
 </ul>
-<p><em>Note</em></p>
+<p><em>ConclaveCloud.ts</em> <br />
+   <div class="highlight"><pre><span></span><code>import { Conclave } from &#39;conclave-cloud-sdk&#39;
+
+const accessToken: ()=&gt;Promise&lt;String&gt;=...;
+
+const conclaveConfig = new Conclave.create({
+    projectUid: &#39;projectUid&#39;,
+    accessToken
+});
+
+export default conclaveConfig;
+</code></pre></div></p>
+<p><em>Note</em>:</p>
 <blockquote>
+<p>You need to create a function that returns an accessToken.</p>
+<p>UIDs can be found in a selected project's dashboard screen in (<a href="https://www.conclave.cloud/">Conclave Cloud Beta</a>) or by running the following CLI command: <code>ccl projects list</code></p>
 <p>This project was built using create-react-app, which due to webpack 5, has breaking changes. The project has already been set up to use react-app-rewired to bypass the errors.<br />
 To learn more about breaking changes and the options to bypass, you can read <a href="#4. Fixing-Breaking-Changes-with-create-react-app">this section</a>.</p>
 </blockquote>
@@ -670,15 +673,17 @@ To learn more about breaking changes and the options to bypass, you can read <a 
 <ul>
 <li>
 <p>Import conclaveConfig into the app.tsx file
-  <code>import conclaveConfig from "./ConclaveCloud";</code></p>
+  <div class="highlight"><pre><span></span><code>import conclaveConfig from &quot;./ConclaveCloud&quot;;
+</code></pre></div></p>
 </li>
 <li>
 <p>Add the following to the <code>sendMessage</code> function:
-  <code>response = await conclaveConfig.functions.call(
-        "function name",
-        "function hash",
-        [args]
-      );</code></p>
+  <div class="highlight"><pre><span></span><code>    response = await conclaveConfig.functions.call(
+      &quot;function name&quot;,
+      &quot;function hash&quot;,
+      [args]
+    );
+</code></pre></div></p>
 </li>
 </ul>
 <blockquote>
@@ -687,11 +692,12 @@ To learn more about breaking changes and the options to bypass, you can read <a 
 <ul>
 <li>
 <p>It should look like this:
-  <code>response = await conclaveConfig.functions.call(
-        "sayHello",
-        "60C5AEFCE46A44163467EC82C204AB5207B780A45527A65A6580886AECAC49D4",
-        [input]
-      );</code></p>
+  <div class="highlight"><pre><span></span><code>    response = await conclaveConfig.functions.call(
+      &quot;sayHello&quot;,
+      &quot;60C5AEFCE46A44163467EC82C204AB5207B780A45527A65A6580886AECAC49D4&quot;,
+      [input]
+    );
+</code></pre></div></p>
 </li>
 <li>
 <p>You can now invoke the function from the UI.</p>
@@ -709,17 +715,18 @@ including polyfills:</p>
 </ul>
 <h3 id="adding-a-webpack-config-file-with-fallback">Adding a Webpack config file with fallback:</h3>
 <ul>
-<li>In the root project directory, create the file webpack.config.js.</li>
+<li>In the root project directory, create the file webpack.config.js. </li>
 <li>
 <p>Add the following to webpack.config.js:
-  <code>module.exports = {
-    resolve: {
-      fallback: {
-        crypto: require.resolve('crypto-browserify'),
-        stream: require.resolve('stream-browserify'),
-      },
+  <div class="highlight"><pre><span></span><code>module.exports = {
+  resolve: {
+    fallback: {
+      crypto: require.resolve(&#39;crypto-browserify&#39;),
+      stream: require.resolve(&#39;stream-browserify&#39;),
     },
-  };</code></p>
+  },
+};
+</code></pre></div></p>
 </li>
 <li>
 <p>Run the following command.<br />
@@ -729,31 +736,33 @@ including polyfills:</p>
 <h3 id="adding-fallback-to-react-scripts-webpack-configuration-file">Adding fallback to react-script's webpack configuration file:</h3>
 <ul>
 <li>
-<p>After the initial npm install, navigate to <code>node_modules/react-scripts/config/webpack.config.js</code> and find the
-  module.exports section.</p>
+<p>After the initial npm install, navigate to <code>node_modules/react-scripts/config/webpack.config.js</code> and find the 
+  module.exports section.  </p>
 </li>
 <li>
 <p>In the module.exports section, find the resolve section, and add the following:
-  <code>fallback: {
-  crypto: require.resolve('crypto-browserify'),
-  stream: require.resolve('stream-browserify'),
-  }</code></p>
+  <div class="highlight"><pre><span></span><code>fallback: {
+crypto: require.resolve(&#39;crypto-browserify&#39;),
+stream: require.resolve(&#39;stream-browserify&#39;),
+}
+</code></pre></div></p>
 </li>
 <li>
 <p>The section should look like this:
-  <code>module.exports = function (webpackEnv) {
-  ...
-  return {
-  ...
-  resolve: {
-  ...
-  fallback: {
-  crypto: require.resolve('crypto-browserify'),
-  stream: require.resolve('stream-browserify'),
-            }
-           }
+  <div class="highlight"><pre><span></span><code>module.exports = function (webpackEnv) {
+...
+return {
+...
+resolve: {
+...
+fallback: {
+crypto: require.resolve(&#39;crypto-browserify&#39;),
+stream: require.resolve(&#39;stream-browserify&#39;),
+          }
          }
-  }</code></p>
+       }
+}
+</code></pre></div></p>
 </li>
 </ul>
 <h3 id="using-react-app-rewired">Using react-app-rewired:</h3>
@@ -763,28 +772,30 @@ including polyfills:</p>
 <code>npm install react-app-rewired</code></p>
 </li>
 <li>
-<p>In the root project directory, create a file <code>config-overrides.js</code></p>
+<p>In the root project directory, create a file <code>config-overrides.js</code>  </p>
 </li>
 <li>
 <p>Add the following code to the <code>config-overrides.js</code> file:
-  <code>module.exports = function override(config) {
-  const fallback = config.resolve.fallback || {};
-  Object.assign(fallback, {
-  "stream": require.resolve("stream-browserify"),
-  "crypto": require.resolve("crypto-browserify")
-  });
-  config.resolve.fallback = fallback;
-  return config;
-  };</code></p>
+  <div class="highlight"><pre><span></span><code>module.exports = function override(config) {
+const fallback = config.resolve.fallback || {};
+Object.assign(fallback, {
+&quot;stream&quot;: require.resolve(&quot;stream-browserify&quot;),
+&quot;crypto&quot;: require.resolve(&quot;crypto-browserify&quot;)
+});
+config.resolve.fallback = fallback;
+return config;
+};
+</code></pre></div></p>
 </li>
 <li>
 <p>Run the following command:<br />
-<code>npm install crypto-browserify stream-browserify --save</code></p>
+<code>npm install crypto-browserify stream-browserify --save</code>  </p>
 </li>
 <li>
 <p>In package.json, substitute the start scripts with the following lines:
-  <code>"scripts": {
-  "start": "react-app-rewired start",</code></p>
+  <div class="highlight"><pre><span></span><code>&quot;scripts&quot;: {
+&quot;start&quot;: &quot;react-app-rewired start&quot;,
+</code></pre></div></p>
 </li>
 <li>
 <p>Run the following command:

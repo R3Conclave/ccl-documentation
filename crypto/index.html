@@ -77,7 +77,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Conclave Cloud User Guide" class="md-header__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -162,7 +162,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Conclave Cloud User Guide" class="md-nav__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     Conclave Cloud User Guide
@@ -518,16 +518,13 @@
 
 
 <h1 id="conclave-functions-crypto-module">Conclave Functions <code>crypto</code> module</h1>
-<p>In order to allow data to be safely exported from serverless functions, each
-function has access to an encryption key that is unique to the function code
-within the Conclave Cloud project.</p>
-<p>This encryption key can be used to protect data that can subsequently be
-accessed by the same function code within the same project, but cannot be
-accessed by any other entity including the data originator.</p>
-<p>Using this key allows functions to securely export and import state, providing a
-simple way to combine datasets or derive information from multiple data sources
-without ever providing access to the data to any entity other than the function
-itself.</p>
+<p>To safely export data from serverless functions, each function has access to an encryption key that is unique to the 
+function code within the Conclave Cloud project.</p>
+<p>You can use this encryption key to protect data that can subsequently be accessed only by the same function code 
+within the same project. No other entity can access it, including the data originator.</p>
+<p>Using this key allows functions to securely export and import state, providing a simple way to combine datasets or 
+derive information from multiple data sources without ever giving access to the data to any entity other than the 
+function itself.</p>
 <h2 id="key-derivation">Key derivation</h2>
 <p>The key used to encrypt the data is derived in the sequence defined below:</p>
 <ol>
@@ -535,26 +532,20 @@ itself.</p>
 <li>The Project key.</li>
 <li>The hash of the source code that defines a function or a set of functions.</li>
 </ol>
-<p>This means that each source code module obtains a unique key even if the same
-code is uploaded to another Conclave Cloud project.</p>
-<p>Note however though that the key is derived from the hash of the source code but
-does not include the hash of the function entry point. Deriving a key in this
-way means that a set of functions that are all defined in a single code module
-can share a key, making it easy to develop an entire module that works with an
-encrypted state. If you wish to make a cryptographic separation between two
-different functions in the same project then you need to ensure each function is
-uploaded within a different source module.</p>
+<p>Each source code module obtains a unique key even if you upload the same code to another Conclave Cloud project.</p>
+<p>Please note that the key does not include the hash of the function entry point. So, a set of functions defined in a 
+single code module can share a key, making it easy to develop an entire module that works with an encrypted state.</p>
+<p>You must upload each function within a different source module if you wish to create a cryptographic separation between 
+two separate functions in the same project.</p>
 <h2 id="example">Example</h2>
-<p>This example shows how to encrypt some data that can only be decrypted by
-functions defined in the same module within the same project, using the project
-key as a passphrase for the crypto-js <code>AES.encrypt</code> function.</p>
-<pre><code class="language-javascript">const encrypted = AES.encrypt(data_to_encrypt, crypto.getProjectKey());
-</code></pre>
+<p>This example shows how to encrypt data that can only be decrypted by functions defined in the same module within the 
+same project. To do this, use the project key as a passphrase for the crypto-js <code>AES.encrypt</code> function.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">encrypted</span> <span class="o">=</span> <span class="nx">AES</span><span class="p">.</span><span class="nx">encrypt</span><span class="p">(</span><span class="nx">data_to_encrypt</span><span class="p">,</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">getProjectKey</span><span class="p">());</span>
+</code></pre></div>
 <h2 id="crypto-interface">'crypto' Interface</h2>
 <p><code>crypto.getProjectKey()</code></p>
-<p>Get the project key - the key which is unique to the code module within the
-project where the code is hosted.</p>
-<p>The function returns a 32 byte key that is Base64 encoded to a string.</p>
+<p>Gets the project key - the key unique to the code module within the project where you have hosted the code.</p>
+<p>The function returns a 32-byte, <a href="https://www.base64decode.org/">Base64</a> encoded key.</p>
 
               
             </article>

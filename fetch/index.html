@@ -77,7 +77,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Conclave Cloud User Guide" class="md-header__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -162,7 +162,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Conclave Cloud User Guide" class="md-nav__button md-logo" aria-label="Conclave Cloud User Guide" data-md-component="logo">
       
-  <img src="../assets/cloud_logo_no_shadow.svg" alt="logo">
+  <img src="../assets/cloud-logo.svg" alt="logo">
 
     </a>
     Conclave Cloud User Guide
@@ -376,6 +376,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#fetch-interface" class="md-nav__link">
+    Fetch Interface
+  </a>
+  
+    <nav class="md-nav" aria-label="Fetch Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -475,6 +509,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#fetch-interface" class="md-nav__link">
+    Fetch Interface
+  </a>
+  
+    <nav class="md-nav" aria-label="Fetch Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    Response
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -490,53 +558,49 @@
 
 
 <h1 id="conclave-functions-fetch-module">Conclave Functions <code>fetch</code> module</h1>
-<p>Conclave Functions are stateless and do not have access to any persistent
-storage. Therefore, external storage within the cloud is necessary in order to
-persist the user databases. </p>
-<p>The JavaScript engine in Conclave Functions supports a subset of the JavaScript
-<code>fetch()</code> built-in capability to query and update an external data store with
-each user's encrypted database entries. </p>
-<p>It is vitally important to ensure that any data exchanged via <code>fetch()</code> is
-encrypted as the request is made outside the Conclave Functions Intel SGX
-enclave. </p>
+<p>Conclave Functions are stateless and do not have access to any persistent storage. Therefore, external storage 
+within the cloud is necessary to persist the user databases. </p>
+<p>The JavaScript engine in Conclave Functions supports a subset of the JavaScript <code>fetch()</code> built-in capability to 
+query and update an external data store with each user's encrypted database entries. </p>
+<p>It is critical to ensure that any data exchanged via <code>fetch()</code> is encrypted, as the request comes from outside the
+Intel SGX enclave of Conclave Functions. </p>
 <h2 id="example">Example</h2>
 <p>Here is an example of using <code>fetch()</code> to <code>GET</code> a URL:</p>
-<pre><code class="language-javascript">cclexports = {
-    lookup: async (url) =&gt; {
-        var retval = await fetch(url);
-        return await retval.text();
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nx">cclexports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">lookup</span><span class="o">:</span> <span class="k">async</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">retval</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="nx">retval</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>And another example showing a <code>POST</code>:</p>
-<pre><code class="language-javascript">cclexports = {
-    lookup: (url) =&gt; {
-        var retval;
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: &quot;{ \&quot;test\&quot;: \&quot;Hello\&quot; }&quot;
-        }).then(result =&gt; {
-            result.text().then(text =&gt; {
-                retval = text;
-                }, error =&gt; {})
-        });
-        return retval;
-    }
-}
-</code></pre>
-<h1 id="fetch-interface">Fetch Interface</h1>
-<p><code>fetch()</code></p>
-<p>The main method that is used to fetch a resource.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">cclexports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">lookup</span><span class="o">:</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">retval</span><span class="p">;</span>
+        <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+            <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;application/json&#39;</span>
+            <span class="p">},</span>
+            <span class="nx">body</span><span class="o">:</span> <span class="s2">&quot;{ \&quot;test\&quot;: \&quot;Hello\&quot; }&quot;</span>
+        <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">text</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">text</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                <span class="nx">retval</span> <span class="o">=</span> <span class="nx">text</span><span class="p">;</span>
+                <span class="p">},</span> <span class="nx">error</span> <span class="p">=&gt;</span> <span class="p">{})</span>
+        <span class="p">});</span>
+        <span class="k">return</span> <span class="nx">retval</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="fetch-interface">Fetch Interface</h2>
+<p><code>fetch()</code> is the method used to fetch a resource.</p>
 <h3 id="usage">Usage:</h3>
-<pre><code class="language-javascript">fetch(url, options).then(function(response) {
-    // Handle HTTP response
-}, function(error) {
-    // Handle error
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">options</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Handle HTTP response</span>
+<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Handle error</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="options">Options</h3>
 <table>
 <thead>
@@ -565,7 +629,7 @@ enclave. </p>
 </tbody>
 </table>
 <h3 id="response">Response</h3>
-<p>An object that represents the response from a server.</p>
+<p>It is an object that represents the response from a server.</p>
 <table>
 <thead>
 <tr>
