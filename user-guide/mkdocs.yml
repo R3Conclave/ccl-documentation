@@ -22,6 +22,11 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
 # Install the 'render_swagger' plugin with:
 #  pip install mkdocs-render-swagger-plugin
 

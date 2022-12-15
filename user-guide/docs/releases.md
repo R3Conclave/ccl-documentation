@@ -1,6 +1,6 @@
 # Conclave Cloud Tools and SDKs
 
-You can interact with Conclave Cloud using the Conclave Cloud Command Line Interface (`ccl`) as well as client SDKs
+You can interact with Conclave Cloud using the Conclave Cloud Command Line Interface (`ccl`) as well as the client SDKs
 for Java/Kotlin and JavaScript.
 
 This page provides information and download links for each tool's current version and information and downloads for

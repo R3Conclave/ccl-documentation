@@ -1,91 +1,67 @@
 # What is Conclave Cloud?
-Conclave Cloud is a platform for hosting privacy-preserving applications. Built
-on top of the Conclave SDK, which in turn is built to take advantage of Intel
-Software Guard Extensions (Intel SGX), Conclave Cloud is a platform that will
-provide all the tools necessary to ensure that access to data is provided only
-to authorised parties.
 
-The Conclave Cloud platform will bring together an expanding set of services
-that will seamlessly integrate with each other providing a rich set of tools for
-implementing solutions without ever having to leave the Conclave Cloud platform.
+Conclave Cloud is a platform for hosting privacy-preserving applications. It's built on top of the [Conclave SDK](https://github.com/R3Conclave/conclave-core-sdk), 
+which is based on Intel Software Guard Extensions ([Intel SGX](https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html)).
+The Conclave Cloud platform provides all the tools necessary to ensure that only authorized parties gain access to data.
 
-![](assets/ImmersiveEcosystem-CCL.drawio.png)
+## Conclave Functions
 
-But we're not there yet! We don't have all of the services in the diagram above
-in the platform. In fact, we will be relying on our customers (including you) to
-drive the requirements for which services we should prioritise.
+The current platform delivers our first service, Conclave Functions, which is a serverless execution environment, 
+much like AWS Lambda or Azure Cloud Functions.
 
-### So what services _does_ Conclave Cloud deliver now?
-The current platform delivers our first service, Conclave Functions, which is a
-serverless execution environment, much like AWS Lambda or Azure Cloud Functions.
+_Conclave Functions_ differs from similar services by using end-to-end encryption between the end-user and the
+container that runs the function. Conclave Cloud provides this data-in-use encryption using a secure Conclave 
+_enclave_ to run the code. Along with protecting the integrity and privacy of the user's data, enclaves provide 
+hardware-backed assurances over the exact code that processes the data.
 
-Conclave Functions differs from other similar services by using end-to-end
-encryption between the end user and the container that runs the function, with
-data-in-use encryption provided by using a Conclave Enclave to run the code. The
-use of an enclave ensures the integrity and privacy of the user's data as well
-as providing hardware-backed assurances over the exact code that will be
-processing the data.
-
-With Conclave Functions, developers can deploy their code once to the platform
-where it will then be hosted for them. Their functions can be called once a
-year, once an hour, up to thousands of times an hour. The platform will cope
-with the demand and scale accordingly with no management or intervention from
-the developer.
+You can deploy and host your code to the Conclave Cloud platform with Conclave Functions. You can call your
+functions once a year, once an hour, or thousands of times an hour. The platform will cope with the demand and scale
+accordingly with no management or intervention from you.
 
 ## What can you do with Conclave Cloud/Functions?
-Conclave Functions allows you to write code that will run inside an enclave with
-_absolutely no boilerplate whatsover_! This means that you can focus on writing
-your data processing logic that will run inside an enclave without worrying
-about how to transfer data to and from the enclave, or how to encrypt data, or
-how to ensure the platform integrity is maintained.
 
-You can prove to your users that the code that you say will process their data
-actually is the code that processes the data, as well as proving that you as a
-service host or author do not have access to the keys that encrypt the user's
-data. In fact, it also proves that _nobody except the Conclave Functions enclave
-can access the data_, and that includes R3 and Azure: our cloud service
-provider.
+Conclave Functions allows you to write code that will run inside an enclave with _absolutely no boilerplate_. This 
+means that you can focus on business logic without worrying about how to transfer data to and from the enclave, 
+how to encrypt data, or how to ensure platform integrity.
 
-Theoretically, any problem that can be solved using the Conclave SDK can also be
-solved in Conclave Functions. However, features such as persistence and
-authentication will be provided by additional services in the platform that do
-not yet exist.
+You can provide cryptographic evidence to your users that the code you claim to process their data is actually the
+code that processes them. You can also prove that as a service host or author, you do not have access to the
+keys that encrypt the user's data. In fact, you can prove that _nobody except the Conclave Functions enclave
+can access the data_, including R3 and Azure: our cloud service provider.
 
-One thing to remember is that Conclave Functions are stateless. Every time you
-invoke your function in the Conclave Functions service, any previous state is
-likely to be lost. There is a chance that previous state is available in-memory
-but you cannot rely on it - the best you can do is use any previous state as a
-cache that can be used if present.
+One thing to remember is that Conclave Functions are stateless. Every time you invoke your function in the Conclave 
+Functions service, any previous state is likely to be lost. There is a chance that the previous state is available 
+in memory, but you cannot rely on it - the best you can do is use any previous state as a cache that can be used if 
+present.
 
-Obviously stateless functions have limited use - you may as well just run the function
-locally on the user's machine if you don't have the ability save or share data
-from the cloud.
+Stateless functions have limited use. Conclave Functions provides an alternative to storing state directly. It 
+supports a subset of the JavaScript `fetch()` API, allowing outgoing calls to external services. 
+This means that a function can retrieve and set data using an external service. You must ensure that private data is 
+not leaked by the external call, as the actual call takes place outside the enclave.
 
-Luckily, Conclave Functions provides an alternative to storing state directly.
-It supports a subset of the JavaScript `fetch()` API allowing outgoing calls to
-external services. This means that a function can retrieve and set data using an
-external service. Care must be taken to ensure private data is not leaked by the
-external call, as the actual call takes place outside of the enclave.
+## What problems can you solve with Conclave Functions?
 
-## But what problems can be solved with Conclave Functions?
-Conclave functions can be used to provide solutions or enhance the privacy for
-many different types of application, including:
+You can use Conclave Functions to provide solutions or enhance the privacy for different types of applications, 
+including:
 
-* Pure data protection products such as cloud-based file storage with secure
-  file sharing.
-* Zero Knowledge Proof type applications, such as proving identity or age
-  without providing the actual data to the verifying party.
-* Multiparty computation where data is collated from multiple parties and
-  derived into a combined result, without divulging the shared data with any
-  other party or service.
-* Private set intersection applications, such as allowing different
-  institutions to find common data between their own private datasets and the
-  data of other parties.
+* Pure data protection products such as cloud-based file storage with secure file sharing.
+* Zero-knowledge proof applications, such as proving identity or age, without providing the actual data to the 
+  verifying party.
+* Multiparty computation, where data is collated from multiple parties and derived into a combined result without 
+  divulging the shared data with any other party or service.
+* Private set intersection applications, such as allowing different institutions to find common data between their 
+  private datasets and the data of other parties.
 
-Conclave Cloud provides a sample which shows how to implement a password manager
-using Conclave Functions along with a web-based frontend, a Kotlin-based CLI
-tool and a Spring backend for persistence. You can find the sample in [this
-GitHub repository](https://github.com/R3Conclave/ccl-sample-conclavepass). The
-sample does not really fit into any of the categories above, but you can imagine
-expanding it to allow, for example, the service to automatically scan for
-compromised keys and notify the user.
+Conclave Cloud provides a sample showing how to implement a password manager using Conclave Functions, a web-based 
+frontend, a Kotlin-based CLI tool, and a Spring backend for persistence. You can find the sample in
+[this GitHub repository](https://github.com/R3Conclave/ccl-sample-conclavepass).
+
+## Future plans of the Conclave Cloud platform
+
+The Conclave Cloud platform will bring together an expanding set of services that seamlessly integrate with each 
+other, providing a rich set of tools for implementing solutions without ever having to leave the Conclave Cloud 
+platform.
+
+![An architecture diagram of the proposed Conclave Cloud ecosystem](assets/ImmersiveEcosystem-CCL.drawio.png)
+
+You can let us know which services we should prioritize through this [feedback form](https://r3corda.typeform.com/to/SQoseSTK#source=conclaveCloud).

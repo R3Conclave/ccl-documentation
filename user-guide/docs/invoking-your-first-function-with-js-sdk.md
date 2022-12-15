@@ -99,6 +99,7 @@ including polyfills:
 ### Adding a Webpack config file with fallback:
 
 * In the root project directory, create the file webpack.config.js.
+
 * Add the following to webpack.config.js:
   ```
   module.exports = {
