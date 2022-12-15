@@ -1,6 +1,6 @@
 # Invoking a Conclave Function using the Conclave Cloud JavaScript SDK
 
-This tutorial details how to invoke a simple JavaScript function using the React framework and the Conclave Cloud 
+This tutorial details how to invoke a simple JavaScript function using the React framework and the Conclave Cloud
 JavaScript SDK. It uses the `Hello Conclave Cloud project` from the [Conclave Cloud samples repo](https://github.com/R3Conclave/conclave-cloud-samples/).
 
 After completing this tutorial, you will be able to invoke a Conclave Cloud function from the project UI.
@@ -34,31 +34,26 @@ To follow this tutorial, you should already have done the following:
 * Install the conclave-cloud-sdk npm package:  
   `npm install /path to file/conclave-cloud-sdk-1.0.0-beta2.tgz --save`
 
-* In the project's root directory, create a new file and call it `ConclaveCloud.js`. 
+* Create a project.
 
-* Add the following configurations:
+* In the project's root directory, create a new file and call it `ConclaveCloud.js`.
 
-  _ConclaveCloud.ts_   
+* Create an API key using the Conclave Cloud CLI command line tool:
+  `ccl apikeys create`
+
+* Add the following configurations to `ConclaveCloud.js`
    ```
    import { Conclave } from 'conclave-cloud-sdk'
-
-   const accessToken: ()=>Promise<String>=...;
-
    const conclaveConfig = new Conclave.create({
-       projectUid: 'projectUid',
-       accessToken
+         apiKey: 'apiKey' // replace with the apiKey you've created.
    });
-
    export default conclaveConfig;
    ```
 
-  _Note_:
-   > You need to create a function that returns an accessToken.
-
-   > UIDs can be found in a selected project's dashboard screen in ([Conclave Cloud Beta](https://www.conclave.cloud/)) or by running the following CLI command: `ccl projects list`
-
-   > This project was built using create-react-app, which due to webpack 5, has breaking changes. The project has already been set up to use react-app-rewired to bypass the errors.  
-   > To learn more about breaking changes and the options to bypass, you can read [this section](#4. Fixing-Breaking-Changes-with-create-react-app).
+_Note_
+ 
+  > This project was built using create-react-app, which due to webpack 5, has breaking changes. The project has already been set up to use react-app-rewired to bypass the errors.  
+  > To learn more about breaking changes and the options to bypass, you can read [this section](#4. Fixing-Breaking-Changes-with-create-react-app).
 
 ## 3. Invoke Call via SDK
 
@@ -103,7 +98,8 @@ including polyfills:
 
 ### Adding a Webpack config file with fallback:
 
-* In the root project directory, create the file webpack.config.js. 
+* In the root project directory, create the file webpack.config.js.
+
 * Add the following to webpack.config.js:
   ```
   module.exports = {
@@ -121,8 +117,8 @@ including polyfills:
 
 ### Adding fallback to react-script's webpack configuration file:
 
-* After the initial npm install, navigate to `node_modules/react-scripts/config/webpack.config.js` and find the 
-  module.exports section.  
+* After the initial npm install, navigate to `node_modules/react-scripts/config/webpack.config.js` and find the
+  module.exports section.
 
 * In the module.exports section, find the resolve section, and add the following:
   ```
@@ -154,7 +150,7 @@ including polyfills:
 * Run the following command:  
   `npm install react-app-rewired`
 
-* In the root project directory, create a file `config-overrides.js`  
+* In the root project directory, create a file `config-overrides.js`
 
 * Add the following code to the `config-overrides.js` file:
   ```
@@ -170,7 +166,7 @@ including polyfills:
   ```
 
 * Run the following command:  
-  `npm install crypto-browserify stream-browserify --save`  
+  `npm install crypto-browserify stream-browserify --save`
 
 * In package.json, substitute the start scripts with the following lines:
   ```

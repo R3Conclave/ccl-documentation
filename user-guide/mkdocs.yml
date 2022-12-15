@@ -17,7 +17,7 @@ nav:
 theme:
   name: material
   favicon: assets/favicon.ico
-  logo: assets/cloud-logo.svg
+  logo: assets/cloud_logo_no_shadow.svg
 
 extra_css:
   - stylesheets/extra.css
