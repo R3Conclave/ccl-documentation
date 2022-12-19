@@ -12,7 +12,8 @@ nav:
             - Fetch: fetch.md
             - Crypto: crypto.md
     - ConclavePass Sample using Conclave Functions: conclavepass-sample.md
-    - Tutorial - Invoking your function using Conclave Cloud JS SDK: invoking-your-first-function-with-js-sdk.md
+    - Tutorial - Invoking a function using Conclave Cloud JS SDK: invoking-your-first-function-with-js-sdk.md
+    - Tutorial - Invoking a function using Conclave Cloud Java SDK: invoking-your-first-function-with-java-sdk.md
 
 theme:
   name: material
